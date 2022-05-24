@@ -1,0 +1,1365 @@
+// Copyright (C) 2016-2022 42
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+#base robot_giant.pop
+#base robot_standard.pop
+
+population
+{
+	StartingCurrency	8000
+	RespawnWaveTime	0
+	CanBotsAttackWhileInSpawnRoom	no
+	EventPopfile	Halloween
+	Templates
+	{
+		T_TFBot_Giant_Medic_NoUber
+		{
+			Health	4500
+			Name	"Giant Medic"
+			Class	Medic
+			Skill	Expert
+			WeaponRestrictions	SecondaryOnly
+			Attributes	"MiniBoss"
+			Item	"tf_weapon_syringegun_medic"
+			Item	"the quick-fix"
+			Item	"tf_weapon_bonesaw"
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction"	0.6
+				"airblast vulnerability multiplier"	0.6
+				"heal rate bonus"	200
+				"ubercharge rate bonus"	0
+			}
+		}
+	}
+	Wave
+	{
+		WaitWhenDone	65
+		Checkpoint	Yes
+		StartWaveOutput
+		{
+			Target	wave_start_relay_666
+			Action	Trigger
+		}
+		DoneOutput
+		{
+			Target	wave_finished_relay
+			Action	Trigger
+		}
+		WaveSpawn
+		{
+			Name	A-1
+			TotalCurrency	0
+			TotalCount	45
+			MaxActive	20
+			SpawnCount	15
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Demoman_Samurai
+					Attributes	"AlwaysCrit"
+					Item	"Spine-Chilling Skull"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Pyro
+					Attributes	"AlwaysCrit"
+					Attributes	"AlwaysFireWeapon"
+					Item	"Old Guadalajara"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Pyro
+					Attributes	"AlwaysCrit"
+					Attributes	"AlwaysFireWeapon"
+					Item	"Old Guadalajara"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	A-2
+			TotalCurrency	0
+			TotalCount	15
+			MaxActive	2
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	15
+			WaitBetweenSpawns	4
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Scout_Baseball
+					Attributes	"AlwaysCrit"
+					Item	"Point and Shoot"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	B
+			WaitForAllDead	A-1
+			TotalCurrency	0
+			TotalCount	25
+			MaxActive	20
+			SpawnCount	5
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	2
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Demo_Burst
+					Attributes	"AlwaysCrit"
+					Item	"Spine-Chilling Skull"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	C-1
+			WaitForAllDead	B
+			TotalCurrency	0
+			TotalCount	75
+			MaxActive	15
+			SpawnCount	3
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	2
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Soldier_Extended_Buff_Banner
+					Item	"Defiant Spartan"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Soldier_Extended_Concheror
+					Item	"Defiant Spartan"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Soldier_Extended_Battalion
+					Item	"Defiant Spartan"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name C-2
+			WaitForAllDead	B
+			TotalCurrency	0
+			TotalCount	15
+			MaxActive	6
+			SpawnCount	3
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	8
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Soldier_Extended_Buff_Banner
+					Item "Idiot box"
+					Item "Shoestring Budget"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Soldier_Extended_Concheror
+					Item "Idiot box"
+					Item "Shoestring Budget"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Soldier_Extended_Battalion
+					Item "Idiot box"
+					Item "Shoestring Budget"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	D-1
+			WaitForAllSpawned	C-2
+			TotalCurrency	0
+			TotalCount	10
+			MaxActive	10
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	45
+			WaitBetweenSpawns	10
+			Squad
+			{
+				Tank
+				{
+					Health	12500
+					Name	Tank
+					Speed	75
+					StartingPathTrackNode	boss_path_1
+					OnKilledOutput
+					{
+						Target	boss_dead_relay
+						Action	Trigger
+					}
+					OnBombDroppedOutput
+					{
+						Target	boss_deploy_relay
+						Action	Trigger
+					}
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	D-2
+			WaitForAllSpawned	C-2
+			TotalCurrency	0
+			TotalCount	50
+			MaxActive	21
+			SpawnCount	2
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	10
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Demoman_Samurai
+					Attributes	"AlwaysCrit"
+					Item	"Spine-Chilling Skull"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	E
+			WaitForAllDead	D-1
+			TotalCurrency	0
+			TotalCount	10
+			MaxActive	10
+			SpawnCount	2
+			Where	spawnbot
+			WaitBeforeStarting	10
+			WaitBetweenSpawns	10
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Scout_Baseball
+					Attributes	"AlwaysCrit"
+					Item	"Point and Shoot"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+					Item	"The Warsworn Helmet"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	F
+			WaitForAllDead	E
+			TotalCurrency	0
+			TotalCount	50
+			MaxActive	20
+			SpawnCount	5
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	6
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Heavyweapons_Shotgun
+					Item	"Witch Hat"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Heavyweapons_Shotgun
+					Item	"Witch Hat"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Heavyweapons_Shotgun
+					Item	"Witch Hat"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Heavyweapons_Shotgun
+					Item	"Witch Hat"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Soldier_Extended_Concheror
+					Item	"Defiant Spartan"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	G
+			WaitForAllDead	F
+			TotalCurrency	0
+			TotalCount	20
+			MaxActive	20
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	5
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Soldier_BurstFire
+					Attributes	"AlwaysCrit"
+					Item "Idiot box"
+					Item "Shoestring Budget"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	H
+			WaitForAllDead	G
+			TotalCurrency	0
+			TotalCount	33
+			MaxActive	21
+			SpawnCount	11
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	25
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Heavyweapons
+					Attributes	"AlwaysCrit"
+					Item	"Witch Hat"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+					Item	"The Warsworn Helmet"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+					Item	"The Warsworn Helmet"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+					Item	"The Warsworn Helmet"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+					Item	"The Warsworn Helmet"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+					Item	"The Warsworn Helmet"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+					Item	"The Warsworn Helmet"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+					Item	"The Warsworn Helmet"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+					Item	"The Warsworn Helmet"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+					Item	"The Warsworn Helmet"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+					Item	"The Warsworn Helmet"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	I
+			WaitForAllDead	H
+			TotalCurrency	0
+			TotalCount	30
+			MaxActive	19
+			SpawnCount	10
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	12
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Scout_Bonk
+					Item	"Point and Shoot"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	J-1
+			WaitForAllDead	I
+			TotalCurrency	0
+			TotalCount	98
+			MaxActive	21
+			SpawnCount	7
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	5
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Pyro
+					Attributes	"AlwaysCrit"
+					Attributes	"AlwaysFireWeapon"
+					Item	"Old Guadalajara"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Pyro
+					Attributes	"AlwaysCrit"
+					Attributes	"AlwaysFireWeapon"
+					Item	"Old Guadalajara"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Pyro
+					Attributes	"AlwaysCrit"
+					Attributes	"AlwaysFireWeapon"
+					Item	"Old Guadalajara"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Pyro
+					Attributes	"AlwaysCrit"
+					Attributes	"AlwaysFireWeapon"
+					Item	"Old Guadalajara"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Pyro
+					Attributes	"AlwaysCrit"
+					Attributes	"AlwaysFireWeapon"
+					Item	"Old Guadalajara"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Pyro
+					Attributes	"AlwaysCrit"
+					Attributes	"AlwaysFireWeapon"
+					Item	"Old Guadalajara"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Pyro
+					Attributes	"AlwaysCrit"
+					Attributes	"AlwaysFireWeapon"
+					Item	"Old Guadalajara"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name 	J-2
+			WaitForAllDead	I
+			TotalCurrency	0
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	10
+			WaitBetweenSpawns	0
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Chief_Pyro
+					Attributes	"AlwaysCrit"
+					Attributes	"AlwaysFireWeapon"
+					Scale	2
+					Health	30000
+					Item	"Old Guadalajara"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name 	J-3
+			WaitForAllDead	J-2
+			TotalCurrency	0
+			TotalCount	10
+			MaxActive	2
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	10
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Scout_Baseball
+					Attributes	"AlwaysCrit"
+					Item	"Point and Shoot"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	K-1
+			WaitForAllDead	J-1
+			TotalCurrency	0
+			TotalCount	20 
+			MaxActive	16
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	10
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Soldier_RocketPush
+					Attributes	"AlwaysCrit"
+					Item "Idiot box"
+					Item "Shoestring Budget"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name 	K-2
+			WaitForAllDead	J-3
+			TotalCurrency	0
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Chief_Soldier_RocketPush
+					Attributes	"AlwaysCrit"
+					Scale	2
+					Item "Idiot box"
+					Item "Shoestring Budget"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	K-3
+			WaitForAllDead	K-2
+			TotalCurrency	0
+			TotalCount	10
+			MaxActive	4
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	4
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Soldier_Extended_Battalion
+					Item	"Defiant Spartan"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	L-1
+			WaitForAllDead	K-1
+			TotalCurrency	0
+			TotalCount	10
+			MaxActive	10
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	15
+			WaitBetweenSpawns	10
+			Squad
+			{
+				Tank
+				{
+					Health	12500
+					Name	Tank
+					Speed	75
+					StartingPathTrackNode	boss_path_1
+					OnKilledOutput
+					{
+						Target	boss_dead_relay
+						Action	Trigger
+					}
+					OnBombDroppedOutput
+					{
+						Target	boss_deploy_relay
+						Action	Trigger
+					}
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	L-2
+			WaitForAllDead	K-1
+			TotalCurrency	0
+			TotalCount	75
+			MaxActive	20
+			SpawnCount	3
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	9
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Heavyweapons_Fist
+					Attributes	"AlwaysCrit"
+					Item	"Witch Hat"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	M-1
+			WaitForAllDead	L-1
+			TotalCurrency	0
+			TotalCount	125
+			MaxActive	20
+			SpawnCount	5
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	5
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Demo_Burst
+					Attributes	"AlwaysCrit"
+					Item	"Spine-Chilling Skull"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Demo_Burst
+					Attributes	"AlwaysCrit"
+					Item	"Spine-Chilling Skull"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Demo_Burst
+					Attributes	"AlwaysCrit"
+					Item	"Spine-Chilling Skull"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Demo_Burst
+					Attributes	"AlwaysCrit"
+					Item	"Spine-Chilling Skull"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Demo_Burst
+					Attributes	"AlwaysCrit"
+					Item	"Spine-Chilling Skull"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	M-2
+			WaitForAllDead	L-1
+			TotalCurrency	0
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	5
+			WaitBetweenSpawns	0
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Demo_Spammer_Reload_Chief
+					Attributes	"AlwaysCrit"
+					Scale	2
+					Item	"Spine-Chilling Skull"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	M-3
+			WaitForAllDead	M-2
+			TotalCurrency	0
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	5
+			WaitBetweenSpawns	0
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Chief_Demo_Atomic
+					Attributes	"AlwaysCrit"
+					Scale	2
+					Item	"Spine-Chilling Skull"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	M-4
+			WaitForAllDead	M-3
+			TotalCurrency	0
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	5
+			WaitBetweenSpawns	0
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Metalbeard
+					Attributes	"AlwaysCrit"
+					Scale	2
+					Item	"Spine-Chilling Skull"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	N-1
+			WaitForAllDead	M-4
+			TotalCurrency	0
+			TotalCount	10
+			MaxActive	5
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	15
+			WaitBetweenSpawns	3
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Soldier_Extended_Buff_Banner
+					Item	"Defiant Spartan"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	N-2
+			WaitForAllDead	M-4
+			TotalCurrency	0
+			TotalCount	20
+			MaxActive	10
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	10
+			WaitBetweenSpawns	5
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Scout_Baseball
+					Attributes	"AlwaysCrit"
+					Item	"Point and Shoot"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	O
+			WaitForAllDead	N-2
+			TotalCurrency	0
+			TotalCount	20
+			MaxActive	12
+			SpawnCount	2
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	12
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Soldier_RocketPush
+					Attributes	"AlwaysCrit"
+					Item "Idiot box"
+					Item "Shoestring Budget"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+					Item	"The Warsworn Helmet"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	P-1
+			WaitForAllDead	O
+			TotalCurrency	0
+			TotalCount	15
+			MaxActive	15
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	5
+			WaitBetweenSpawns	15
+			Squad
+			{
+				Tank
+				{
+					Health	8500
+					Name	Tank
+					Speed	75
+					StartingPathTrackNode	boss_path_1
+					OnKilledOutput
+					{
+						Target	boss_dead_relay
+						Action	Trigger
+					}
+					OnBombDroppedOutput
+					{
+						Target	boss_deploy_relay
+						Action	Trigger
+					}
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	P-2
+			WaitForAllDead	O
+			TotalCurrency	0
+			TotalCount	20
+			MaxActive	20
+			SpawnCount	2
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	5
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Soldier_BurstFire
+					Attributes	"AlwaysCrit"
+					Item "Idiot box"
+					Item "Shoestring Budget"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Heavyweapons_Shotgun
+					Item	"Witch Hat"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	Q
+			WaitForAllDead	P-2
+			TotalCurrency	0
+			TotalCount	28
+			MaxActive	20
+			SpawnCount	4
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	7
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Heavyweapons
+					Attributes	"AlwaysCrit"
+					Item	"Witch Hat"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Pyro
+					Attributes	"AlwaysCrit"
+					Attributes	"AlwaysFireWeapon"
+					Item	"Old Guadalajara"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Pyro
+					Attributes	"AlwaysCrit"
+					Attributes	"AlwaysFireWeapon"
+					Item	"Old Guadalajara"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Pyro
+					Attributes	"AlwaysCrit"
+					Attributes	"AlwaysFireWeapon"
+					Item	"Old Guadalajara"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	R
+			WaitForAllDead Q
+			TotalCurrency	0
+			TotalCount	100
+			MaxActive	20
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	1.5
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Sniper_Huntsman_Spammer
+					Attributes	"AlwaysCrit"
+					Item	"Larrikin Robin"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	S
+			WaitForAllDead	R
+			TotalCurrency	0
+			TotalCount	30
+			MaxActive	19
+			SpawnCount	10
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	12
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Scout_Bonk
+					Item	"Point and Shoot"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	T-1
+			WaitForAllDead	S
+			TotalCurrency	0
+			TotalCount	40
+			MaxActive	20
+			SpawnCount	4
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	6
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Heavyweapons
+					Attributes	"AlwaysCrit"
+					Item	"Witch Hat"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Heavyweapons_BrassBeast
+					Attributes	"AlwaysCrit"
+					Item	"Witch Hat"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Heavyweapons_Natascha
+					Attributes	"AlwaysCrit"
+					Item	"Witch Hat"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Demoman_Samurai
+					Attributes	"AlwaysCrit"
+					Item	"Spine-Chilling Skull"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	T-2
+			WaitForAllDead	S
+			TotalCurrency	0
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	5
+			WaitBetweenSpawns	0
+			Squad
+			{
+				Tank
+				{
+					Health	424242
+					Name	Tank
+					Speed	7
+					Skin	1
+					StartingPathTrackNode	boss_path_1
+					OnKilledOutput
+					{
+						Target	boss_dead_relay
+						Action	Trigger
+					}
+					OnBombDroppedOutput
+					{
+						Target	boss_deploy_relay
+						Action	Trigger
+					}
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	U
+			WaitForAllDead	T-1
+			TotalCurrency	0
+			TotalCount	70
+			MaxActive	21
+			SpawnCount	7
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	10
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Soldier_BurstFire
+					Attributes	"AlwaysCrit"
+					Item "Idiot box"
+					Item "Shoestring Budget"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Pyro
+					Attributes	"AlwaysCrit"
+					Item	"Old Guadalajara"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Demo_Burst
+					Attributes	"AlwaysCrit"
+					Item	"Spine-Chilling Skull"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Heavyweapons
+					Attributes	"AlwaysCrit"
+					Item	"Witch Hat"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Soldier_Extended_Buff_Banner
+					Item	"Defiant Spartan"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Soldier_Extended_Concheror
+					Item	"Defiant Spartan"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Soldier_Extended_Battalion
+					Item	"Defiant Spartan"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	V
+			WaitForAllDead	U
+			TotalCurrency	0
+			TotalCount	125
+			MaxActive	20
+			SpawnCount	5
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	7
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Demoman_Samurai
+					Attributes	"AlwaysCrit"
+					Item	"Spine-Chilling Skull"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Heavyweapons_Fist
+					Attributes	"AlwaysCrit"
+					Item	"Witch Hat"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Soldier_Extended_Buff_Banner
+					Item	"Defiant Spartan"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Soldier_Extended_Concheror
+					Item	"Defiant Spartan"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Soldier_Extended_Battalion
+					Item	"Defiant Spartan"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	W-1
+			WaitForAllDead	V
+			TotalCurrency	0
+			TotalCount	30
+			MaxActive	12
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	1.5
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Soldier_Extended_Buff_Banner
+					Item	"Defiant Spartan"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	W-2
+			WaitForAllDead	V
+			TotalCurrency	0
+			TotalCount	12
+			MaxActive	8
+			SpawnCount	4
+			Where	spawnbot
+			WaitBeforeStarting	1
+			WaitBetweenSpawns	15
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Soldier_Extended_Buff_Banner
+					Item "Idiot box"
+					Item "Shoestring Budget"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	X-1
+			WaitForAllDead	W-2
+			TotalCurrency	0
+			TotalCount	30
+			MaxActive	12
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	1.5
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Soldier_Extended_Concheror
+					Item	"Defiant Spartan"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	X-2
+			WaitForAllDead	W-2
+			TotalCurrency	0
+			TotalCount	12
+			MaxActive	8
+			SpawnCount	4
+			Where	spawnbot
+			WaitBeforeStarting	1
+			WaitBetweenSpawns	15
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Soldier_Extended_Concheror
+					Item "Idiot box"
+					Item "Shoestring Budget"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	Y-1
+			WaitForAllDead	X-2
+			TotalCurrency	0
+			TotalCount	30
+			MaxActive	12
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	1.5
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Soldier_Extended_Battalion
+					Item	"Defiant Spartan"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	Y-2
+			WaitForAllDead	X-2
+			TotalCurrency	0
+			TotalCount	12
+			MaxActive	8
+			SpawnCount	4
+			Where	spawnbot
+			WaitBeforeStarting	1
+			WaitBetweenSpawns	15
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Giant_Soldier_Extended_Battalion
+					Item "Idiot box"
+					Item "Shoestring Budget"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+					Item	"The Warsworn Helmet"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+					Item	"The Warsworn Helmet"
+				}
+				TFBot
+				{
+					Template	T_TFBot_Giant_Medic_NoUber
+					Item	"The Warsworn Helmet"
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	Z
+			WaitForAllDead	T-2
+			TotalCurrency	4242
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	5
+			WaitBetweenSpawns	0
+			Squad
+			{
+				TFBot
+				{
+					Health	100000
+					Template	T_TFBot_Giant_Soldier_SlowBarrage
+					Attributes	"AlwaysCrit"
+					Attributes	"UseBossHealthBar"
+					Scale 2
+					Item "Idiot box"
+					Item "Shoestring Budget"
+					CharacterAttributes
+					{
+						"move speed bonus"	0.2
+						"damage bonus"	2.5
+					}
+					ItemAttributes
+					{
+						ItemName	tf_weapon_rocketlauncher
+						"clip size upgrade atomic"	46.0
+						"faster reload rate"	0.11
+						"fire rate bonus"	0.1
+						"projectile spread angle penalty"	7
+						"damage causes airblast" 2
+					}
+				}
+			}
+		}
+	}
+}
+
+////////////////////////////////////////////////
+//Halloween Hats
+//--------------
+//Scout		- Item	"Point and Shoot"
+//Soldier	- Item	"Defiant Spartan" (Giant - Item "Idiot box" & Item "Shoestring Budget")
+//Pyro		- Item	"Old Guadalajara"
+//Demoman	- Item	"Spine-Chilling Skull"
+//Heavy		- Item	"Witch Hat"
+//Engineer	- None
+//Medic		- Item	"The Warsworn Helmet"
+//Sniper	- Item	"Larrikin Robin"
+//Spy		- None
+////////////////////////////////////////////////

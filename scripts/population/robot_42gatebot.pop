@@ -1,0 +1,1404 @@
+// Copyright (C) 2016-2022 42
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+WaveSchedule
+{
+	Templates
+	{
+		T_TFGateBot_Scout_SunStick
+		{
+			Class	Scout
+			ClassIcon	scout_sunstick
+			Name	"Sun-on-a-Stick Scout"
+			Health	125
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+
+					Item "sun-on-a-stick"
+					Item "MvM GateBot Light Scout"
+					//Item "The Bolt Boy"
+					WeaponRestrictions MeleeOnly
+					Skill Hard
+				}
+				RevertGateBotsBehavior
+				{
+					Skill Hard
+					WeaponRestrictions MeleeOnly
+					
+					Item "sun-on-a-stick"
+					Item "MvM GateBot Light Scout"
+					Item "The Bolt Boy"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Scout"
+						"item style override" 1
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Soldier_Burst
+		{
+			Class Soldier
+			ClassIcon soldier_burstfire
+			Name "Burst Fire Soldier"
+			Health	200
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Item "MvM GateBot Light Soldier"
+					
+					Skill Hard
+					WeaponRestrictions PrimaryOnly
+					Attributes	"HoldFireUntilFullReload"
+					ItemAttributes
+					{
+						ItemName "TF_WEAPON_ROCKETLAUNCHER"
+						"damage penalty" 0.5
+						"clip size penalty" 0.25
+						"fire rate bonus" 0
+						"projectile spread angle penalty" 3
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Item "MvM GateBot Light Soldier"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Soldier"
+						"item style override" 1
+					}
+					
+					Skill Hard
+					WeaponRestrictions PrimaryOnly
+					Attributes	"HoldFireUntilFullReload"
+					ItemAttributes
+					{
+						ItemName "TF_WEAPON_ROCKETLAUNCHER"
+						"damage bonus" 0.5
+						"clip size penalty" 0.25
+						"fire rate bonus" 0
+						"projectile spread angle penalty" 3
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Soldier_DirectHit
+		{
+			Class	Soldier
+			ClassIcon	soldier_directhit
+			Name	"Direct Hit Soldier"
+			Health	200
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Attributes	"AlwaysCrit"
+					
+					Item	"the direct hit"
+					WeaponRestrictions	PrimaryOnly
+					Skill	Expert
+				}
+				RevertGateBotsBehavior
+				{
+					Item	"the direct hit"
+					Item	"MvM GateBot Light Soldier"
+					WeaponRestrictions	PrimaryOnly
+					Skill	Expert
+					
+					Attributes	"AlwaysCrit"
+					
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Soldier"
+						"item style override" 1
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Soldier_Nuke
+		{
+			Class	Soldier
+			ClassIcon	soldier_nuker
+			Name	"Nuke Soldier"
+			Health	200
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Attributes	"AlwaysCrit"
+					Item	"the black box"
+					Item	"MvM GateBot Light Soldier"
+					WeaponRestrictions	PrimaryOnly
+					Skill	Expert
+			
+					ItemAttributes
+					{
+						ItemName	"the black box"
+						"damage bonus"	5
+						"Blast radius increased"	2
+						"fire rate bonus"	100
+						"Projectile speed increased"	0.3
+						"use large smoke explosion"	1
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Attributes	"AlwaysCrit"
+					Item	"the black box"
+					Item	"MvM GateBot Light Soldier"
+					WeaponRestrictions	PrimaryOnly
+					Skill	Expert
+			
+					ItemAttributes
+					{
+						ItemName	"the black box"
+						"damage bonus"	5
+						"Blast radius increased"	2
+						"fire rate bonus"	100
+						"Projectile speed increased"	0.3
+						"use large smoke explosion"	1
+					}
+					
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Soldier"
+						"item style override" 1
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Soldier_AirStrike
+		{
+			Class	Soldier
+
+			Name	"Air Strike Soldier"
+			Health	200
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Skill Hard
+					Item	"MvM GateBot Light Soldier"
+					Item	"the air strike"
+					Item	"The B.A.S.E. Jumper"
+					WeaponRestrictions PrimaryOnly
+					Attributes	"HoldFireUntilFullReload"
+					ItemAttributes
+					{
+						ItemName	"the air strike"
+						"fire rate bonus"	0.35
+					}
+			
+					Attributes AutoJump
+					AutoJumpMin 1
+					AutoJumpMax 2
+					CharacterAttributes
+					{
+						"increased jump height"	3
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Skill Hard
+					Item	"MvM GateBot Light Soldier"
+					Item	"the air strike"
+					Item	"The B.A.S.E. Jumper"
+					WeaponRestrictions PrimaryOnly
+					Attributes	"HoldFireUntilFullReload"
+					ItemAttributes
+					{
+						ItemName	"the air strike"
+						"fire rate bonus"	0.35
+					}
+					
+					Attributes AutoJump
+					AutoJumpMin 1
+					AutoJumpMax 2
+					CharacterAttributes
+					{
+						"increased jump height"	3
+					}
+					
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Soldier"
+						"item style override" 1
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Pyro_Fast
+		{
+			Class	Pyro
+			ClassIcon	pyro
+			Name	"Fast Pyro"
+			Health	175
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+			
+					Skill	Hard
+					WeaponRestrictions	PrimaryOnly
+					Attributes	AlwaysFireWeapon
+					Item "MvM GateBot Light Pyro"
+					
+					ItemAttributes
+					{
+						ItemName	"TF_WEAPON_FLAMETHROWER"
+						"damage bonus"	0.05
+					}
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	1.3
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Item "MvM GateBot Light Pyro"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Pyro"
+						"item style override" 1
+					}
+					
+					Skill	Hard
+					WeaponRestrictions	PrimaryOnly
+					Attributes	AlwaysFireWeapon
+					
+					ItemAttributes
+					{
+						ItemName	"TF_WEAPON_FLAMETHROWER"
+						"damage bonus"	0.05
+					}
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	1.3
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Pyro_Airblast
+		{
+			Class	Pyro
+			ClassIcon	pyro_airblast
+			Name	"Airblast Pyro"
+			Health	175
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+
+					Item "the degreaser"
+					Item "MvM GateBot Light Pyro"
+					Item "Traffic Cone"
+					WeaponRestrictions PrimaryOnly
+					Skill Expert
+					
+					ItemAttributes
+					{
+						ItemName "the degreaser"
+						"damage bonus"	0.05
+						"fire rate bonus" 1
+						"airblast pushback scale" 3
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Skill Expert
+					WeaponRestrictions PrimaryOnly
+					
+					Item "the degreaser"
+					Item "MvM GateBot Light Pyro"
+					Item "Traffic Cone"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Pyro"
+						"item style override" 1
+					}
+					
+					ItemAttributes
+					{
+						ItemName "the degreaser"
+						"damage bonus"	0.05
+						"fire rate bonus" 1
+						"airblast pushback scale" 3
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Soldier_ReserveShooter //FAILED - NOT EQUIPTED
+		{
+			Class	Soldier
+			ClassIcon	shotgun
+			Name	"Reserve Shooter Soldier"
+			Health	200
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+
+					Item	"the reserve shooter"
+					Item	"MvM GateBot Light Soldier"
+					WeaponRestrictions SecondaryOnly
+					Skill Expert
+				}
+				RevertGateBotsBehavior
+				{
+					Skill Expert
+					WeaponRestrictions	SecondaryOnly
+					
+					Item	"the reserve shooter"
+					Item	"MvM GateBot Light Soldier"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Soldier"
+						"item style override" 1
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Pyro_Neon
+		{
+			Class	Pyro
+			ClassIcon	pyro_neon
+			Name	"Neon Annihilator Pyro"
+			Health	175
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+
+					Item "the neon annihilator"
+					Item "MvM GateBot Light Pyro"
+					WeaponRestrictions MeleeOnly
+					Skill Expert
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	1.5
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Skill Expert
+					WeaponRestrictions MeleeOnly
+					
+					Item "the neon annihilator"
+					Item "MvM GateBot Light Pyro"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Pyro"
+						"item style override" 1
+					}
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	1.5
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Demoman_Burst
+		{
+			Class Demoman
+			ClassIcon demo_burst
+			Name "Burst Fire Demoman"
+			Health	175
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Item "MvM GateBot Light Demoman"
+					
+					Skill Hard
+					WeaponRestrictions PrimaryOnly
+					Attributes	"HoldFireUntilFullReload"
+					ItemAttributes
+					{
+						ItemName "TF_WEAPON_GRENADELAUNCHER"
+						"damage bonus" 0.5
+						"clip size penalty" 0.25
+						"fire rate bonus" 0
+						"projectile spread angle penalty" 3
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Item "MvM GateBot Light Demoman"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Demoman"
+						"item style override" 1
+					}
+					
+					Skill Hard
+					WeaponRestrictions PrimaryOnly
+					Attributes	"HoldFireUntilFullReload"
+					ItemAttributes
+					{
+						ItemName "TF_WEAPON_GRENADELAUNCHER"
+						"damage bonus" 0.5
+						"clip size penalty" 0.25
+						"fire rate bonus" 0
+						"projectile spread angle penalty" 3
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Demoman_Caber
+		{
+			Class	Demoman
+			ClassIcon	demo_caber
+			Name	"Caber Demoman"
+			Health	175
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Attributes	"AlwaysCrit"
+					
+					Item "the ullapool caber"
+					Item "MvM GateBot Light Demoman"
+					WeaponRestrictions MeleeOnly
+					Skill Expert
+					
+					ItemAttributes
+					{
+						ItemName	"the ullapool caber"
+						"damage bonus"	11
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Skill Expert
+					WeaponRestrictions MeleeOnly
+					
+					Attributes	"AlwaysCrit"
+					
+					Item "the ullapool caber"
+					Item "MvM GateBot Light Demoman"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Demoman"
+						"item style override" 1
+					}
+					
+					ItemAttributes
+					{
+						ItemName	"the ullapool caber"
+						"damage bonus"	11
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Demoman_PainTrain
+		{
+			Class	Demoman
+			ClassIcon	demoknight_paintrain
+			Name	"Pain Train Demoman"
+			Health	175
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Item "the pain train"
+					Item "MvM GateBot Light Demoman"
+					WeaponRestrictions MeleeOnly
+					Skill Expert
+					
+					CharacterAttributes
+					{
+						"increase player capture value"	3
+						"move speed bonus"	1.5
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Skill Expert
+					WeaponRestrictions MeleeOnly
+					
+					Attributes	"AlwaysCrit"
+					
+					Item "the pain train"
+					Item "MvM GateBot Light Demoman"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Demoman"
+						"item style override" 1
+					}
+					
+					CharacterAttributes
+					{
+						"increase player capture value"	3
+						"move speed bonus"	1.5
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Heavyweapons_Gnome
+		{
+			Class	Heavyweapons
+			ClassIcon	heavy_mittens
+			Name	"Heavy Mittens"
+			Health	60
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Attributes	"AlwaysCrit"
+					
+					Item "The Holiday Punch"
+					Item "MvM GateBot Light Heavy"
+					WeaponRestrictions MeleeOnly
+					Skill Expert
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	1.5
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Skill Expert
+					WeaponRestrictions MeleeOnly
+					
+					Attributes	"AlwaysCrit"
+					
+					Item "The Holiday Punch"
+					Item "MvM GateBot Light Heavy"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Heavy"
+						"item style override" 1
+					}
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	1.5
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Heavyweapons_EvictionNotice
+		{
+			Class	Heavyweapons
+			ClassIcon	heavy_eviction_nys
+			Name	"Eviction Notice Heavy"
+			Health	150
+			Scale	0.8
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+
+					Item "the eviction notice"
+					Item "MvM GateBot Light Heavy"
+					WeaponRestrictions MeleeOnly
+					Skill Hard
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	2
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Skill Hard
+					WeaponRestrictions MeleeOnly
+					
+					Item "the eviction notice"
+					Item "MvM GateBot Light Heavy"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Heavy"
+						"item style override" 1
+					}
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	2
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Giant_Scout_Shortstop
+		{
+			Class	Scout
+			ClassIcon	scout_shortstop
+			Name	"Giant Shortstop Scout"
+			Health	1200	
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Attributes	"MiniBoss"
+					tag bot_giant
+					
+					Skill	Hard
+					Item	"the shortstop"
+					Item	"MvM GateBot Light Scout"
+					
+					ItemAttributes
+					{
+						ItemName	"the shortstop"
+						"faster reload rate"	2
+						"fire rate bonus"	0.5
+					}
+					
+					CharacterAttributes
+					{
+						"airblast vulnerability multiplier"	0.5
+						"override footstep sound set"	4
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Attributes	"MiniBoss"
+					tag bot_giant
+					
+					Skill	Hard
+					Item	"the shortstop"
+					Item	"MvM GateBot Light Scout"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Scout"
+						"item style override" 1
+					}
+					
+					ItemAttributes
+					{
+						ItemName	"the shortstop"
+						"faster reload rate"	2
+						"fire rate bonus"	0.5
+					}
+					
+					CharacterAttributes
+					{
+						"airblast vulnerability multiplier"	0.5
+						"override footstep sound set"	4
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Giant_Soldier_Laser
+		{
+			Class	Soldier
+			ClassIcon	soldier_cockswain
+			Name	"Giant Laser Soldier"
+			Health	3800
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Attributes	"MiniBoss"
+					tag bot_giant
+					
+					Skill	Expert
+					Item	"the cow mangler 5000"
+					WeaponRestrictions	PrimaryOnly
+					ItemAttributes
+					{
+						ItemName	"the cow mangler 5000"
+						"damage penalty"	0.2
+						"faster reload rate"	0
+						"fire rate bonus"	0.01
+						"Projectile speed increased"	10
+						"blast radius decreased"	0.3
+						"rocket jump damage reduction"	0
+					}
+					
+					Item	"lord cockswain's pith helmet"
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction"	0.4
+						"airblast vulnerability multiplier"	0.4
+						"override footstep sound set"	3					
+					}
+				}
+				RevertGateBotsBehavior
+				{					
+					Attributes	"MiniBoss"
+					tag bot_giant
+					
+					Skill	Expert
+					Item	"the cow mangler 5000"
+					WeaponRestrictions	PrimaryOnly
+					ItemAttributes
+					{
+						ItemName	"the cow mangler 5000"
+						"damage penalty"	0.2
+						"faster reload rate"	0
+						"fire rate bonus"	0.01
+						"Projectile speed increased"	10
+						"blast radius decreased"	0.3
+						"rocket jump damage reduction"	0
+					}
+					
+					Item	"lord cockswain's pith helmet"
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction"	0.4
+						"airblast vulnerability multiplier"	0.4
+						"override footstep sound set"	3					
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Chief_Soldier_Laser
+		{
+			Class	Soldier
+			ClassIcon	soldier_cockswain
+			Name	"Chief Laser Soldier"
+			Health	80000
+			Scale	1.8
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Attributes	"UseBossHealthBar"
+					Attributes	"MiniBoss"
+					tag bot_giant
+					
+					Skill	Expert
+					Item	"the cow mangler 5000"
+					WeaponRestrictions	PrimaryOnly
+					ItemAttributes
+					{
+						ItemName	"the cow mangler 5000"
+						"damage penalty"	0.5
+						"faster reload rate"	0
+						"fire rate bonus"	0.01
+						"Projectile speed increased"	10
+						"blast radius decreased"	0.3
+						"rocket jump damage reduction"	0
+					}
+					
+					Item	"lord cockswain's pith helmet"
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction"	0.4
+						"airblast vulnerability multiplier"	0.4
+						"override footstep sound set"	3	
+						"rage giving scale"	0.1
+					}
+				}
+				RevertGateBotsBehavior
+				{					
+					Attributes	"UseBossHealthBar"
+					Attributes	"MiniBoss"
+					tag bot_giant
+					
+					Skill	Expert
+					Item	"the cow mangler 5000"
+					WeaponRestrictions	PrimaryOnly
+					ItemAttributes
+					{
+						ItemName	"the cow mangler 5000"
+						"damage penalty"	0.5
+						"faster reload rate"	0
+						"fire rate bonus"	0.01
+						"Projectile speed increased"	10
+						"blast radius decreased"	0.3
+						"rocket jump damage reduction"	0
+					}
+					
+					Item	"lord cockswain's pith helmet"
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	0.3
+						"damage force reduction"	0.5
+						"airblast vulnerability multiplier"	0.4
+						"override footstep sound set"	3
+						"rage giving scale"	0.1
+					}
+				}
+			}
+		}
+
+		T_TFGateBot_Giant_Demoman_LochNLoad
+		{
+			Class	Demoman
+			ClassIcon	demo_loch_nys
+			Name	"Giant Loch-n-Load Demoman"
+			Health	3300
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Attributes	"AlwaysCrit"
+					Attributes	"MiniBoss"
+					tag bot_giant
+					
+					Skill	Expert
+					Item	"the loch-n-load"
+					WeaponRestrictions	PrimaryOnly
+					Attributes	"HoldFireUntilFullReload"
+					ItemAttributes
+					{
+						ItemName	"the loch-n-load"
+						"grenade launcher mortar mode"	0
+						"fire rate bonus"	0.2
+						"Projectile speed increased"	3
+						"reload time increased"	3
+					}
+					
+					Item	"MvM GateBot Light Demoman"
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	0.4
+						"damage force reduction"	0.4
+						"airblast vulnerability multiplier"	0.4
+						"override footstep sound set"	3					
+					}
+				}
+				RevertGateBotsBehavior
+				{					
+					Attributes	"AlwaysCrit"
+					Attributes	"MiniBoss"
+					tag bot_giant
+					
+					Skill	Expert
+					Item	"the loch-n-load"
+					Item	"scotch bonnet"
+					WeaponRestrictions	PrimaryOnly
+					Attributes	"HoldFireUntilFullReload"
+					ItemAttributes
+					{
+						ItemName	"the loch-n-load"
+						"grenade launcher mortar mode"	0
+						"fire rate bonus"	0.2
+						"Projectile speed increased"	3
+						"reload time increased"	3
+					}
+					
+					Item	"MvM GateBot Light Demoman"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Demoman"
+						"item style override" 1
+					}
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	0.4
+						"damage force reduction"	0.4
+						"airblast vulnerability multiplier"	0.4
+						"override footstep sound set"	3					
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Giant_Demoman_Axe
+		{
+			Class	Demoman
+			ClassIcon	demo_skullcutter_giant
+			Name	"Giant Axeman Demoknight"
+			Health	3300
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Attributes	"AlwaysCrit"
+					Attributes	"MiniBoss"
+					tag bot_giant
+					
+					Skill	Expert
+					Item	"the scotsman's skullcutter"
+					WeaponRestrictions	MeleeOnly
+					ItemAttributes
+					{
+						ItemName	"the scotsman's skullcutter"
+						//"damage bonus"	2
+						"melee range multiplier"	1.5
+					}
+					
+					Item	"MvM GateBot Light Demoman"
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction"	0.4
+						"airblast vulnerability multiplier"	0.4
+						"override footstep sound set"	3					
+					}
+				}
+				RevertGateBotsBehavior
+				{					
+					Attributes	"AlwaysCrit"
+					Attributes	"MiniBoss"
+					tag bot_giant
+					
+					Skill	Expert
+					Item	"the scotsman's skullcutter"
+					WeaponRestrictions	MeleeOnly
+					ItemAttributes
+					{
+						ItemName	"the scotsman's skullcutter"
+						//"damage bonus"	2
+						"melee range multiplier"	1.5
+					}
+					
+					Item	"MvM GateBot Light Demoman"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Demoman"
+						"item style override" 1
+					}
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction"	0.4
+						"airblast vulnerability multiplier"	0.4
+						"override footstep sound set"	3					
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Giant_Heavy_Natascha
+		{
+			Class	Heavyweapons
+			ClassIcon	heavy_natascha_nys_giant
+			Name	"Giant Natascha Heavy"
+			Health	5000
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Attributes	"MiniBoss"
+					tag bot_giant
+					
+					Skill	Hard
+					Item	"natascha"
+					Item	"MvM GateBot Light Heavy"
+					ItemAttributes
+					{
+						ItemName	"natascha"
+						"dmg taken increased"	1.2
+					}
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction"	0.4
+						"airblast vulnerability multiplier"	0.5
+						"override footstep sound set"	4
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Attributes	"MiniBoss"
+					tag bot_giant
+					
+					Skill	Hard
+					Item	"natascha"
+					Item	"MvM GateBot Light Heavy"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Heavy"
+						"item style override" 1
+					}
+					
+					ItemAttributes
+					{
+						ItemName	"natascha"
+						"dmg taken increased"	1.2
+					}
+
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction"	0.4
+						"airblast vulnerability multiplier"	0.5
+						"override footstep sound set"	4
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Giant_Heavy_Brass
+		{
+			Class	Heavyweapons
+			ClassIcon	heavy_brass_nys_giant
+			Name	"Giant Brass Heavy"
+			Health	5000
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Attributes	"MiniBoss"
+					tag bot_giant
+					
+					Skill	Hard
+					Item	"the brass beast"
+					Item	"MvM GateBot Light Heavy"
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	0.35
+						"damage force reduction"	0.4
+						"airblast vulnerability multiplier"	0.5
+						"override footstep sound set"	4
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Attributes	"MiniBoss"
+					tag bot_giant
+					
+					Skill	Hard
+					Item	"the brass beast"
+					Item	"MvM GateBot Light Heavy"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Heavy"
+						"item style override" 1
+					}
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	0.35
+						"damage force reduction"	0.4
+						"airblast vulnerability multiplier"	0.5
+						"override footstep sound set"	4
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Chief_Heavy_Gaben
+		{
+			Class	Heavyweapons
+			ClassIcon	heavy_ultimate
+			Name	"Gaben"
+			Health	424242
+			Scale	1.95
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Attributes	"MiniBoss"
+					Attributes	"UseBossHealthBar"
+					tag bot_giant
+					
+					Skill	Expert
+					Item	"Upgradeable tf_weapon_minigun"
+					ItemAttributes
+					{
+						ItemName	"Upgradeable tf_weapon_minigun"
+						"item style override"	1
+						"damage bonus"	6
+						"clip size bonus"	2
+						"fire rate bonus"	6
+						//"heal on hit for rapidfire"	10
+						//"crit vs burning players"	1
+						//"critboost on kill"	10
+						//"bullets per shot bonus"	10
+						//"health regen"	10
+					}
+					
+					Item	"MvM GateBot Light Heavy"
+					CharacterAttributes
+					{
+						"move speed bonus"	0.35
+						"damage force reduction"	0.3
+						"airblast vulnerability multiplier"	0.3
+						"override footstep sound set"	2
+						"hand scale"	1.3
+						"rage giving scale"	0.1
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Attributes	"MiniBoss"
+					Attributes	"UseBossHealthBar"
+					tag bot_giant
+					
+					Item	"Upgradeable tf_weapon_minigun"
+					ItemAttributes
+					{
+						ItemName	"Upgradeable tf_weapon_minigun"
+						"item style override"	1
+						"damage bonus"	6
+						"clip size bonus"	2
+						"fire rate bonus"	6
+						//"heal on hit for rapidfire"	10
+						//"crit vs burning players"	1
+						//"critboost on kill"	10
+						//"bullets per shot bonus"	10
+						//"health regen"	10
+					}
+					
+					Skill	Expert
+					Item	"MvM GateBot Light Heavy"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Heavy"
+						"item style override" 1
+						
+					}
+
+					CharacterAttributes
+					{
+						"move speed bonus"	0.35
+						"damage force reduction"	0.3
+						"airblast vulnerability multiplier"	0.3
+						"override footstep sound set"	2
+						"hand scale"	1.3
+						"rage giving scale"	0.1
+					}
+				}
+			}
+		}
+		
+		T_TFGateBot_Giant_Medic_Shield
+		{
+			Class	Medic
+			ClassIcon	medic_shield_giant
+			Name	"Giant Shield Medic"
+			Health	4500
+			
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Attributes	"MiniBoss"
+					tag bot_giant
+					
+					Skill	Expert
+					Item	"The Quick-Fix"
+					Item	"MvM GateBot Light Medic"
+					WeaponRestrictions	SecondaryOnly
+					Attributes	"ProjectileShield"
+					//Attributes	"SpawnWithFullCharge"
+					
+					ItemAttributes
+					{
+						ItemName	"The Quick-Fix"
+						"ubercharge rate bonus"	0
+						"generate rage on heal"	2
+						"increase buff duration"	2
+						"uber duration bonus" -8
+					}
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction"	0.6
+						"airblast vulnerability multiplier"	0.6
+						"heal rate bonus"	3
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Item	"MvM GateBot Light Medic"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Medic"
+						"item style override" 1
+					}
+					
+					Attributes	"MiniBoss"
+					tag bot_giant
+					
+					Skill	Expert
+					WeaponRestrictions	SecondaryOnly
+					Attributes	"ProjectileShield"
+					//Attributes	"SpawnWithFullCharge"
+					Item	"The Quick-Fix"
+					
+					ItemAttributes
+					{
+						ItemName	"The Quick-Fix"
+						"ubercharge rate bonus"	0
+						"generate rage on heal"	2
+						"increase buff duration"	2
+						"uber duration bonus" -8
+					}
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction"	0.6
+						"airblast vulnerability multiplier"	0.6
+						"heal rate bonus"	3
+					}
+				}
+			}
+		}
+	}
+}
