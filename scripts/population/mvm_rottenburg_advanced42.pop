@@ -223,7 +223,7 @@ WaveSchedule
 		BeginAtWave 8
 		RunForThisManyWaves 1
 		CooldownTime 15
-		DesiredCount 8
+		DesiredCount 4
 
 		TFBot
 		{
@@ -245,7 +245,7 @@ WaveSchedule
 		BeginAtWave 8
 		RunForThisManyWaves 1
 		CooldownTime 15
-		DesiredCount 8
+		DesiredCount 4
 
 		TFBot
 		{
@@ -1754,7 +1754,6 @@ WaveSchedule
 				TFBot
 				{
 					Template	T_TFBot_Scout_Shortstop
-					Attributes	"AlwaysCrit"
 				}
 			}
 		}
@@ -2200,6 +2199,32 @@ WaveSchedule
 		{
 			Target wave_finished_relay
 			Action trigger
+		}
+		InitWaveOutput
+		{
+			Target gamerules
+			Action RunScriptCode
+			Param "
+				AddThinkToEnt(self, `OnThink`);	// self is gamerules
+				
+				function OnThink()
+				{
+					local weapon = null;
+					while ( weapon = Entities.FindByClassname(weapon, `tf_weapon_flamethrower`) )
+					{
+						local owner = weapon.GetOwner();
+						if (owner && owner.GetTeam() == Constants.ETFTeam.TF_TEAM_RED)
+							weapon.AddAttribute(`airblast_deflect_projectiles_disabled`, 1.0, -1.0);
+					}
+					
+					while ( weapon = Entities.FindByClassname(weapon, `tf_weapon_rocketlauncher_fireball`) )
+					{
+						local owner = weapon.GetOwner();
+						if (owner && owner.GetTeam() == Constants.ETFTeam.TF_TEAM_RED)
+							weapon.AddAttribute(`airblast_deflect_projectiles_disabled`, 1.0, -1.0);
+					}
+				}
+			"
 		}
 	
 		WaveSpawn

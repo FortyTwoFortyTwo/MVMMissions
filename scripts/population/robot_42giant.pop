@@ -33,7 +33,7 @@ WaveSchedule
 			
 			ItemAttributes
 			{
-				ItemAttributes	"TF_WEAPON_SCATTERGUN"
+				ItemName	"TF_WEAPON_SCATTERGUN"
 				"damage bonus"	1.5
 			}
 			
@@ -223,12 +223,96 @@ WaveSchedule
 			
 			CharacterAttributes
 			{
-				"move speed bonus"	0.75
-				"damage force reduction" 0.7
+				"move speed bonus"	2
+				"damage force reduction" 3.0
 				"airblast vulnerability multiplier" 3.0
 				"override footstep sound set" 5
-				"airblast vertical vulnerability multiplier" 0.1
+				"airblast vertical vulnerability multiplier" 3.0
 				"rage giving scale" 0.1
+			}
+		}
+		
+		T_TFBot_Giant_Soldier_Extended_Buff_Banner_Spammer
+		{
+			Class Soldier
+			Name "Giant Rapid Fire Buff Banner Soldier"
+			ClassIcon soldier_buff_spammer
+			Skill Expert
+			Health 3800
+			WeaponRestrictions PrimaryOnly
+			Attributes HoldFireUntilFullReload
+			Attributes MiniBoss
+			Attributes SpawnWithFullCharge
+			Item "The Buff Banner"
+			ItemAttributes
+			{
+				ItemName "TF_WEAPON_ROCKETLAUNCHER"
+				"faster reload rate" -0.8
+				"fire rate bonus" 0.5
+			}
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction" 0.4
+				"airblast vulnerability multiplier" 0.4
+				"override footstep sound set" 3
+				"increase buff duration"	9.0
+			}
+		}
+
+		T_TFBot_Giant_Soldier_Extended_Concheror_Spammer
+		{
+			Class Soldier
+			Name "Giant Rapid Fire Concheror Soldier"
+			ClassIcon soldier_conch_spammer
+			Skill Expert
+			Health 3800
+			WeaponRestrictions PrimaryOnly
+			Attributes HoldFireUntilFullReload
+			Attributes MiniBoss
+			Attributes SpawnWithFullCharge
+			Item "The Concheror"
+			ItemAttributes
+			{
+				ItemName "TF_WEAPON_ROCKETLAUNCHER"
+				"faster reload rate" -0.8
+				"fire rate bonus" 0.5
+			}
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction" 0.4
+				"airblast vulnerability multiplier" 0.4
+				"override footstep sound set" 3
+				"increase buff duration"	9.0
+			}
+		}
+
+		T_TFBot_Giant_Soldier_Extended_Battalion_Spammer
+		{
+			Class Soldier
+			Name "Giant Rapid Fire Battalion Soldier"
+			ClassIcon soldier_backup_spammer
+			Skill Expert
+			Health 3800
+			WeaponRestrictions PrimaryOnly
+			Attributes HoldFireUntilFullReload
+			Attributes MiniBoss
+			Attributes SpawnWithFullCharge
+			Item "The Battalion's Backup"
+			ItemAttributes
+			{
+				ItemName "TF_WEAPON_ROCKETLAUNCHER"
+				"faster reload rate" -0.8
+				"fire rate bonus" 0.5
+			}
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction" 0.4
+				"airblast vulnerability multiplier" 0.4
+				"override footstep sound set" 3
+				"increase buff duration"	9.0
 			}
 		}
 		
@@ -372,7 +456,7 @@ WaveSchedule
 			Class	Soldier
 			ClassIcon	soldier_burstfire_spammer
 			Name	"Robin Walker"
-			Health	100000
+			Health	42069
 			Skill	Easy
 			
 			Attributes	"MiniBoss"
@@ -939,7 +1023,7 @@ WaveSchedule
 			ItemAttributes
 			{
 				ItemName	"golden wrench"
-				"engineer sentry build rate multiplier"	2
+				"engineer sentry build rate multiplier"	3
 			}
 			
 			CharacterAttributes
@@ -948,7 +1032,9 @@ WaveSchedule
 				"damage force reduction"	0.4
 				"airblast vulnerability multiplier"	0.4
 				"override footstep sound set"	3
-				"engy building health bonus"	2
+				"engy building health bonus"	3
+				"engy sentry fire rate increased"	1.5
+				"engy sentry radius increased"	1.5
 				"use large smoke explosion"	1
 			}
 		}

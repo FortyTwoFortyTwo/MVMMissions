@@ -281,7 +281,7 @@ WaveSchedule
 			{
 				TFBot
 				{
-					Template	T_TFGateBot_Pyro_Fast
+					Template	T_TFGateBot_Pyro_Normal
 				}
 				TFBot
 				{
@@ -375,7 +375,7 @@ WaveSchedule
 			Where	spawnbot_main1
 			Where	spawnbot_main2
 			WaitBeforeStarting	2
-			WaitBetweenSpawns	1.25
+			WaitBetweenSpawns	1
 			Squad
 			{
 				TFBot
@@ -862,15 +862,15 @@ WaveSchedule
 		{
 			Name	2C-1
 			WaitForAllDead	2B-2
-			TotalCurrency	20
-			TotalCount	20
-			MaxActive	4
-			SpawnCount	2
+			TotalCurrency	24
+			TotalCount	24
+			MaxActive	6
+			SpawnCount	3
 			Where	spawnbot_main0
 			Where	spawnbot_main1
 			Where	spawnbot_main2
-			WaitBeforeStarting	3.5
-			WaitBetweenSpawns	7
+			WaitBeforeStarting	4
+			WaitBetweenSpawns	8
 			Squad
 			{
 				TFBot
@@ -881,6 +881,11 @@ WaveSchedule
 				TFBot
 				{
 					Template	T_TFBot_Sniper_Jarate
+				}
+				
+				TFBot
+				{
+					Template	T_TFBot_Pyro_Gascan
 				}
 			}
 		}
@@ -889,15 +894,15 @@ WaveSchedule
 		{
 			Name	2C-2
 			WaitForAllDead	2B-2
-			TotalCurrency	20
-			TotalCount	20
-			MaxActive	4
-			SpawnCount	2
+			TotalCurrency	24
+			TotalCount	24
+			MaxActive	6
+			SpawnCount	3
 			Where	spawnbot_Upper0
 			Where	spawnbot_Upper1
 			Where	spawnbot_Upper2
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	7
+			WaitBetweenSpawns	8
 			Squad
 			{
 				TFBot
@@ -909,6 +914,11 @@ WaveSchedule
 				{
 					Template	T_TFBot_Sniper_Jarate
 				}
+				
+				TFBot
+				{
+					Template	T_TFBot_Pyro_Gascan
+				}
 			}
 		}
 		
@@ -916,9 +926,9 @@ WaveSchedule
 		{
 			Name	2C-3
 			WaitForAllDead	2B-2
-			TotalCurrency	50
-			TotalCount	50
-			MaxActive	8
+			TotalCurrency	48
+			TotalCount	48
+			MaxActive	7
 			SpawnCount	1
 			Where	spawnbot_main0
 			Where	spawnbot_main1
@@ -958,17 +968,17 @@ WaveSchedule
 		
 		WaveSpawn
 		{
-			Name	2D-1
-			WaitForAllDead	2C-3
+			Name	2C-5
+			WaitForAllSpawned	2C-3
 			TotalCurrency	100
 			TotalCount	2
 			MaxActive	2
-			SpawnCount	1
+			SpawnCount	2
 			Where	spawnbot_main0
 			Where	spawnbot_main1
 			Where	spawnbot_main2
-			WaitBeforeStarting	10
-			WaitBetweenSpawns	35
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0
 			Squad
 			{
 				TFBot
@@ -981,52 +991,8 @@ WaveSchedule
 		
 		WaveSpawn
 		{
-			Name	2D-2
-			WaitForAllDead	2C-3
-			TotalCurrency	32
-			TotalCount	32
-			MaxActive	10
-			SpawnCount	2
-			Where	spawnbot_Upper0
-			Where	spawnbot_Upper1
-			Where	spawnbot_Upper2
-			WaitBeforeStarting	0
-			WaitBetweenSpawns	2.5
-			Squad
-			{
-				TFBot
-				{
-					Template	T_TFBot_Sniper_Huntsman_Bleed
-				}
-			}
-		}
-		
-		WaveSpawn
-		{
-			Name	2D-3
-			WaitForAllDead	2C-3
-			TotalCurrency	24
-			TotalCount	24
-			MaxActive	8
-			SpawnCount	2
-			Where	spawnbot_main0
-			Where	spawnbot_main1
-			Where	spawnbot_main2
-			WaitBeforeStarting	0
-			WaitBetweenSpawns	3
-			Squad
-			{
-				TFBot
-				{
-					Template	T_TFGateBot_Soldier_Burst
-				}
-			}
-		}
-		
-		WaveSpawn
-		{
 			//Name	2E-1
-			WaitForAllDead	2D-1
+			WaitForAllDead	2C-5
 			TotalCurrency	200
 			TotalCount	4
 			MaxActive	3
@@ -1048,16 +1014,16 @@ WaveSchedule
 		WaveSpawn
 		{
 			//Name	2E-2
-			WaitForAllDead	2D-1
+			WaitForAllDead	2C-5
 			TotalCurrency	0
 			TotalCount	1
-			MaxActive	8
+			MaxActive	6
 			SpawnCount	1
 			Where	spawnbot_main0
 			Where	spawnbot_main1
 			Where	spawnbot_main2
 			WaitBeforeStarting	5
-			WaitBetweenSpawns	0.75
+			WaitBetweenSpawns	1
 			Support	1
 			Squad
 			{
@@ -1071,16 +1037,16 @@ WaveSchedule
 		WaveSpawn
 		{
 			//Name	2E-3
-			WaitForAllDead	2D-1
+			WaitForAllDead	2C-5
 			TotalCurrency	0
 			TotalCount	1
-			MaxActive	8
+			MaxActive	10
 			SpawnCount	1
 			Where	spawnbot_main0
 			Where	spawnbot_main1
 			Where	spawnbot_main2
 			WaitBeforeStarting	5
-			WaitBetweenSpawns	0.75
+			WaitBetweenSpawns	0.5
 			Support	1
 			Squad
 			{
@@ -1160,10 +1126,10 @@ WaveSchedule
 		{
 			Name	3A-2
 			WaitForAllDead	3A-1
-			TotalCurrency	4
-			TotalCount	4
-			MaxActive	4
-			SpawnCount	4
+			TotalCurrency	8
+			TotalCount	8
+			MaxActive	8
+			SpawnCount	8
 			Where	spawnbot_main0
 			Where	spawnbot_main1
 			Where	spawnbot_main2
@@ -1184,13 +1150,13 @@ WaveSchedule
 			WaitForAllDead	3A-1
 			TotalCurrency	8
 			TotalCount	8
-			MaxActive	6
+			MaxActive	8
 			SpawnCount	1
 			Where	spawnbot_main0
 			Where	spawnbot_main1
 			Where	spawnbot_main2
-			WaitBeforeStarting	2
-			WaitBetweenSpawns	2
+			WaitBeforeStarting	1
+			WaitBetweenSpawns	1
 			Squad
 			{
 				TFBot
@@ -1211,7 +1177,7 @@ WaveSchedule
 			Where	spawnbot_main0
 			Where	spawnbot_main1
 			Where	spawnbot_main2
-			WaitBeforeStarting	0
+			WaitBeforeStarting	8
 			WaitBetweenSpawns	0
 			Squad
 			{
@@ -1233,7 +1199,7 @@ WaveSchedule
 			WaitForAllDead	3A-2
 			TotalCurrency	24
 			TotalCount	24
-			MaxActive	12
+			MaxActive	16
 			SpawnCount	2
 			Where	spawnbot_upper0
 			Where	spawnbot_upper1
@@ -1249,13 +1215,8 @@ WaveSchedule
 				
 				TFBot
 				{
-					Template	T_TFBot_Medic_SlowRecharge
+					Template	T_TFBot_Medic_Long
 					Tag bot_squad_member
-					
-					CharacterAttributes
-					{
-						"heal rate bonus"	0.1
-					}
 				}
 			}
 		}
@@ -1264,8 +1225,8 @@ WaveSchedule
 		{
 			Name	3C-1
 			WaitForAllDead	3B-1
-			TotalCurrency	18
-			TotalCount	18
+			TotalCurrency	14
+			TotalCount	14
 			MaxActive	10
 			SpawnCount	1
 			Where	spawnbot_main0
@@ -1425,17 +1386,17 @@ WaveSchedule
 			{
 				TFBot
 				{
-					Template	T_TFBot_Giant_Soldier_Extended_Buff_Banner
+					Template	T_TFBot_Giant_Soldier_Extended_Buff_Banner_Spammer
 				}
 				
 				TFBot
 				{
-					Template	T_TFBot_Giant_Soldier_Extended_Concheror
+					Template	T_TFBot_Giant_Soldier_Extended_Concheror_Spammer
 				}
 				
 				TFBot
 				{
-					Template	T_TFBot_Giant_Soldier_Extended_Battalion
+					Template	T_TFBot_Giant_Soldier_Extended_Battalion_Spammer
 				}
 			}
 		}
@@ -1616,7 +1577,7 @@ WaveSchedule
 			WaitForAllSpawned	4A-5
 			TotalCurrency	40
 			TotalCount	40
-			MaxActive	8
+			MaxActive	7
 			SpawnCount	2
 			Where	spawnbot_main0
 			Where	spawnbot_main1
