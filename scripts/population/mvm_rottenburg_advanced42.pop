@@ -263,6 +263,30 @@ WaveSchedule
 		WaitWhenDone	150
 		Sound "Announcer.IncomingMob"
 		Checkpoint	Yes
+		
+		InitWaveOutput
+		{
+			Target gamerules
+			Action RunScriptCode
+			Param "
+
+IncludeScript(`popextensions`);
+
+AddRobotTag(`sandvich`, {
+	OnSpawn = function(bot, tag) {
+		bot.SetHealth(bot.GetMaxHealth() - 1);
+	},
+});
+
+AddRobotTag(`steak`, {
+	OnSpawn = function(bot, tag) {
+		bot.AddCond(Constants.ETFCond.TF_COND_ENERGY_BUFF);
+	},
+});
+
+			"
+		}
+		
 		StartWaveOutput
 		{
 			Target wave_start_relay_classic
@@ -277,24 +301,34 @@ WaveSchedule
 		WaveSpawn
 		{
 			Name	1A-1
-			TotalCurrency	40
-			TotalCount	40
-			MaxActive	20
-			SpawnCount	4
+			TotalCurrency	20
+			TotalCount	20
+			MaxActive	10
+			SpawnCount	2
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	3
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Scout_Cola
-				}
-				
-				TFBot
-				{
-					Template	T_TFBot_Scout_Bonk
-				}
+				Template	T_TFBot_Scout_Cola
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name	1A-1
+			TotalCurrency	20
+			TotalCount	20
+			MaxActive	10
+			SpawnCount	2
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	3
+			
+			TFBot
+			{
+				Template	T_TFBot_Scout_Bonk
 			}
 		}
 		
@@ -302,24 +336,35 @@ WaveSchedule
 		{
 			Name	1A-2
 			WaitForAllSpawned	1A-1
-			TotalCurrency	100
-			TotalCount	2
-			MaxActive	2
-			SpawnCount	2
+			TotalCurrency	50
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Scout_Cola
-				}
-				
-				TFBot
-				{
-					Template	T_TFBot_Giant_Scout_Bonk
-				}
+				Template	T_TFBot_Giant_Scout_Cola
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name	1A-2
+			WaitForAllSpawned	1A-1
+			TotalCurrency	50
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0
+			
+			TFBot
+			{
+				Template	T_TFBot_Giant_Scout_Bonk
 			}
 		}
 		
@@ -334,24 +379,22 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	4
 			WaitBetweenSpawns	0
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	15000
+				Name	Tank
+				Speed	75
+				StartingPathTrackNode	tank_path_a_10
+				OnKilledOutput
 				{
-					Health	15000
-					Name	Tank
-					Speed	75
-					StartingPathTrackNode	tank_path_a_10
-					OnKilledOutput
-					{
-						Target	boss_dead_relay
-						Action	Trigger
-					}
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_dead_relay
+					Action	Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}
@@ -362,17 +405,53 @@ WaveSchedule
 			WaitForAllSpawned	1A-1
 			TotalCurrency	30
 			TotalCount	30
-			MaxActive	4
+			MaxActive	5
 			SpawnCount	1
 			Where	flankers
 			WaitBeforeStarting	10
 			WaitBetweenSpawns	1.5
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Heavy_Sandvich
-				}
+				Template	T_TFBot_Heavy_Sandvich
+				Tag	sandvich
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name	1B-2
+			WaitForAllSpawned	1A-1
+			TotalCurrency	30
+			TotalCount	30
+			MaxActive	5
+			SpawnCount	1
+			Where	flankers
+			WaitBeforeStarting	10
+			WaitBetweenSpawns	1.5
+			
+			TFBot
+			{
+				Template	T_TFBot_Heavy_Chocolate
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name	1B-2
+			WaitForAllSpawned	1A-1
+			TotalCurrency	30
+			TotalCount	30
+			MaxActive	5
+			SpawnCount	1
+			Where	flankers
+			WaitBeforeStarting	10
+			WaitBetweenSpawns	1.5
+			
+			TFBot
+			{
+				Template	T_TFBot_Heavy_Steak
+				Tag	steak
 			}
 		}
 		
@@ -380,159 +459,109 @@ WaveSchedule
 		{
 			Name	1B-3
 			WaitForAllSpawned	1A-1
-			TotalCurrency	30
-			TotalCount	30
-			MaxActive	4
+			TotalCurrency	20
+			TotalCount	20
+			MaxActive	3
 			SpawnCount	1
-			Where	flankers
-			WaitBeforeStarting	10
-			WaitBetweenSpawns	3
-			Squad
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	2
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Heavy_Chocolate
-				}
+				Template	T_TFBot_Scout_Milk_Slow
 			}
 		}
 		
 		WaveSpawn
 		{
-			Name	1B-4
+			Name	1C-1
 			WaitForAllSpawned	1A-1
-			TotalCurrency	30
-			TotalCount	30
-			MaxActive	4
+			TotalCurrency	50
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	flankers
+			WaitBeforeStarting	20
+			WaitBetweenSpawns	0
+			
+			TFBot
+			{
+				Template	T_TFBot_Giant_Heavy_Sandvich
+				Tag	sandvich
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name	1C-2
+			WaitForAllDead	1C-1
+			TotalCurrency	50
+			TotalCount	1
+			MaxActive	1
 			SpawnCount	1
 			Where	flankers
 			WaitBeforeStarting	10
-			WaitBetweenSpawns	3
-			Squad
+			WaitBetweenSpawns	0
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Heavy_Steak
-				}
+				Template	T_TFBot_Giant_Heavy_Chocolate
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name	1C-3
+			WaitForAllDead	1C-2
+			TotalCurrency	50
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	flankers
+			WaitBeforeStarting	10
+			WaitBetweenSpawns	0
+			
+			TFBot
+			{
+				Template	T_TFBot_Giant_Heavy_Steak
+				Tag	steak
 			}
 		}
 		
 		WaveSpawn
 		{
 			Name	1D-1
-			WaitForAllDead	1B-1
-			TotalCurrency	20
-			TotalCount	20
-			MaxActive	8
+			WaitForAllSpawned	1B-2
+			TotalCurrency	100
+			TotalCount	2
+			MaxActive	2
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	2
-			Squad
-			{
-				TFBot
-				{
-					Template	T_TFBot_Scout_Milk
-				}
-			}
-		}
-		
-		WaveSpawn
-		{
-			Name	1E-1
-			WaitForAllSpawned	1B-2
-			TotalCurrency	50
-			TotalCount	1
-			MaxActive	1
-			SpawnCount	1
-			Where	flankers
-			WaitBeforeStarting	4
-			WaitBetweenSpawns	0
-			Squad
-			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Heavy_Sandvich
-				}
-			}
-		}
-		
-		WaveSpawn
-		{
-			Name	1E-1
-			WaitForAllSpawned	1B-3
-			TotalCurrency	50
-			TotalCount	1
-			MaxActive	1
-			SpawnCount	1
-			Where	flankers
-			WaitBeforeStarting	4
-			WaitBetweenSpawns	0
-			Squad
-			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Heavy_Chocolate
-				}
-			}
-		}
-		
-		WaveSpawn
-		{
-			Name	1E-1
-			WaitForAllSpawned	1B-4
-			TotalCurrency	50
-			TotalCount	1
-			MaxActive	1
-			SpawnCount	1
-			Where	flankers
-			WaitBeforeStarting	4
-			WaitBetweenSpawns	0
-			Squad
-			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Heavy_Steak
-				}
-			}
-		}
-		
-		WaveSpawn
-		{
-			Name	1F-1
-			WaitForAllSpawned	1E-1
-			TotalCurrency	100
-			TotalCount	2
-			MaxActive	2
-			SpawnCount	1
-			Where	spawnbot
-			WaitBeforeStarting	20
 			WaitBetweenSpawns	20
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Scout_Cola
-				}
+				Template	T_TFBot_Giant_Scout_Cola
 			}
 		}
 		
 		WaveSpawn
 		{
-			Name	1F-2
-			WaitForAllSpawned	1E-1
+			Name	1D-2
+			WaitForAllSpawned	1B-2
 			TotalCurrency	100
 			TotalCount	2
 			MaxActive	2
 			SpawnCount	1
 			Where	spawnbot
-			WaitBeforeStarting	30
-			WaitBetweenSpawns	10
-			Squad
+			WaitBeforeStarting	10
+			WaitBetweenSpawns	20
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Scout_Bonk
-				}
+				Template	T_TFBot_Giant_Scout_Bonk
 			}
 		}
 	}
@@ -542,6 +571,44 @@ WaveSchedule
 		WaitWhenDone	150
 		Sound "Announcer.IncomingMob"
 		Checkpoint	Yes
+		
+		InitWaveOutput
+		{
+			Target gamerules
+			Action RunScriptCode
+			Param "
+
+IncludeScript(`popextensions`);
+
+AddThinkToEnt(self, `OnThink`);
+
+function OnThink()
+{
+	local weapon = null;
+	while ( weapon = Entities.FindByClassname(weapon, `tf_weapon_*`) )
+	{
+		local owner = weapon.GetOwner();
+		if (!owner || !owner.IsBotOfType(Constants.EBotType.TF_BOT_TYPE) || !owner.HasBotTag(`no_attack`))
+			continue;
+	
+		NetProps.SetPropFloat(weapon, `m_flNextPrimaryAttack`, Time() + 9999.0);
+	}
+}
+
+AddRobotTag(`stomper`, {
+	OnTakeDamage = function(bot, params) {
+		if (params.damage_type & Constants.FDmgType.DMG_FALL)
+			params.damage = 0.1;
+	},
+	OnDealDamage = function(bot, params) {
+		if (params.damage_custom == Constants.ETFDmgCustom.TF_DMG_CUSTOM_BOOTS_STOMP)
+			params.damage = 300;
+	},
+});
+
+			"
+		}
+		
 		StartWaveOutput
 		{
 			Target wave_start_relay_classic
@@ -563,12 +630,12 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	1
 			WaitBetweenSpawns	2
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Soldier_Mantreads
-				}
+				Template	T_TFBot_Soldier_Mantreads
+				Tag	no_attack
+				Tag	stomper
 			}
 		}
 		
@@ -582,13 +649,11 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	2
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Scout_Jumping_Sandman
-					Attributes	"AlwaysCrit"
-				}
+				Template	T_TFBot_Scout_Jumping_Sandman
+				Attributes	"AlwaysCrit"
 			}
 		}
 		
@@ -603,12 +668,10 @@ WaveSchedule
 			Where	flankers
 			WaitBeforeStarting	3
 			WaitBetweenSpawns	15
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Heavy_Natascha
-				}
+				Template	T_TFBot_Heavy_Natascha
 			}
 		}
 		
@@ -623,12 +686,10 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	3
 			WaitBetweenSpawns	5.5
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Scout_Guillotine
-				}
+				Template	T_TFBot_Scout_Guillotine
 			}
 		}
 		
@@ -643,12 +704,10 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	30
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Demoman_LooseCannon
-				}
+				Template	T_TFBot_Giant_Demoman_LooseCannon
 			}
 		}
 		
@@ -663,12 +722,10 @@ WaveSchedule
 			//Where	flankers
 			//WaitBeforeStarting	5
 			//WaitBetweenSpawns	5
-			//Squad
+			
+			//TFBot
 			//{
-				//TFBot
-				//{
-					//Template	T_TFBot_Soldier_Stun
-				//}
+				//Template	T_TFBot_Soldier_Stun
 			//}
 		//}
 		
@@ -683,12 +740,10 @@ WaveSchedule
 			//Where	spawnbot
 			//WaitBeforeStarting	10
 			//WaitBetweenSpawns	10
-			//Squad
+			
+			//TFBot
 			//{
-				//TFBot
-				//{
-					//Template	T_TFBot_Scout_GiantFish
-				//}
+				//Template	T_TFBot_Scout_GiantFish
 			//}
 		//}
 		
@@ -728,13 +783,11 @@ WaveSchedule
 			Where	flankers
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	8
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Sniper_SMG
-					Attributes	"AlwaysCrit"
-				}
+				Template	T_TFBot_Sniper_SMG
+				Attributes	"AlwaysCrit"
 			}
 		}
 	}
@@ -765,12 +818,10 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Scout_SunStick
-				}
+				Template	T_TFBot_Scout_SunStick
 			}
 		}
 		
@@ -784,13 +835,11 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	0
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Pyro_Phlog
-					Attributes	"AlwaysCrit"
-				}
+				Template	T_TFBot_Pyro_Phlog
+				Attributes	"AlwaysCrit"
 			}
 		}
 		
@@ -805,12 +854,10 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	1
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Scout_SunStick
-				}
+				Template	T_TFBot_Scout_SunStick
 			}
 		}
 		
@@ -825,12 +872,10 @@ WaveSchedule
 			Where	flankers
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	4
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Heavy_Heater
-				}
+				Template	T_TFBot_Heavy_Heater
 			}
 		}
 		
@@ -845,12 +890,10 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	10
 			WaitBetweenSpawns	15
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Scout_SunStick
-				}
+				Template	T_TFBot_Giant_Scout_SunStick
 			}
 		}
 		
@@ -865,24 +908,22 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	10000
+				Name	Tank
+				Speed	75
+				StartingPathTrackNode	tank_path_b_10
+				OnKilledOutput
 				{
-					Health	10000
-					Name	Tank
-					Speed	75
-					StartingPathTrackNode	tank_path_b_10
-					OnKilledOutput
-					{
-						Target	boss_dead_relay
-						Action	Trigger
-					}
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_dead_relay
+					Action	Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}
@@ -898,24 +939,22 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	4
 			WaitBetweenSpawns	0
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	10000
+				Name	Tank
+				Speed	75
+				StartingPathTrackNode	tank_path_a_10
+				OnKilledOutput
 				{
-					Health	10000
-					Name	Tank
-					Speed	75
-					StartingPathTrackNode	tank_path_a_10
-					OnKilledOutput
-					{
-						Target	boss_dead_relay
-						Action	Trigger
-					}
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_dead_relay
+					Action	Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}
@@ -931,13 +970,11 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	25
 			WaitBetweenSpawns	0
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Pyro_Phlog
-					Attributes	"AlwaysCrit"
-				}
+				Template	T_TFBot_Pyro_Phlog
+				Attributes	"AlwaysCrit"
 			}
 		}
 		
@@ -952,12 +989,10 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	4
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Soldier_Fire
-				}
+				Template	T_TFBot_Soldier_Fire
 			}
 		}
 		
@@ -972,14 +1007,10 @@ WaveSchedule
 			Where	flankers
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	3
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Pyro_Axtinguisher
-					Attributes	"IgnoreFlag"
-					BehaviorModifiers	"push"
-				}
+				Template	T_TFBot_Pyro_Axtinguisher
 			}
 		}
 		
@@ -987,29 +1018,35 @@ WaveSchedule
 		{
 			Name	3F-1
 			WaitForAllSpawned	3D-1
-			TotalCurrency	72
-			TotalCount	72
-			MaxActive	15
-			SpawnCount	3
+			TotalCurrency	24
+			TotalCount	24
+			MaxActive	5
+			SpawnCount	1
 			Where	flankers
 			WaitBeforeStarting	4
 			WaitBetweenSpawns	2
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Pyro_AlwaysFire
-				}
-				
-				TFBot
-				{
-					Template	T_TFBot_Sniper_Huntsman
-				}
-				
-				TFBot
-				{
-					Template	T_TFBot_Sniper_Huntsman
-				}
+				Template	T_TFBot_Pyro_AlwaysFire
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name	3F-1
+			WaitForAllSpawned	3D-1
+			TotalCurrency	48
+			TotalCount	48
+			MaxActive	10
+			SpawnCount	2
+			Where	flankers
+			WaitBeforeStarting	4
+			WaitBetweenSpawns	2
+			
+			TFBot
+			{
+				Template	T_TFBot_Sniper_Huntsman
 			}
 		}
 		
@@ -1024,12 +1061,10 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	4
 			WaitBetweenSpawns	2
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Pyro_Flaregun
-				}
+				Template	T_TFBot_Pyro_Flaregun
 			}
 		}
 		
@@ -1044,13 +1079,11 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	10
 			WaitBetweenSpawns	10
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Pyro
-					Attributes	"AlwaysCrit"
-				}
+				Template	T_TFBot_Giant_Pyro
+				Attributes	"AlwaysCrit"
 			}
 		}
 		
@@ -1065,12 +1098,10 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	0
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Scout_SunStick
-				}
+				Template	T_TFBot_Giant_Scout_SunStick
 			}
 		}
 		
@@ -1085,13 +1116,11 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Pyro_Phlog
-					Attributes	"AlwaysCrit"
-				}
+				Template	T_TFBot_Pyro_Phlog
+				Attributes	"AlwaysCrit"
 			}
 		}
 		
@@ -1106,24 +1135,22 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	20
 			WaitBetweenSpawns	0
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	8500
+				Name	Tank
+				Speed	75
+				StartingPathTrackNode	tank_path_b_420
+				OnKilledOutput
 				{
-					Health	7500
-					Name	Tank
-					Speed	75
-					StartingPathTrackNode	tank_path_b_420
-					OnKilledOutput
-					{
-						Target	boss_dead_relay
-						Action	Trigger
-					}
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_dead_relay
+					Action	Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}
@@ -1155,13 +1182,11 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Demo_Burst
-					Attributes	"AlwaysCrit"
-				}
+				Template	T_TFBot_Demo_Burst
+				Attributes	"AlwaysCrit"
 			}
 		}
 		
@@ -1175,13 +1200,11 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	20
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Demoman_LochNLoad
-					Attributes	"AlwaysCrit"
-				}
+				Template	T_TFBot_Giant_Demoman_LochNLoad
+				Attributes	"AlwaysCrit"
 			}
 		}
 		
@@ -1196,13 +1219,11 @@ WaveSchedule
 			Where	flankers
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	1
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Demoman_Caber_Rapid
-					Attributes	"AlwaysCrit"
-				}
+				Template	T_TFBot_Demoman_Caber_Rapid
+				Attributes	"AlwaysCrit"
 			}
 		}
 		
@@ -1217,13 +1238,11 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	3
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Heavy_Scout
-					Attributes	"AlwaysCrit"
-				}
+				Template	T_TFBot_Heavy_Scout
+				Attributes	"AlwaysCrit"
 			}
 		}
 		
@@ -1238,13 +1257,11 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	10
 			WaitBetweenSpawns	5
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Demoman_Axeman
-					Attributes	"AlwaysCrit"
-				}
+				Template	T_TFBot_Demoman_Axeman
+				Attributes	"AlwaysCrit"
 			}
 		}
 		
@@ -1259,13 +1276,11 @@ WaveSchedule
 			Where	flankers
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	20
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Sniper_Huntsman_Burst
-					Attributes	"AlwaysCrit"
-				}
+				Template	T_TFBot_Giant_Sniper_Huntsman_Burst
+				Attributes	"AlwaysCrit"
 			}
 		}
 		
@@ -1280,13 +1295,11 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	3
 			WaitBetweenSpawns	3
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Soldier_Burst
-					Attributes	"AlwaysCrit"
-				}
+				Template	T_TFBot_Soldier_Burst
+				Attributes	"AlwaysCrit"
 			}
 		}
 		
@@ -1343,24 +1356,22 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	10
 			WaitBetweenSpawns	20
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	11000
+				Name	Tank
+				Speed	75
+				StartingPathTrackNode	tank_path_b_10
+				OnKilledOutput
 				{
-					Health	12500
-					Name	Tank
-					Speed	75
-					StartingPathTrackNode	tank_path_b_10
-					OnKilledOutput
-					{
-						Target	boss_dead_relay
-						Action	Trigger
-					}
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_dead_relay
+					Action	Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}
@@ -1375,24 +1386,22 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	20
 			WaitBetweenSpawns	20
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	11000
+				Name	Tank
+				Speed	75
+				StartingPathTrackNode	tank_path_a_10
+				OnKilledOutput
 				{
-					Health	12500
-					Name	Tank
-					Speed	75
-					StartingPathTrackNode	tank_path_a_10
-					OnKilledOutput
-					{
-						Target	boss_dead_relay
-						Action	Trigger
-					}
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_dead_relay
+					Action	Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}
@@ -1407,12 +1416,10 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	6
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Scout_Guillotine
-				}
+				Template	T_TFBot_Scout_Guillotine
 			}
 		}
 		
@@ -1426,12 +1433,10 @@ WaveSchedule
 			Where	flankers
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	6
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Pyro_ScorchShot
-				}
+				Template	T_TFBot_Pyro_ScorchShot
 			}
 		}
 		
@@ -1445,12 +1450,10 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	6
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Demoman_LooseCannon
-				}
+				Template	T_TFBot_Demoman_LooseCannon
 			}
 		}
 		
@@ -1464,12 +1467,10 @@ WaveSchedule
 			Where	flankers
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	6
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Heavyweapons_Gnome
-				}
+				Template	T_TFBot_Heavyweapons_Gnome
 			}
 		}
 		
@@ -1483,12 +1484,9 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	6
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Sniper_Huntsman_Bleed
-				}
+				Template	T_TFBot_Sniper_Huntsman_Bleed
 			}
 		}
 		
@@ -1503,12 +1501,10 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	30
 			WaitBetweenSpawns	30
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Soldier_Laser
-				}
+				Template	T_TFBot_Giant_Soldier_Laser
 			}
 		}
 		
@@ -1564,13 +1560,11 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Chief_Major_League
-					Attributes	"AlwaysCrit"
-				}
+				Template	T_TFBot_Chief_Major_League
+				Attributes	"AlwaysCrit"
 			}
 		}
 		
@@ -1584,12 +1578,10 @@ WaveSchedule
 			Where	flankers
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	5
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Scout_FAN
-				}
+				Template	T_TFBot_Giant_Scout_FAN
 			}
 		}
 		
@@ -1604,12 +1596,10 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	2
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Soldier_Stun
-				}
+				Template	T_TFBot_Soldier_Stun
 			}
 		}
 		
@@ -1624,12 +1614,10 @@ WaveSchedule
 			Where	flankers
 			WaitBeforeStarting	1
 			WaitBetweenSpawns	3
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Demoman_Claidheamohmor
-				}
+				Template	T_TFBot_Demoman_Claidheamohmor
 			}
 		}
 		
@@ -1709,12 +1697,10 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	3
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Sniper_Huntsman_Bleed
-				}
+				Template	T_TFBot_Sniper_Huntsman_Bleed
 			}
 		}
 		
@@ -1729,12 +1715,10 @@ WaveSchedule
 			Where	flankers
 			WaitBeforeStarting	10
 			WaitBetweenSpawns	0
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Heavy_Tomislav
-				}
+				Template	T_TFBot_Heavy_Tomislav
 			}
 		}
 		
@@ -1749,12 +1733,10 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	10
 			WaitBetweenSpawns	3
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Scout_Shortstop
-				}
+				Template	T_TFBot_Scout_Shortstop
 			}
 		}
 		
@@ -1769,12 +1751,10 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	10
 			WaitBetweenSpawns	0
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Scout_Bonk_Baseball
-				}
+				Template	T_TFBot_Giant_Scout_Bonk_Baseball
 			}
 		}
 		
@@ -1789,12 +1769,10 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	20
 			WaitBetweenSpawns	0
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Scout_Bonk_Fast
-				}
+				Template	T_TFBot_Giant_Scout_Bonk_Fast
 			}
 		}
 	}
@@ -1825,26 +1803,24 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	300000
+				Name	Tank
+				Speed	17
+				Skin	1
+				//ClassIcon	tank_boss
+				StartingPathTrackNode	tank_path_a_10
+				OnKilledOutput
 				{
-					Health	300000
-					Name	Tank
-					Speed	17
-					Skin	1
-					//ClassIcon	tank_boss
-					StartingPathTrackNode	tank_path_a_10
-					OnKilledOutput
-					{
-						Target	boss_dead_relay
-						Action	Trigger
-					}
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_dead_relay
+					Action	Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}
@@ -1859,18 +1835,16 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	2
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Pyro_Phlog
-					Attributes	"AlwaysCrit"
-				}
-				
-				TFBot
-				{
-					Template	T_TFBot_Soldier_Fire
-				}
+				Template	T_TFBot_Pyro_Phlog
+				Attributes	"AlwaysCrit"
+			}
+			
+			TFBot
+			{
+				Template	T_TFBot_Soldier_Fire
 			}
 		}
 		
@@ -1884,12 +1858,10 @@ WaveSchedule
 			Where	flankers
 			WaitBeforeStarting	1
 			WaitBetweenSpawns	4
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Pyro_ScorchShot
-				}
+				Template	T_TFBot_Pyro_ScorchShot
 			}
 		}
 		
@@ -1903,13 +1875,11 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	15
 			WaitBetweenSpawns	15
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Pyro
-					Attributes	"AlwaysCrit"
-				}
+				Template	T_TFBot_Giant_Pyro
+				Attributes	"AlwaysCrit"
 			}
 		}
 		
@@ -1917,25 +1887,36 @@ WaveSchedule
 		{
 			Name	7B-1
 			WaitForAllSpawned	7A-2
-			TotalCurrency	36
-			TotalCount	36
-			MaxActive	14
-			SpawnCount	2
+			TotalCurrency	18
+			TotalCount	18
+			MaxActive	7
+			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	2
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Heavy_Brass
-					Attributes	"AlwaysCrit"
-				}
-				
-				TFBot
-				{
-					Template	T_TFBot_Scout_FAN
-				}
+				Template	T_TFBot_Heavy_Brass
+				Attributes	"AlwaysCrit"
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name	7B-1
+			WaitForAllSpawned	7A-2
+			TotalCurrency	18
+			TotalCount	18
+			MaxActive	7
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	5
+			WaitBetweenSpawns	2
+			
+			TFBot
+			{
+				Template	T_TFBot_Scout_FAN
 			}
 		}
 		
@@ -1950,12 +1931,10 @@ WaveSchedule
 			Where	flankers
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	4
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Heavy_Tomislav
-				}
+				Template	T_TFBot_Heavy_Tomislav
 			}
 		}
 		
@@ -1970,13 +1949,11 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	15
 			WaitBetweenSpawns	15
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Heavy_Brass
-					Attributes	"AlwaysCrit"
-				}
+				Template	T_TFBot_Giant_Heavy_Brass
+				Attributes	"AlwaysCrit"
 			}
 		}
 		
@@ -1991,18 +1968,29 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	2
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Soldier_DirectHit
-					Attributes	"AlwaysCrit"
-				}
-				
-				TFBot
-				{
-					Template	T_TFBot_Demoman_LooseCannon
-				}
+				Template	T_TFBot_Soldier_DirectHit
+				Attributes	"AlwaysCrit"
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name	7C-1
+			WaitForAllSpawned	7B-1
+			TotalCurrency	36
+			TotalCount	36
+			MaxActive	14
+			SpawnCount	2
+			Where	spawnbot
+			WaitBeforeStarting	5
+			WaitBetweenSpawns	2
+			
+			TFBot
+			{
+				Template	T_TFBot_Demoman_LooseCannon
 			}
 		}
 		
@@ -2017,12 +2005,10 @@ WaveSchedule
 			Where	flankers
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	4
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Soldier_Stun
-				}
+				Template	T_TFBot_Soldier_Stun
 			}
 		}
 		
@@ -2037,13 +2023,11 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	15
 			WaitBetweenSpawns	15
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Soldier_DirectHit
-					Attributes	"AlwaysCrit"
-				}
+				Template	T_TFBot_Giant_Soldier_DirectHit
+				Attributes	"AlwaysCrit"
 			}
 		}
 		
@@ -2175,12 +2159,10 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	30
 			WaitBetweenSpawns	6
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Scout_GiantFish
-				}
+				Template	T_TFBot_Scout_GiantFish
 			}
 		}
 	}
@@ -2236,12 +2218,10 @@ WaveSchedule
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Chief_Soldier_RobinWalker
-				}
+				Template	T_TFBot_Chief_Soldier_RobinWalker
 			}
 		}
 	}

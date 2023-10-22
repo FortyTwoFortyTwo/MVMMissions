@@ -128,9 +128,15 @@ WaveSchedule
 			Item "The Bolt Boy"
 			WeaponRestrictions MeleeOnly
 			
+			ItemAttributes
+			{
+				ItemName	"sun-on-a-stick"
+				"damage bonus"	10
+				"dmg penalty vs nonburning" 0.1
+			}
+			
 			CharacterAttributes
 			{
-				//"move speed bonus"	0.75
 				"damage force reduction"	0.4
 				"airblast vulnerability multiplier"	0.4
 				"override footstep sound set"	3
@@ -366,7 +372,7 @@ WaveSchedule
 				"damage bonus"	3
 				"fire rate bonus"	3
 				"Blast radius increased"	0.1
-				"Projectile speed increased"	50
+				"Projectile speed increased"	10
 			}
 			
 			CharacterAttributes
@@ -912,7 +918,7 @@ WaveSchedule
 			ItemAttributes
 			{
 				ItemName	"the robo-sandvich"
-				"effect bar recharge rate increased" 0.75
+				"charge recharge rate increased" 1000
 			}
 			
 			ItemAttributes
@@ -920,16 +926,15 @@ WaveSchedule
 				ItemName	"the killing gloves of boxing"
 				"melee range multiplier"	1.5
 				"damage bonus"	2
-				//"health regen"	50
+				"fire rate bonus"	0.5
 			}
 			
 			CharacterAttributes
 			{
-				"move speed bonus"	0.7
 				"damage force reduction"	0.4
 				"airblast vulnerability multiplier"	0.4
 				"override footstep sound set"	3
-				"health regen"	-0.25
+				"health regen"	100
 			}
 		}
 		
@@ -945,13 +950,13 @@ WaveSchedule
 			Tag bot_giant
 			
 			Item	"the dalokohs bar"
-			Item	"Gloves of Running Urgently"
+			Item	"Gloves of Running Urgently MvM"
 			Item	"heavy hair"
 			WeaponRestrictions	MeleeOnly
 			ItemAttributes
 			{
 				ItemName	"the dalokohs bar"
-				"effect bar recharge rate increased" 3
+				"charge recharge rate increased" 1000
 			}
 			
 			ItemAttributes
@@ -959,11 +964,11 @@ WaveSchedule
 				ItemName	"Gloves of Running Urgently"
 				"melee range multiplier"	1.5
 				"damage bonus"	2
+				"fire rate bonus"	0.5
 			}
 			
 			CharacterAttributes
 			{
-				"move speed bonus"	0.7
 				"damage force reduction"	0.4
 				"airblast vulnerability multiplier"	0.4
 				"override footstep sound set"	3
@@ -988,7 +993,7 @@ WaveSchedule
 			ItemAttributes
 			{
 				ItemName	"the buffalo steak sandvich"
-				"effect bar recharge rate increased" 0.75
+				"charge recharge rate increased" 1000
 			}
 			
 			ItemAttributes
@@ -996,11 +1001,11 @@ WaveSchedule
 				ItemName	"warrior's spirit"
 				"melee range multiplier"	1.5
 				"damage bonus"	2
+				"fire rate bonus"	0.5
 			}
 			
 			CharacterAttributes
 			{
-				"move speed bonus"	0.7
 				"damage force reduction"	0.4
 				"airblast vulnerability multiplier"	0.4
 				"override footstep sound set"	3
