@@ -1,0 +1,1701 @@
+#base robot_standard.pop
+#base robot_giant.pop
+
+WaveSchedule
+{
+	StartingCurrency 1337
+	RespawnWaveTime 3
+	FixedRespawnWaveTime Yes
+	CanBotsAttackWhileInSpawnRoom No
+	
+	Wave
+	{
+		InitWaveOutput
+		{
+			Target gamerules
+			Action RunScriptCode
+			Param "
+
+Convars.SetValue(`tf_mvm_defenders_team_size`, 1);
+EntFire(`bombpath_arrows_clear_relay`, `Trigger`, ``, 0.7);
+EntFire(`bombpath_clearall_relay`, `Trigger`, ``, 0.7);
+EntFire(`bombpath_left`, `Trigger`, ``, 0.9);
+
+AddThinkToEnt(self, `OnThink`);
+
+function OnThink()
+{
+	local weapon = null;
+	while ( weapon = Entities.FindByClassname(weapon, `tf_weapon_*`) )
+	{
+		local owner = weapon.GetOwner();
+		if (!owner || !owner.IsBotOfType(Constants.EBotType.TF_BOT_TYPE) || !owner.HasBotTag(`no_attack`))
+			continue;
+	
+		NetProps.SetPropFloat(weapon, `m_flNextPrimaryAttack`, Time() + 9999.0);
+	}
+}
+
+			"
+		}
+		
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		
+		WaitWhenDone 65
+		Checkpoint Yes
+		
+		WaveSpawn
+		{
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	10
+			WaitBetweenSpawns	0
+			
+			Squad
+			{
+				Tank
+				{
+					Health	8000
+					Name	tank
+					Speed	75
+					StartingPathTrackNode	tankpath_same
+					OnBombDroppedOutput
+					{
+						Target	boss_deploy_relay
+						Action	Trigger
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			TotalCount	10
+			MaxActive	10
+			SpawnCount	4
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	6
+			Support 1
+			
+			TFBot
+			{
+				Template	T_TFBot_Scout_Melee
+				ClassIcon	scout_bat
+				Tag	no_attack
+			}
+		}
+	}
+	
+	Wave
+	{
+		InitWaveOutput
+		{
+			Target gamerules
+			Action RunScriptCode
+			Param "
+
+Convars.SetValue(`tf_mvm_defenders_team_size`, 2);
+IncludeScript(`popextensions`);
+
+AddRobotTag(`nodamage`, {
+	OnDealDamage = function(bot, params) {
+		params.damage = 0;	// cant use attribs to stop backstab kill
+	},
+});
+
+			"
+		}
+		
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		
+		WaitWhenDone 65
+		Checkpoint Yes
+		
+		WaveSpawn
+		{
+			TotalCount	2
+			MaxActive	2
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	30
+			WaitBetweenSpawns	20
+			
+			TFBot
+			{
+				//Template	T_TFBot_Heavyweapons_Heavyweight_Champ
+				//Template	T_TFBot_Demoman_Knight
+				Template	T_TFBot_Sniper_Huntsman
+			}
+		}
+		
+		WaveSpawn
+		{
+			TotalCount	20
+			MaxActive	20
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0.1
+			Support		1
+			
+			TFBot
+			{
+				Class	Spy
+				Name	"Spy Mittens"
+				//Health		60
+				Attributes	IgnoreFlag
+				//Attributes	AlwaysCrit
+				Tag		nodamage
+				
+				CharacterAttributes
+				{
+					"crit forces victim to laugh"	1
+					"move speed bonus"	2.0
+					"increased jump height"	2.0
+				}
+			}
+		}
+	}
+	
+	Wave
+	{
+		InitWaveOutput
+		{
+			Target gamerules
+			Action RunScriptCode
+			Param "
+
+Convars.SetValue(`tf_mvm_defenders_team_size`, 3);
+
+			"
+		}
+		
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		
+		WaitWhenDone 65
+		Checkpoint Yes
+		
+		WaveSpawn
+		{
+			TotalCount	3
+			MaxActive	3
+			SpawnCount	3
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0
+			
+			TFBot
+			{
+				// T_TFBot_Giant_Medic but modified
+				
+				Class Medic
+				Name "Giant Medic"
+				ClassIcon medic_giant
+				Skill Expert
+				Health 4500
+			//	Attributes SpawnWithFullCharge
+			//	Attributes	AlwaysCrit
+			//	Item "The Quick-Fix"
+				Attributes MiniBoss
+
+				CharacterAttributes
+				{
+					"move speed bonus"	0.5
+					"heal rate bonus" 6 // only works on mediguns that have this attribute ie quickfix
+					"ubercharge rate penalty"	0.01
+				}
+			}
+		}
+	}
+	
+	Wave
+	{
+		InitWaveOutput
+		{
+			Target gamerules
+			Action RunScriptCode
+			Param "
+
+Convars.SetValue(`tf_mvm_defenders_team_size`, 4);
+
+AddThinkToEnt(self, `OnThink`);
+
+function OnThink()
+{
+	local weapon = null;
+	while ( weapon = Entities.FindByClassname(weapon, `tf_weapon_*`) )
+	{
+		local owner = weapon.GetOwner();
+		if (!owner || !owner.IsBotOfType(Constants.EBotType.TF_BOT_TYPE) || !owner.HasBotTag(`no_attack`))
+			continue;
+	
+		NetProps.SetPropFloat(weapon, `m_flNextPrimaryAttack`, Time() + 9999.0);
+	}
+	
+	for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
+	{
+		local bot = PlayerInstanceFromIndex(i)
+		if (bot && bot.IsBotOfType(Constants.EBotType.TF_BOT_TYPE) && bot.HasBotTag(`airblast`))
+			bot.PressAltFireButton(0.1);
+	}
+	
+	local stat = Entities.FindByClassname(null, `tf_mann_vs_machine_stats`);
+	if (NetProps.GetPropInt(stat, `m_iCurrentWaveIdx`) == 4 - 1)
+	{
+		local sentry = null;
+		while ( sentry = Entities.FindByClassname(sentry, `obj_sentrygun`) )
+		{
+			if (NetProps.GetPropInt(sentry, `m_bPlacing`))
+				continue;
+			
+			EntFireByHandle(sentry, `RemoveHealth`, `9999`, -1.0, null, null);
+		}
+	}
+}
+
+			"
+		}
+		
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		
+		WaitWhenDone 65
+		Checkpoint Yes
+		
+		WaveSpawn
+		{
+			TotalCount	4
+			MaxActive	4
+			SpawnCount	4
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0
+			
+			TFBot
+			{
+				Class Pyro
+				Name "Airblast Pyro"
+				Skill Expert
+				WeaponRestrictions	PrimaryOnly
+				
+				Tag	no_attack
+				Tag	airblast
+				
+				CharacterAttributes
+				{
+					"deflection size multiplier"	100.0
+					"airblast pushback scale"	2.0
+					"airblast_deflect_projectiles_disabled"	1
+				}
+			}
+		}
+	}
+	
+	Wave
+	{
+		InitWaveOutput
+		{
+			Target gamerules
+			Action RunScriptCode
+			Param "
+
+Convars.SetValue(`tf_mvm_defenders_team_size`, 5);
+local prefix = `circle_`;
+local count = 0;
+
+function Get(index)
+{
+	return Entities.FindByName(null,prefix+index);
+}
+
+function Connect(one, two, alt = false)
+{
+	NetProps.SetPropEntity(Get(one), alt ? `m_paltpath` : `m_pnext`, two ? Get(two) : null);
+}
+
+function Create(origin)
+{
+	local new = Entities.CreateByClassname(`path_track`);
+	new.KeyValueFromVector(`origin`, origin);
+	new.KeyValueFromString(`targetname`, prefix + count);
+	new.KeyValueFromString(`target`, prefix + (count + 1));
+	new.DispatchSpawn();
+	count++;
+	return count - 1;
+}
+
+function Rotate(center, angle, left = true, multiply = 1.0)
+{
+	local offsets = [Vector(-384, 0, 0),Vector(-288, 32, 0),Vector(-192, 80, 0),Vector(-128, 128, 0),Vector(-80, 192, 0),Vector(-32, 288, 0),Vector(0, 384, 0)];
+	
+	local lastadd;
+	for (local i = 0; i < offsets.len(); i++)
+	{
+		local offset = offsets[i] * multiply;
+		if (!left)
+			offset.y *= -1;
+		
+		// origin rotation is currently broken and is always 0, but this doesn't matter anyway
+		lastadd = Create(center + RotatePosition(Vector(0,0,0), QAngle(0, angle, 0), offset));
+	}
+	
+	return lastadd;
+}
+
+function AddToggle(index, user, delay = 0)
+{
+	EntityOutputs.AddOutput(Get(index), `OnUser`+user, `!self`, `ToggleAlternatePath`, ``, delay, -1);
+}
+
+// Tunnel
+Create(Vector(-1168, 2464, 128));
+Rotate(Vector(-464, 2464, 128), 0, false);
+local firstloop = Create(Vector(-352, 776, 128)) + 1;
+
+// Main circle
+local looptohatch = Rotate(Vector(-352, -336, 128), -90);
+local reversetohatch = Rotate(Vector(1056, -336, 128), 0) + 6;
+local centerarchstart = Rotate(Vector(1056, 1168, 128), 90) + 1;
+local lastloop = Rotate(Vector(-352, 1168, 128), 180);
+
+// big circle through hatch
+local lasttohatch = Rotate(Vector(2356, -336, 384), 0);
+local anotherlastloop = Rotate(Vector(2356, 1168, 384), 90, true, 2.75);
+
+// 360 turn at hatch
+Rotate(Vector(2356, 624, 384), 90);
+local tocliff = Rotate(Vector(1396, 624, 384), 180);	// end part of this will be deleted
+
+local reverseturn = Rotate(Vector(1056, -336, 128), -90, true, 1.75);	// Reverse turn to the final hatch
+local thehatch = Create(Vector(2512, 640, 384));	// the one last path to hatch
+
+for (local i = 0; i < count; i++)
+	Connect(i, i + 1);
+
+// Fixup main circle
+Connect(lastloop, firstloop, true);
+Connect(lastloop, null);
+
+// Alt path from main circle to hatch
+Connect(looptohatch, lastloop + 1, true);
+Connect(anotherlastloop, centerarchstart);
+
+Connect(lasttohatch, anotherlastloop + 1, true);	// Toggle big loop to small reverse
+Connect(tocliff - 2, looptohatch + 4);	// Make the curve more smoother
+
+Connect(reversetohatch, tocliff + 1, true);	// Connect reverse turn to the exit route
+Connect(reverseturn, lastloop + 1);	// Connect reverse turn to hatch
+Connect(lasttohatch - 2, thehatch, true);	// Toggle to the last hatch
+
+AddToggle(lastloop, 1);		// Connect main circle, off by default to prevent crash from infinite loop
+AddToggle(looptohatch, 2);	// Toggle path from main circle to hatch
+AddToggle(lasttohatch, 3);	// Enable tiny circle at Hatch
+AddToggle(lasttohatch - 2, 4, 18);// Reverse circle and enable path to actual hatch
+AddToggle(reversetohatch, 4, 18);
+
+for (local i = firstloop + 1; i <= lastloop; i++)
+	EntityOutputs.AddOutput(Get(i), `OnUser4`, `!self`, `RunScriptCode`, `NetProps.SetPropEntity(self, \`m_pnext\`, Entities.FindByName(null, \`` + prefix + (i-1) + `\`) )`, 0.0, -1);
+
+EntityOutputs.AddOutput(Get(firstloop), `OnUser4`, `!self`, `RunScriptCode`, `NetProps.SetPropEntity(self, \`m_pnext\`, Entities.FindByName(null, \`` + prefix + lastloop + `\`) )`, 0.0, -1);
+			"
+		}
+		
+		StartWaveOutput
+		{
+			Target gamerules
+			Action RunScriptCode
+			Param "
+				EntFire(`wave_start_relay`, `Trigger`);
+				EntFire(`circle_*`, `FireUser1`, ``, 12.0);	// After all tanks spawned, fixup loop
+				
+				EntFire(`circle_*`, `FireUser2`, ``, 18.0);	// Tank do a bigger loop at hatch
+				
+				EntFire(`circle_*`, `FireUser2`, ``, 30.0);	// Go back to do a smaller loop
+				
+				EntFire(`circle_*`, `FireUser2`, ``, 44.0);	// Now to the hatch again...
+				EntFire(`circle_*`, `FireUser3`, ``, 44.0);	// But quick turn back
+				
+				EntFire(`circle_*`, `FireUser4`, ``, 54.6);	// Lastly, path to skull...
+				EntFire(`circle_*`, `FireUser1`, ``, 54.6);	// ...and revert back from alt path
+				EntFire(`circle_*`, `FireUser2`, ``, 54.6);	// ...and revert back from alt path
+			"
+		}
+		
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		
+		WaitWhenDone 65
+		Checkpoint Yes
+		
+		WaveSpawn
+		{
+			TotalCount	10
+			MaxActive	10
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	1.05
+			
+			Squad
+			{
+				Tank
+				{
+					Health	6000
+					Name	tank
+					Speed	500
+					StartingPathTrackNode	circle_0
+					OnBombDroppedOutput
+					{
+						Target	boss_deploy_relay
+						Action	Trigger
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			TotalCount	20
+			MaxActive	20
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0.5
+			Support 1
+			
+			TFBot
+			{
+				Template	T_TFBot_Heavyweapons_Gnome
+				Attributes	IgnoreFlag
+				BehaviorModifiers Push
+				Health 60
+			}
+		}
+	}
+	
+	Wave
+	{
+		InitWaveOutput
+		{
+			Target gamerules
+			Action RunScriptCode
+			Param "
+
+Convars.SetValue(`tf_mvm_defenders_team_size`, 6);
+IncludeScript(`popextensions`);
+
+// We can only use existing spawnpoints, and there are 6 different names, so we have to use all of it
+::remaning <- {
+	`spawnbot`: 1,
+	`spawnbot_mission_sniper`: 2,
+	`spawnbot_mission_spy`: 4,
+	`spawnbot_flank`: 8,
+	`spawnbot_tunnel`: 16,
+	`spawnbot_parachute`: 20,
+	`NULL`: 24,
+};
+
+::spawnpos <- {
+	`spawnbot`: [],
+	`spawnbot_mission_sniper`: [],
+	`spawnbot_mission_spy`: [],
+	`spawnbot_flank`: [],
+	`spawnbot_tunnel`: [],
+	`spawnbot_parachute`: [],
+}
+
+// TODO when client disconnects...
+
+::GetRank <- function(bot)
+{
+	for (local i = 0; i < 7; i++)
+		if (bot.HasBotTag(`split_` + (i + 1))) return i;
+}
+
+::GetSpawnbot <- function(bot, offset = 0)
+{
+	local array = [`spawnbot`, `spawnbot_mission_sniper`, `spawnbot_mission_spy`, `spawnbot_flank`, `spawnbot_tunnel`, `spawnbot_parachute`, `NULL`];
+	return array[GetRank(bot) + offset];
+}
+
+::GetSpawnLeftCount <- function(bot)
+{
+	local array = [16, 8, 4, 2, 1, 1, 1];
+	return array[GetRank(bot)];
+}
+
+::GetSpawnCount <- function(bot)
+{
+	if (bot.HasBotTag(`split_5`) || bot.HasBotTag(`split_6`))
+	{
+		// Smaller bots have chance to spawn 1 or 2
+		local current = `spawnbot_tunnel`;
+		local next = `spawnbot_parachute`;
+		if (bot.HasBotTag(`split_6`))
+		{
+			current = `spawnbot_parachute`;
+			next = `NULL`;
+		}
+		
+		if (remaning[next] <= 1) return remaning[next];
+		else if (remaning[current] * 2 <= remaning[next]) return 2;
+		else if (remaning[current] == remaning[next]) return 1;
+		else if (remaning[current] > remaning[next]) return 0;
+		
+		local slotsleft = 22;
+		for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
+		{
+			local bot = PlayerInstanceFromIndex(i);
+			if (bot && bot.GetTeam() == Constants.ETFTeam.TF_TEAM_BLUE)
+				slotsleft -= GetSpawnLeftCount(bot);
+		}
+		
+		return (slotsleft >= 2) ? 2 : 1;
+	}
+	
+	return 2;
+}
+
+local spawnbot = null;
+while ( spawnbot = Entities.FindByClassname(spawnbot, `info_player_teamspawn`) )
+{
+	if (spawnbot.GetTeam() == Constants.ETFTeam.TF_TEAM_BLUE && spawnbot.GetName() != `spawnbot`)
+		EntFireByHandle(spawnbot, `Disable`, ``, 0.0, null, null);
+}
+
+AddRobotTag(`split`, {
+	OnSpawn = function(bot, tag) {
+		if (bot.HasBotTag(`split_1`))
+			return EntFire(`spawnbot`, `Disable`);
+		
+		bot.AddCondEx(Constants.ETFCond.TF_COND_INVULNERABLE_CARD_EFFECT, 1.5, null);
+		
+		local name = GetSpawnbot(bot, -1);
+		if (spawnpos[name].len() == 0)
+			return;	// how
+		
+		local table = spawnpos[name][0];
+		bot.Teleport(true, table.origin, true, table.angles, true, table.velocity);
+		spawnpos[name].remove(0);
+		if (spawnpos[name].len() == 0)
+			EntFire(name, `Disable`);
+	},
+	OnDeath = function(bot, params) {
+		local name = GetSpawnbot(bot);
+		if (name == `NULL`)
+			return remaning[name]--;	// the last tiny bot
+		
+		local count = GetSpawnCount(bot);
+		remaning[name]--;	// after GetSpawnCount
+		
+		for (local i = 0; i < count; i++)
+			spawnpos[name].append({
+				`origin`: bot.GetOrigin(),
+				`angles`: bot.GetAbsAngles(),
+				`velocity`: bot.GetAbsVelocity(),
+			});
+		
+		if (count > 0)
+		{
+			EntFire(name, `Enable`);
+			
+		//	if (bot.HasBotTag(`split_1`))
+		//		IncrementWaveIconSpawnCount(`soldier_giant`, MVM_CLASS_FLAG_NORMAL|MVM_CLASS_FLAG_MINIBOSS, count, false);
+		//	else
+		//		IncrementWaveIconSpawnCount(`soldier`, MVM_CLASS_FLAG_NORMAL, count, false);
+		}
+	},
+});
+
+			"
+		}
+		
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		
+		DoneOutput
+		{
+			Target gamerules
+			Action RunScriptCode
+			Param "
+				EntFire(`wave_finished_relay`, `Trigger`);
+				EntFire(`spawnbot*`, `Enable`);	// Re-enable all back
+			"
+		}
+		
+		WaitWhenDone 65
+		Checkpoint Yes
+		
+		WaveSpawn
+		{
+			Name UeslessGiantJustKillMePls
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0
+			
+			TFBot
+			{
+				Template	T_TFBot_Giant_Soldier
+				Tag split
+				Tag split_1
+				Scale	2.0
+				Health	7500
+				
+				CharacterAttributes
+				{
+					"move speed bonus"	0.35
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead	UeslessGiantJustKillMePls
+			TotalCount	2
+			MaxActive	2
+			SpawnCount	2
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0
+			
+			
+			RandomChoice
+			{
+				RandomChoice
+				{
+					TFBot
+					{
+						Template	T_TFBot_Giant_Soldier
+						
+						Tag split
+						Tag split_2
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			TotalCount	4
+			MaxActive	4
+			SpawnCount	2
+			Where	spawnbot_mission_sniper
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0.05
+			
+			
+			RandomChoice
+			{
+				RandomChoice
+				{
+					TFBot
+					{
+						Class	Soldier
+						Tag split
+						Tag split_3
+						Scale	1.5
+						Health	1000
+						
+						CharacterAttributes
+						{
+							"move speed bonus"	0.75
+						}
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			TotalCount	8
+			MaxActive	8
+			SpawnCount	2
+			Where	spawnbot_mission_spy
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0.05
+			
+			
+			RandomChoice
+			{
+				RandomChoice
+				{
+					TFBot
+					{
+						Class	Soldier
+						Tag split
+						Tag split_4
+						Scale	1.25
+						Health	500
+						
+						CharacterAttributes
+						{
+							"move speed bonus"	0.85
+						}
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			TotalCount	16
+			MaxActive	16
+			SpawnCount	2
+			Where	spawnbot_flank
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0.05
+			
+			
+			RandomChoice
+			{
+				RandomChoice
+				{
+					TFBot
+					{
+						Class	Soldier
+						Tag split
+						Tag split_5
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			TotalCount	20
+			MaxActive	20
+			SpawnCount	1
+			Where	spawnbot_tunnel
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0.05
+			
+			
+			RandomChoice
+			{
+				RandomChoice
+				{
+					TFBot
+					{
+						Class	Soldier
+						Tag split
+						Tag split_6
+						Scale	0.75
+						Health	100
+						
+						CharacterAttributes
+						{
+							"move speed bonus"	1.25
+						}
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			TotalCount	24
+			MaxActive	24
+			SpawnCount	1
+			Where	spawnbot_parachute
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0.05
+			
+			
+			RandomChoice
+			{
+				RandomChoice
+				{
+					TFBot
+					{
+						Class	Soldier
+						Tag split
+						Tag split_7
+						Scale	0.5
+						Health	50
+						
+						CharacterAttributes
+						{
+							"move speed bonus"	1.5
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	Wave
+	{
+		InitWaveOutput
+		{
+			Target gamerules
+			Action RunScriptCode
+			Param "
+
+Convars.SetValue(`tf_mvm_defenders_team_size`, 7);
+
+AddThinkToEnt(self, `OnThink`);
+
+function OnThink()
+{
+	local weapon = null;
+	while ( weapon = Entities.FindByClassname(weapon, `tf_weapon_*`) )
+	{
+		local owner = weapon.GetOwner();
+		if (!owner || !owner.IsBotOfType(Constants.EBotType.TF_BOT_TYPE) || !owner.HasBotTag(`no_attack`))
+			continue;
+	
+		NetProps.SetPropFloat(weapon, `m_flNextPrimaryAttack`, Time() + 9999.0);
+	}
+	
+	local object = null;
+	while ( object = Entities.FindByClassname(object, `obj_*`) )
+	{
+		if (NetProps.GetPropInt(object, `m_bPlacing`) || NetProps.GetPropInt(object, `m_bCarried`))
+			continue;
+	
+		local origin = object.GetOrigin();
+		//local mins = object.GetBoundingMins();
+		//local maxs = object.GetBoundingMaxs();
+		local mins = Vector(-25.0, -25.0, 0.0);
+		local maxs = Vector(25.0, 25.0, 87.0);
+		
+		for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
+		{
+			local bot = PlayerInstanceFromIndex(i);
+			if (bot == null || !bot.IsBotOfType(Constants.EBotType.TF_BOT_TYPE) || !bot.HasBotTag(`charge`))
+				continue;
+			
+			if (!bot.InCond(Constants.ETFCond.TF_COND_SHIELD_CHARGE))
+				continue;
+			
+			local player_origin = bot.GetOrigin();
+			local player_mins = bot.GetPlayerMins();
+			local player_maxs = bot.GetPlayerMaxs();
+			
+			local yes = 0;
+			
+			if (origin.x + mins.x <= player_origin.x + player_maxs.x && origin.x + maxs.x >= player_origin.x + player_mins.x)
+				yes++;
+			
+			if (origin.y + mins.y <= player_origin.y + player_maxs.y && origin.y + maxs.y >= player_origin.y + player_mins.y)
+				yes++;
+			
+			if (origin.z + mins.z <= player_origin.z + player_maxs.z && origin.z + maxs.z >= player_origin.z + player_mins.z)
+				yes++;
+			
+			if (yes == 3)
+			{
+				object.TakeDamage(100000, Constants.FDmgType.DMG_CRUSH, bot);
+				break;
+			}
+		}
+	}
+}
+
+			"
+		}
+		
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		
+		WaitWhenDone 65
+		Checkpoint Yes
+		
+		WaveSpawn
+		{
+			TotalCount	77
+			MaxActive	20
+			SpawnCount	7
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	7
+			
+			TFBot
+			{
+				Class Demoman
+				Name "Charge Demoknight"
+				ClassIcon demoknight
+				Skill Expert
+				Item "The Splendid Screen"
+				Item "The Eyelander"
+				WeaponRestrictions MeleeOnly
+				
+				Tag	no_attack
+				Tag charge
+				
+				ItemAttributes
+				{
+					ItemName "The Splendid Screen"
+					"full charge turn control"	1
+					"no charge impact range"	1
+					"charge impact damage increased"	1000
+					"charge time increased"	20
+				}
+			}
+		}
+	}
+	
+	Wave
+	{
+		InitWaveOutput
+		{
+			Target gamerules
+			Action RunScriptCode
+			Param "
+
+Convars.SetValue(`tf_mvm_defenders_team_size`, 8);
+IncludeScript(`popextensions`);
+
+local count = 0;
+local offset = Vector(0, 0, 128);
+
+AddRobotTag(`stack`, {
+	OnSpawn = function(bot, tag) {
+	
+		bot.AddBotTag(`stack_` + count);
+		
+		if (count > 0)
+			bot.SetMoveType(Constants.EMoveType.MOVETYPE_NONE, Constants.EMoveCollide.MOVECOLLIDE_DEFAULT);
+		
+		UpdatePos();
+		count++;
+	},
+});
+
+::IsPlayerAlive <- function(player)
+{
+	return NetProps.GetPropInt(player, `m_lifeState`) == 0;
+}
+
+function ClearParent(player)
+{
+	if (!IsPlayerAlive(player))
+		return;
+	
+	// Make sure bot is not stuck after parent lost
+	
+	local FContents = Constants.FContents;
+	local trace = null;
+	
+	do
+	{
+		local origin = player.GetOrigin();
+		
+		trace = {
+			start = origin,
+			end = origin,
+			hullmin = player.GetPlayerMins(),
+			hullmax = player.GetPlayerMaxs(),
+			mask = (FContents.CONTENTS_SOLID|FContents.CONTENTS_WINDOW|FContents.CONTENTS_MONSTERCLIP|FContents.CONTENTS_GRATE),	// MASK_NPCWORLDSTATIC
+		}
+		
+		TraceHull(trace);
+		if (trace.hit)
+		{
+			origin.z -= 1.0;
+			player.SetAbsOrigin(origin);
+		}
+	}
+	while (trace.hit);
+	
+	player.SetMoveType(Constants.EMoveType.MOVETYPE_WALK, Constants.EMoveCollide.MOVECOLLIDE_DEFAULT);
+	player.RemoveBotAttribute(Constants.FTFBotAttributeType.IGNORE_FLAG);
+}
+
+local spawnbot = Entities.FindByName(null, `spawnbot_flank`);
+spawnbot.SetAbsOrigin(Vector(1024, 0, 128));
+
+AddThinkToEnt(self, `OnThink`);
+
+function OnThink()
+{
+	for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
+	{
+		local bot = PlayerInstanceFromIndex(i);
+		if (bot == null || !IsPlayerAlive(bot) || !bot.IsBotOfType(Constants.EBotType.TF_BOT_TYPE) || !bot.HasBotTag(`stack`))
+			continue;
+		
+		if (bot.GetMoveType() != Constants.EMoveType.MOVETYPE_NONE)
+			continue;
+		
+		local index = GetBotIndex(bot);
+		if (!GetBotFromIndex(index - 1))
+			ClearParent(bot);
+	}
+	
+	UpdatePos();
+}
+
+
+::UpdatePos <- function()
+{
+	local walk = null;
+	local index = 0;
+	
+	for (local i = 0; i < count; i++)
+	{
+		local bot = GetBotFromIndex(i);
+		if (!bot)
+		{
+			walk = null;
+			continue;
+		}
+		else if (!walk)
+		{
+			walk = bot;
+			index = i;
+			continue;
+		}
+		
+		local origin = walk.GetOrigin();
+		origin.z += offset.z * (i - index);
+		
+		bot.SetAbsOrigin(origin);
+	}
+}
+
+::GetBotIndex <- function(bot)
+{
+	for (local index = 0; index < count; index++)
+		if (bot.HasBotTag(`stack_` + index))
+			return index;
+	
+	return 0;
+}
+
+::GetBotFromIndex <- function(index)
+{
+	for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
+	{
+		local bot = PlayerInstanceFromIndex(i);
+		if (bot == null || !IsPlayerAlive(bot) || !bot.IsBotOfType(Constants.EBotType.TF_BOT_TYPE))
+			continue;
+		
+		if (GetBotIndex(bot) == index)
+			return bot;
+	}
+	
+	return null;
+}
+			"
+		}
+		
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		
+		DoneOutput					
+		{
+			Target gamerules
+			Action RunScriptCode
+			Param "
+				EntFire(`wave_finished_relay`, `Trigger`);
+			
+				// Make sure all parents is cleared
+				for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
+				{
+					local bot = PlayerInstanceFromIndex(i)
+					if (bot == null)
+						continue;
+					
+					EntFireByHandle(bot, `ClearParent`, ``, 0.0, null, null);
+				}
+			"
+		}
+		
+		WaitWhenDone 65
+		Checkpoint Yes
+		
+		WaveSpawn
+		{
+			Name stackme
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0
+			
+			TFBot
+			{
+				Template	T_TFBot_Giant_Heavyweapons
+				//Attributes	AlwaysCrit
+				Tag stack
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned	stackme
+			TotalCount	7
+			MaxActive	7
+			SpawnCount	7
+			Where	spawnbot_flank
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0
+			
+			TFBot
+			{
+				Template	T_TFBot_Giant_Heavyweapons
+				//Attributes	AlwaysCrit
+				Attributes	IgnoreFlag
+				Tag stack
+			}
+		}
+	}
+	
+	Wave
+	{
+		InitWaveOutput
+		{
+			Target gamerules
+			Action RunScriptCode
+			Param "
+
+Convars.SetValue(`tf_mvm_defenders_team_size`, 9);
+
+local origin = Entities.FindByName(null, `intel`).GetOrigin();
+
+for (local i = 0; i < 19; i++)
+{
+	local intel = Entities.CreateByClassname(`item_teamflag`);
+	intel.KeyValueFromString(`flag_icon`, `../hud/objectives_flagpanel_carried`);
+	intel.KeyValueFromString(`flag_model`, `models/props_td/atom_bomb.mdl`);
+	intel.KeyValueFromString(`flag_paper`, `player_intel_papertrail`);
+	intel.KeyValueFromString(`flag_trail`, `flagtrail`);
+	intel.KeyValueFromInt(`GameType`, 1);
+	intel.KeyValueFromInt(`NeutralType`, 1);
+	intel.KeyValueFromVector(`origin`, origin);
+	intel.KeyValueFromInt(`ReturnTime`, 60000);
+	intel.KeyValueFromString(`tags`, `bomb_carrier`);
+	intel.KeyValueFromString(`targetname`, `intel_temp`);
+	
+	NetProps.SetPropInt(intel, `m_iTeamNum`, Constants.ETFTeam.TF_TEAM_BLUE);
+	
+	intel.DispatchSpawn();
+}
+
+IncludeScript(`popextensions`);
+
+AddRobotTag(`spawn_hatch`, {
+	OnSpawn = function(bot, tag) {
+		local origin = Entities.FindByName(null, `end_pit_destroy_particle`).GetOrigin();
+		origin.z += 640.0;
+		bot.SetAbsOrigin(origin);
+	},
+});
+
+			"
+		}
+		
+		StartWaveOutput
+		{
+			Target wave_start_relay
+			Action Trigger
+		}
+		
+		DoneOutput					
+		{
+			Target gamerules
+			Action RunScriptCode
+			Param "
+				EntFire(`wave_finished_relay`, `Trigger`);
+				EntFire(`intel_temp`, `Kill`);
+			"
+		}
+		
+		WaitWhenDone 65
+		Checkpoint Yes
+		
+		WaveSpawn
+		{
+			Name XD
+			TotalCount	32
+			MaxActive	20
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0
+			
+			TFBot
+			{
+				//Template	T_TFBot_Giant_Scout_Bonk
+				Template	T_TFBot_Giant_Scout_Fast
+				//Attributes	AlwaysCrit
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned XD
+			TotalCount	10
+			MaxActive	10
+			SpawnCount	10
+			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0
+			
+			TFBot
+			{
+				//Template	T_TFBot_Giant_Scout_Bonk
+				Template	T_TFBot_Giant_Scout_Fast
+				//Attributes	AlwaysCrit
+				Tag spawn_hatch
+			}
+		}
+	}
+	
+	Wave
+	{
+		InitWaveOutput
+		{
+			Target gamerules
+			Action RunScriptCode
+			Param "
+
+Convars.SetValue(`tf_mvm_defenders_team_size`, 10);
+
+local tankname = `ur mom`;
+local prefix = `death_`;
+local count = 0;
+
+// Clear any parents and tank
+for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
+{
+	local bot = PlayerInstanceFromIndex(i);
+	if (bot)
+		EntFireByHandle(bot, `ClearParent`, ``, 0.0, null, null);
+}
+
+local tank = Entities.FindByName(null, tankname);
+if (tank)
+{
+	tank.RemoveEFlags(Constants.FEntityEFlags.EFL_KILLME);
+	tank.Kill();
+//	IncrementWaveIconSpawnCount(`tank`, MVM_CLASS_FLAG_NORMAL|MVM_CLASS_FLAG_MINIBOSS, 1, false);	// Because tank deletes an icon, need to readd it
+}
+
+function Get(index)
+{
+	return Entities.FindByName(null,prefix+index);
+}
+
+function Connect(one, two)
+{
+	NetProps.SetPropEntity(Get(one), `m_pnext`, Get(two));
+}
+
+function Create(origin)
+{
+	local new = Entities.CreateByClassname(`path_track`);
+	new.KeyValueFromVector(`origin`, origin);
+	new.KeyValueFromString(`targetname`, prefix + count);
+	new.KeyValueFromString(`target`, prefix + (count + 1));
+	new.DispatchSpawn();
+	count++;
+	return count - 1;
+}
+
+function Rotate(center, angle, left = true)
+{
+	local offsets = [Vector(-384, 0, 0),Vector(-288, 32, 0),Vector(-192, 80, 0),Vector(-128, 128, 0),Vector(-80, 192, 0),Vector(-32, 288, 0),Vector(0, 384, 0)];
+	
+	local lastadd;
+	for (local i = 0; i < offsets.len(); i++)
+	{
+		local offset = offsets[i];
+		if (!left)
+			offset.y *= -1;
+		
+		// origin rotation is currently broken and is always 0, but this doesn't matter anyway
+		lastadd = Create(center + RotatePosition(Vector(0,0,0), QAngle(0, angle, 0), offset));
+	}
+	
+	return lastadd;
+}
+
+Create(Vector(-352, -640, 128));	//Spawn
+Rotate(Vector(-352, 1168, 128), 90, false);
+Rotate(Vector(976, 1168, 128), 0, false);
+Rotate(Vector(976, -336, 128), -90);
+Rotate(Vector(2356, -336, 384), 0);
+Rotate(Vector(2356, 608, 384), 90, false);	// the turn to red base
+
+Convars.SetValue(`tf_base_boss_max_turn_rate`, 5.5);	// Slow tank turn (def 25)
+
+for (local i = 0; i < count; i++)
+	Connect(i, i + 1);
+
+IncludeScript(`popextensions`);
+
+AddTankName(tankname, {
+	OnSpawn = function(tank, name)
+	{
+		EntFire(`botspawn`, `Disable`);
+	
+		tank.SetSize(Vector(-21.0, -18.2, 0.0), Vector(21.0, 18.2, 39.0));	// tank hitbox goofy
+		tank.SetModelScale(4.0, 0.0);
+		tank.AddEFlags(Constants.FEntityEFlags.EFL_KILLME);
+	},
+});
+
+AddRobotTag(`death`, {
+	OnDeath = function(bot, params)
+	{
+		EntFire(`botspawn`, `Disable`);
+	},
+});
+
+function IsPlayerAlive(player)
+{
+	return NetProps.GetPropInt(player, `m_lifeState`) == 0;
+}
+
+AddThinkToEnt(self, `OnThink`);
+
+function OnThink()
+{
+	for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
+	{
+		local bot = PlayerInstanceFromIndex(i)
+		if (bot && IsPlayerAlive(bot) && bot.IsBotOfType(Constants.EBotType.TF_BOT_TYPE))
+			UpdatePos(bot);
+	}
+}
+
+::UpdatePos <- function(bot)
+{
+	local offset = null;
+	if (bot.HasBotTag(`pos_top`))
+		offset = Vector(-160, 0, 704);
+	else if (bot.HasBotTag(`pos_frontleft`))
+		offset = Vector(384, 224, 304);
+	else if (bot.HasBotTag(`pos_frontright`))
+		offset = Vector(384, -224, 304);
+	else if (bot.HasBotTag(`pos_behindleft`))
+		offset = Vector(-384, 224, 224);
+	else if (bot.HasBotTag(`pos_behindright`))
+		offset = Vector(-384, -224, 224);
+	
+	if (!offset)
+		return;
+	
+	local tank = Entities.FindByName(null, tankname);
+	offset = RotatePosition(Vector(0,0,0), tank.GetAbsAngles(), offset)
+	
+	bot.SetAbsOrigin(tank.GetOrigin() + offset);
+	bot.SetMoveType(Constants.EMoveType.MOVETYPE_NONE, Constants.EMoveCollide.MOVECOLLIDE_DEFAULT);
+	//bot.SetSize(Vector(-1, -1, 0), Vector(1, 1, 1));	// screw you tank teleporting the bots
+	//EntFireByHandle(bot, `SetParent`, `!activator`, 0.0, tank, tank);
+}
+
+local spawnbot = Entities.FindByName(null, `spawnbot_flank`);
+spawnbot.SetAbsOrigin(Vector(-128, 384, 128));
+
+			"
+		}
+		
+		StartWaveOutput
+		{
+			Target gamerules
+			Action RunScriptCode
+			Param "
+
+EntFire(`wave_start_relay`, `Trigger`);
+
+local code = @`
+	local mins = Vector(3072, 320, 384);
+	local maxs = Vector(3328, 1472, 832);
+
+	for (local i = 0; i < 20; i++)
+	{
+		local origin = Vector(RandomFloat(mins.x, maxs.x), RandomFloat(mins.y, maxs.y), RandomFloat(mins.z, maxs.z));
+		DispatchParticleEffect(``fluidSmokeExpl_ring_mvm``, origin, Vector(0, 0, 0));
+	}
+
+	function IsPlayerAlive(player)
+	{
+		return NetProps.GetPropInt(player, ``m_lifeState``) == 0;
+	}
+
+	for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
+	{
+		local player = PlayerInstanceFromIndex(i)
+		if (player && IsPlayerAlive(player))
+			player.TakeDamage(100000, Constants.FDmgType.DMG_BLAST, null);
+	}
+	
+	EntFire(``robot_win``, ``RoundWin``);
+	EntFire(``pit_explosion_noise``, ``RoundWin``);
+`
+
+// TF2 bug where OnBombDroppedOutput dont support param, yet
+local allah = Entities.CreateByClassname( `logic_relay` );
+EntityOutputs.AddOutput(allah, `OnTrigger`, `gamerules`, `RunScriptCode`, code, 0.0, -1);
+allah.KeyValueFromString(`targetname`, `allah`);
+allah.DispatchSpawn();
+
+			"
+		}
+		
+		DoneOutput					
+		{
+			Target wave_finished_relay
+			Action Trigger
+		}
+		
+		WaitWhenDone 65
+		Checkpoint Yes
+		
+		WaveSpawn
+		{
+			Name TheRealBoss
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	8
+			WaitBetweenSpawns	0
+			Support Limited
+			
+			TFBot
+			{
+				Template	T_TFBot_Scout_Melee
+				ClassIcon	scout_bat
+				Tag death
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllDead	TheRealBoss
+			Name Dinosaur
+			TotalCurrency	1
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot
+			WaitBeforeStarting	8
+			WaitBetweenSpawns	0
+			
+			Squad
+			{
+				Tank
+				{
+					Health	100000
+					Name	"ur mom"
+					Speed	45
+					//Speed	100
+					Skin	1
+					StartingPathTrackNode	death_0
+					OnBombDroppedOutput
+					{
+						Target allah
+						Action Trigger
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned	Dinosaur
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot_flank
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0
+			Support	1
+			
+			RandomChoice
+			{
+				RandomChoice
+				{
+					TFBot
+					{
+						Template	T_TFBot_Chief_Demo_Atomic
+						Attributes	IgnoreFlag
+						Tag		pos
+						Tag		pos_top
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned	Dinosaur
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot_flank
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0
+			Support	1
+			
+			RandomChoice
+			{
+				RandomChoice
+				{
+					TFBot
+					{
+						Template	T_TFBot_Giant_Soldier_Spammer
+						Attributes	IgnoreFlag
+						Attributes	AlwaysCrit
+						Attributes	AlwaysFireWeapon
+						Tag		pos
+						Tag		pos_frontleft
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned	Dinosaur
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot_flank
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0
+			Support	1
+			
+			RandomChoice
+			{
+				RandomChoice
+				{
+					TFBot
+					{
+						Template	T_TFBot_Giant_Soldier_Spammer
+						Attributes	IgnoreFlag
+						Attributes	AlwaysCrit
+						Attributes	AlwaysFireWeapon
+						Tag		pos
+						Tag		pos_frontright
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned	Dinosaur
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot_flank
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0
+			Support	1
+			
+			RandomChoice
+			{
+				RandomChoice
+				{
+					TFBot
+					{
+						Template	T_TFBot_Giant_Heavyweapons
+						Attributes	IgnoreFlag
+						Attributes	AlwaysCrit
+						Attributes	AlwaysFireWeapon
+						Tag		pos
+						Tag		pos_behindleft
+					}
+				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			WaitForAllSpawned	Dinosaur
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot_flank
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0
+			Support	1
+			
+			RandomChoice
+			{
+				RandomChoice
+				{
+					TFBot
+					{
+						Template	T_TFBot_Giant_Heavyweapons
+						Attributes	IgnoreFlag
+						Attributes	AlwaysCrit
+						Attributes	AlwaysFireWeapon
+						Tag		pos
+						Tag		pos_behindright
+					}
+				}
+			}
+		}
+	}
+	
+}
