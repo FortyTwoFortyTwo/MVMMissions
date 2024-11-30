@@ -1544,7 +1544,7 @@ allah.DispatchSpawn();
 			{
 				Tank
 				{
-					Health	100000
+					Health	42069
 					Name	"ur mom"
 					Speed	45
 					//Speed	100
