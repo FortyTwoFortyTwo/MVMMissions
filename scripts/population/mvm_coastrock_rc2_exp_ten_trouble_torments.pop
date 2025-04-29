@@ -255,6 +255,10 @@ AddThinkToEnt(self, `OnThink`);
 
 function OnThink()
 {
+	local stat = Entities.FindByClassname(null, `tf_mann_vs_machine_stats`);
+	if (NetProps.GetPropInt(stat, `m_iCurrentWaveIdx`) != 4 - 1)
+		return;
+	
 	local weapon = null;
 	while ( weapon = Entities.FindByClassname(weapon, `tf_weapon_*`) )
 	{
@@ -267,22 +271,24 @@ function OnThink()
 	
 	for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
 	{
-		local bot = PlayerInstanceFromIndex(i)
-		if (bot && bot.IsBotOfType(Constants.EBotType.TF_BOT_TYPE) && bot.HasBotTag(`airblast`))
-			bot.PressAltFireButton(0.1);
+		local client = PlayerInstanceFromIndex(i);
+		if (!client)
+			continue;
+		
+		if (client.IsBotOfType(Constants.EBotType.TF_BOT_TYPE) && client.HasBotTag(`airblast`))
+			client.PressAltFireButton(0.1);
+		
+		client.RemoveCond(Constants.ETFCond.TF_COND_MEGAHEAL);
+		client.RemoveCond(Constants.ETFCond.TF_COND_IMMUNE_TO_PUSHBACK);
 	}
 	
-	local stat = Entities.FindByClassname(null, `tf_mann_vs_machine_stats`);
-	if (NetProps.GetPropInt(stat, `m_iCurrentWaveIdx`) == 4 - 1)
+	local sentry = null;
+	while ( sentry = Entities.FindByClassname(sentry, `obj_sentrygun`) )
 	{
-		local sentry = null;
-		while ( sentry = Entities.FindByClassname(sentry, `obj_sentrygun`) )
-		{
-			if (NetProps.GetPropInt(sentry, `m_bPlacing`))
-				continue;
-			
-			EntFireByHandle(sentry, `RemoveHealth`, `9999`, -1.0, null, null);
-		}
+		if (NetProps.GetPropInt(sentry, `m_bPlacing`))
+			continue;
+		
+		EntFireByHandle(sentry, `RemoveHealth`, `9999`, -1.0, null, null);
 	}
 }
 
@@ -326,6 +332,7 @@ function OnThink()
 				CharacterAttributes
 				{
 					"deflection size multiplier"	100.0
+					"mult airblast refire time"	0.2
 					"airblast pushback scale"	2.0
 					"airblast_deflect_projectiles_disabled"	1
 				}
@@ -513,7 +520,6 @@ EntityOutputs.AddOutput(Get(firstloop), `OnUser4`, `!self`, `RunScriptCode`, `Ne
 				Template	T_TFBot_Heavyweapons_Gnome
 				Attributes	IgnoreFlag
 				BehaviorModifiers Push
-				Health 60
 			}
 		}
 	}
@@ -884,6 +890,62 @@ AddRobotTag(`split`, {
 
 Convars.SetValue(`tf_mvm_defenders_team_size`, 7);
 
+::IsPlayerAlive <- function(player)
+{
+	return NetProps.GetPropInt(player, `m_lifeState`) == 0;
+}
+
+function GetShield(client)
+{
+	for (local wearable = client.FirstMoveChild(); wearable != null; wearable = wearable.NextMovePeer())
+	{
+		if (wearable.GetClassname() == `tf_wearable_demoshield`)
+			return wearable;
+	}
+	
+	return null;
+}
+
+function VibeCheck(entity)
+{
+	local origin = entity.GetOrigin();
+	local mins = entity.GetBoundingMins() + Vector(-5.0, -5.0, -5.0);
+	local maxs = entity.GetBoundingMaxs() + Vector(5.0, 5.0, 5.0);
+	
+	for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
+	{
+		local bot = PlayerInstanceFromIndex(i);
+		if (bot == null || !bot.IsBotOfType(Constants.EBotType.TF_BOT_TYPE) || !bot.HasBotTag(`charge`))
+			continue;
+		
+		if (!bot.InCond(Constants.ETFCond.TF_COND_SHIELD_CHARGE))
+			continue;
+		
+		local player_origin = bot.GetOrigin();
+		local player_mins = bot.GetPlayerMins();
+		local player_maxs = bot.GetPlayerMaxs();
+		
+		local yes = 0;
+		
+		if (origin.x + mins.x <= player_origin.x + player_maxs.x && origin.x + maxs.x >= player_origin.x + player_mins.x)
+			yes++;
+		
+		if (origin.y + mins.y <= player_origin.y + player_maxs.y && origin.y + maxs.y >= player_origin.y + player_mins.y)
+			yes++;
+		
+		if (origin.z + mins.z <= player_origin.z + player_maxs.z && origin.z + maxs.z >= player_origin.z + player_mins.z)
+			yes++;
+		
+		if (yes == 3)
+		{
+			local shield = GetShield(bot);
+			entity.TakeDamageCustom(shield, bot, shield, Vector(), Vector(), 100000, Constants.FDmgType.DMG_CRUSH, Constants.ETFDmgCustom.TF_DMG_CUSTOM_CHARGE_IMPACT);
+			EntFireByHandle(entity, `RemoveHealth`, `10000`, 0.0, null, null);	// incase if it doesn't work idk
+			return;
+		}
+	}
+}
+
 AddThinkToEnt(self, `OnThink`);
 
 function OnThink()
@@ -901,45 +963,17 @@ function OnThink()
 	local object = null;
 	while ( object = Entities.FindByClassname(object, `obj_*`) )
 	{
-		if (NetProps.GetPropInt(object, `m_bPlacing`) || NetProps.GetPropInt(object, `m_bCarried`))
-			continue;
+		if (!NetProps.GetPropInt(object, `m_bPlacing`) && !NetProps.GetPropInt(object, `m_bCarried`))
+			VibeCheck(object);
+	}
 	
-		local origin = object.GetOrigin();
-		//local mins = object.GetBoundingMins();
-		//local maxs = object.GetBoundingMaxs();
-		local mins = Vector(-25.0, -25.0, 0.0);
-		local maxs = Vector(25.0, 25.0, 87.0);
+	for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
+	{
+		local client = PlayerInstanceFromIndex(i);
+		if (client == null || !IsPlayerAlive(client) || client.IsBotOfType(Constants.EBotType.TF_BOT_TYPE))
+			continue;
 		
-		for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
-		{
-			local bot = PlayerInstanceFromIndex(i);
-			if (bot == null || !bot.IsBotOfType(Constants.EBotType.TF_BOT_TYPE) || !bot.HasBotTag(`charge`))
-				continue;
-			
-			if (!bot.InCond(Constants.ETFCond.TF_COND_SHIELD_CHARGE))
-				continue;
-			
-			local player_origin = bot.GetOrigin();
-			local player_mins = bot.GetPlayerMins();
-			local player_maxs = bot.GetPlayerMaxs();
-			
-			local yes = 0;
-			
-			if (origin.x + mins.x <= player_origin.x + player_maxs.x && origin.x + maxs.x >= player_origin.x + player_mins.x)
-				yes++;
-			
-			if (origin.y + mins.y <= player_origin.y + player_maxs.y && origin.y + maxs.y >= player_origin.y + player_mins.y)
-				yes++;
-			
-			if (origin.z + mins.z <= player_origin.z + player_maxs.z && origin.z + maxs.z >= player_origin.z + player_mins.z)
-				yes++;
-			
-			if (yes == 3)
-			{
-				object.TakeDamage(100000, Constants.FDmgType.DMG_CRUSH, bot);
-				break;
-			}
-		}
+		VibeCheck(client);
 	}
 }
 
@@ -986,10 +1020,11 @@ function OnThink()
 				ItemAttributes
 				{
 					ItemName "The Splendid Screen"
-					"full charge turn control"	1
-					"no charge impact range"	1
+					"full charge turn control"	50
+					"charge time increased"	200
+					"charge recharge rate increased"	100
 					"charge impact damage increased"	1000
-					"charge time increased"	20
+					"increased jump height"	2
 				}
 			}
 		}
@@ -1005,6 +1040,10 @@ function OnThink()
 
 Convars.SetValue(`tf_mvm_defenders_team_size`, 8);
 IncludeScript(`popextensions`);
+
+Entities.CreateByClassname(`tf_point_nav_interface`);
+EntFire(`botspawn`, `Disable`);
+EntFire(`tf_point_nav_interface`, `RecomputeBlockers`);
 
 local count = 0;
 local offset = Vector(0, 0, 128);
@@ -1061,9 +1100,6 @@ function ClearParent(player)
 	player.SetMoveType(Constants.EMoveType.MOVETYPE_WALK, Constants.EMoveCollide.MOVECOLLIDE_DEFAULT);
 	player.RemoveBotAttribute(Constants.FTFBotAttributeType.IGNORE_FLAG);
 }
-
-local spawnbot = Entities.FindByName(null, `spawnbot_flank`);
-spawnbot.SetAbsOrigin(Vector(1024, 0, 128));
 
 AddThinkToEnt(self, `OnThink`);
 
@@ -1191,10 +1227,10 @@ function OnThink()
 			WaitForAllSpawned	stackme
 			TotalCount	7
 			MaxActive	7
-			SpawnCount	7
-			Where	spawnbot_flank
+			SpawnCount	1
+			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	0
+			WaitBetweenSpawns	0.1
 			
 			TFBot
 			{
@@ -1215,6 +1251,9 @@ function OnThink()
 			Param "
 
 Convars.SetValue(`tf_mvm_defenders_team_size`, 9);
+
+EntFire(`botspawn`, `Enable`);
+EntFire(`tf_point_nav_interface`, `RecomputeBlockers`);
 
 local origin = Entities.FindByName(null, `intel`).GetOrigin();
 
@@ -1393,7 +1432,9 @@ IncludeScript(`popextensions`);
 AddTankName(tankname, {
 	OnSpawn = function(tank, name)
 	{
+		Entities.CreateByClassname(`tf_point_nav_interface`);
 		EntFire(`botspawn`, `Disable`);
+		EntFire(`tf_point_nav_interface`, `RecomputeBlockers`);
 	
 		tank.SetSize(Vector(-21.0, -18.2, 0.0), Vector(21.0, 18.2, 39.0));	// tank hitbox goofy
 		tank.SetModelScale(4.0, 0.0);
@@ -1404,7 +1445,8 @@ AddTankName(tankname, {
 AddRobotTag(`death`, {
 	OnDeath = function(bot, params)
 	{
-		EntFire(`botspawn`, `Disable`);
+		EntFire(`botspawn`, `Enable`);
+		EntFire(`tf_point_nav_interface`, `RecomputeBlockers`);
 	},
 });
 
