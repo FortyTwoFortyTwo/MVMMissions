@@ -14,11 +14,11 @@ Later i've lost my intrest on MvM and effectly left the team before group become
 I've created a MvM map, [Trainyard](https://steamcommunity.com/sharedfiles/filedetails/?id=1160890619).
 This repository contains an example mission for creators, and 2 offical missions, normal and advanced.
 
-#### Advanced42
+#### Fortyers Twoeams
 
 I've somewhat attempted to create a series of missions for each valve maps. These missions have a lot of custom robots with very little robots made by valve.
-None of these missions have an offical name, it was named "CustomRobotMision" before I changed to "advanced42" just to make it more obvious that it's an advanced mission made by myself.
-These missions are generaly more longer than typical valve's missions.
+Originally named "CustomRobotMision" and "advanced42" before i settled into the current name.
+Older versions are generaly more longer than typical valve's missions, until when I make use of `tf_mvm_max_invaders` convar to allow increased max robots by speeding up the whole mission.
 These include:
 - mvm_mannhattan
 - mvm_rottenburg
