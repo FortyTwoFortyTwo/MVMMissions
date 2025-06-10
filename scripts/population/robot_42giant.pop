@@ -1,4 +1,4 @@
-// Copyright (C) 2016-2022 42
+// Copyright (C) 2016-2025 42
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -223,6 +223,8 @@ WaveSchedule
 			ItemAttributes
 			{
 				ItemName "The Sandman"
+				"damage bonus"	10
+				"fire rate bonus" 0.4
 				"effect bar recharge rate increased" 0.001
 				"dmg bonus vs buildings"	10
 			}
@@ -493,7 +495,7 @@ WaveSchedule
 			
 			CharacterAttributes
 			{
-				"move speed bonus"	0.15
+				"move speed bonus"	0.3
 				"damage force reduction"	0.4
 				"airblast vulnerability multiplier"	0.4
 				"override footstep sound set"	3
@@ -701,9 +703,10 @@ WaveSchedule
 			{
 				ItemName	"the loch-n-load"
 				"grenade launcher mortar mode"	0
+				"damage bonus"	3
 				"fire rate bonus"	0.2
 				"Projectile speed increased"	3
-				"reload time increased hidden"	3
+				"reload time increased hidden"	2
 			}
 			
 			CharacterAttributes
@@ -961,7 +964,7 @@ WaveSchedule
 			
 			ItemAttributes
 			{
-				ItemName	"Gloves of Running Urgently"
+				ItemName	"Gloves of Running Urgently MvM"
 				"melee range multiplier"	1.5
 				"damage bonus"	2
 				"fire rate bonus"	0.5
@@ -1038,8 +1041,8 @@ WaveSchedule
 				"airblast vulnerability multiplier"	0.4
 				"override footstep sound set"	3
 				"engy building health bonus"	3
-				"engy sentry fire rate increased"	1.5
-				"engy sentry radius increased"	1.5
+				"engy sentry fire rate increased"	3
+				"engy sentry radius increased"	3
 				"use large smoke explosion"	1
 			}
 		}
@@ -1191,7 +1194,7 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"ubercharge rate bonus" 25
-				"uber duration bonus" 100
+				"uber duration bonus" 1
 				"medigun bullet resist passive" 1
 				"medigun bullet resist deployed" 1
 			}
@@ -1216,7 +1219,7 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"ubercharge rate bonus" 25
-				"uber duration bonus" 100
+				"uber duration bonus" 1
 				"medigun blast resist passive" 1
 				"medigun blast resist deployed" 1
 			}
@@ -1241,7 +1244,7 @@ WaveSchedule
 			CharacterAttributes
 			{
 				"ubercharge rate bonus" 25
-				"uber duration bonus" 100
+				"uber duration bonus" 1
 				"medigun fire resist passive" 1
 				"medigun fire resist deployed" 1
 			}

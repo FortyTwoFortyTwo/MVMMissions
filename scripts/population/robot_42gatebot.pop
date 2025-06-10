@@ -1,4 +1,4 @@
-// Copyright (C) 2016-2022 42
+// Copyright (C) 2016-2025 42
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -175,9 +175,9 @@ WaveSchedule
 					ItemAttributes
 					{
 						ItemName	"the black box"
-						"damage bonus"	5
+						"damage bonus"	10
 						"Blast radius increased"	2
-						"fire rate bonus"	100
+						"fire rate bonus"	10
 						"Projectile speed increased"	0.3
 						"use large smoke explosion"	1
 					}
@@ -193,9 +193,9 @@ WaveSchedule
 					ItemAttributes
 					{
 						ItemName	"the black box"
-						"damage bonus"	5
+						"damage bonus"	10
 						"Blast radius increased"	2
-						"fire rate bonus"	100
+						"fire rate bonus"	10
 						"Projectile speed increased"	0.3
 						"use large smoke explosion"	1
 					}
@@ -984,9 +984,10 @@ WaveSchedule
 					{
 						ItemName	"the loch-n-load"
 						"grenade launcher mortar mode"	0
+						"damage bonus"	3
 						"fire rate bonus"	0.2
 						"Projectile speed increased"	3
-						"reload time increased"	3
+						"reload time increased hidden"	2
 					}
 					
 					Item	"MvM GateBot Light Demoman"
@@ -1014,9 +1015,10 @@ WaveSchedule
 					{
 						ItemName	"the loch-n-load"
 						"grenade launcher mortar mode"	0
+						"damage bonus"	3
 						"fire rate bonus"	0.2
 						"Projectile speed increased"	3
-						"reload time increased"	3
+						"reload time increased hidden"	2
 					}
 					
 					Item	"MvM GateBot Light Demoman"
@@ -1239,7 +1241,7 @@ WaveSchedule
 			Class	Heavyweapons
 			ClassIcon	heavy_ultimate
 			Name	"Gaben"
-			Health	424242
+			Health	200000
 			Scale	1.95
 			
 			EventChangeAttributes

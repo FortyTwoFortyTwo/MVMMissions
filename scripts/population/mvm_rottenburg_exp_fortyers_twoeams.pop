@@ -1,4 +1,4 @@
-// Copyright (C) 2016-2022 42
+// Copyright (C) 2016-2025 42
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -303,11 +303,11 @@ AddRobotTag(`steak`, {
 			Name	1A-1
 			TotalCurrency	20
 			TotalCount	20
-			MaxActive	10
+			MaxActive	15
 			SpawnCount	2
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	3
+			WaitBetweenSpawns	2
 			
 			TFBot
 			{
@@ -320,11 +320,11 @@ AddRobotTag(`steak`, {
 			Name	1A-1
 			TotalCurrency	20
 			TotalCount	20
-			MaxActive	10
+			MaxActive	15
 			SpawnCount	2
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	3
+			WaitBetweenSpawns	2
 			
 			TFBot
 			{
@@ -382,7 +382,7 @@ AddRobotTag(`steak`, {
 			
 			Tank
 			{
-				Health	15000
+				Health	17500
 				Name	Tank
 				Speed	75
 				StartingPathTrackNode	tank_path_a_10
@@ -405,11 +405,11 @@ AddRobotTag(`steak`, {
 			WaitForAllSpawned	1A-1
 			TotalCurrency	30
 			TotalCount	30
-			MaxActive	5
+			MaxActive	8
 			SpawnCount	1
 			Where	flankers
 			WaitBeforeStarting	10
-			WaitBetweenSpawns	1.5
+			WaitBetweenSpawns	1
 			
 			TFBot
 			{
@@ -421,14 +421,14 @@ AddRobotTag(`steak`, {
 		WaveSpawn
 		{
 			Name	1B-2
-			WaitForAllSpawned	1A-1
+			WaitForAllSpawned	1A-2
 			TotalCurrency	30
 			TotalCount	30
-			MaxActive	5
+			MaxActive	8
 			SpawnCount	1
 			Where	flankers
 			WaitBeforeStarting	10
-			WaitBetweenSpawns	1.5
+			WaitBetweenSpawns	1
 			
 			TFBot
 			{
@@ -439,14 +439,14 @@ AddRobotTag(`steak`, {
 		WaveSpawn
 		{
 			Name	1B-2
-			WaitForAllSpawned	1A-1
+			WaitForAllSpawned	1A-2
 			TotalCurrency	30
 			TotalCount	30
-			MaxActive	5
+			MaxActive	8
 			SpawnCount	1
 			Where	flankers
 			WaitBeforeStarting	10
-			WaitBetweenSpawns	1.5
+			WaitBetweenSpawns	1
 			
 			TFBot
 			{
@@ -458,14 +458,14 @@ AddRobotTag(`steak`, {
 		WaveSpawn
 		{
 			Name	1B-3
-			WaitForAllSpawned	1A-1
+			WaitForAllSpawned	1A-2
 			TotalCurrency	20
 			TotalCount	20
-			MaxActive	3
+			MaxActive	5
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	2
+			WaitBetweenSpawns	1.5
 			
 			TFBot
 			{
@@ -476,7 +476,7 @@ AddRobotTag(`steak`, {
 		WaveSpawn
 		{
 			Name	1C-1
-			WaitForAllSpawned	1A-1
+			WaitForAllSpawned	1A-2
 			TotalCurrency	50
 			TotalCount	1
 			MaxActive	1
@@ -495,13 +495,13 @@ AddRobotTag(`steak`, {
 		WaveSpawn
 		{
 			Name	1C-2
-			WaitForAllDead	1C-1
+			WaitForAllSpawned	1C-1
 			TotalCurrency	50
 			TotalCount	1
 			MaxActive	1
 			SpawnCount	1
 			Where	flankers
-			WaitBeforeStarting	10
+			WaitBeforeStarting	20
 			WaitBetweenSpawns	0
 			
 			TFBot
@@ -513,13 +513,13 @@ AddRobotTag(`steak`, {
 		WaveSpawn
 		{
 			Name	1C-3
-			WaitForAllDead	1C-2
+			WaitForAllSpawned	1C-2
 			TotalCurrency	50
 			TotalCount	1
 			MaxActive	1
 			SpawnCount	1
 			Where	flankers
-			WaitBeforeStarting	10
+			WaitBeforeStarting	20
 			WaitBetweenSpawns	0
 			
 			TFBot
@@ -539,7 +539,7 @@ AddRobotTag(`steak`, {
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	20
+			WaitBetweenSpawns	10
 			
 			TFBot
 			{
@@ -556,8 +556,8 @@ AddRobotTag(`steak`, {
 			MaxActive	2
 			SpawnCount	1
 			Where	spawnbot
-			WaitBeforeStarting	10
-			WaitBetweenSpawns	20
+			WaitBeforeStarting	5
+			WaitBetweenSpawns	10
 			
 			TFBot
 			{
@@ -625,11 +625,11 @@ AddRobotTag(`stomper`, {
 			Name	2A-1
 			TotalCurrency	64
 			TotalCount	64
-			MaxActive	6
+			MaxActive	12
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	1
-			WaitBetweenSpawns	2
+			WaitBetweenSpawns	1
 			
 			TFBot
 			{
@@ -644,11 +644,11 @@ AddRobotTag(`stomper`, {
 			Name	2A-2
 			TotalCurrency	30
 			TotalCount	30
-			MaxActive	14
+			MaxActive	18
 			SpawnCount	3
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	2
+			WaitBetweenSpawns	1.5
 			
 			TFBot
 			{
@@ -663,11 +663,11 @@ AddRobotTag(`stomper`, {
 			WaitForAllSpawned	2A-2
 			TotalCurrency	18
 			TotalCount	18
-			MaxActive	4
+			MaxActive	6
 			SpawnCount	2
 			Where	flankers
 			WaitBeforeStarting	3
-			WaitBetweenSpawns	15
+			WaitBetweenSpawns	10
 			
 			TFBot
 			{
@@ -678,14 +678,14 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	2B-2
-			WaitForAllDead	2A-2
+			WaitForAllSpawned	2A-2
 			TotalCurrency	36
 			TotalCount	36
-			MaxActive	10
+			MaxActive	12
 			SpawnCount	2
 			Where	spawnbot
-			WaitBeforeStarting	3
-			WaitBetweenSpawns	5.5
+			WaitBeforeStarting	15
+			WaitBetweenSpawns	4
 			
 			TFBot
 			{
@@ -696,14 +696,14 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	2B-3
-			WaitForAllDead	2A-2
+			WaitForAllSpawned	2A-2
 			TotalCurrency	200
 			TotalCount	4
-			MaxActive	2
+			MaxActive	3
 			SpawnCount	1
 			Where	spawnbot
-			WaitBeforeStarting	5
-			WaitBetweenSpawns	30
+			WaitBeforeStarting	18
+			WaitBetweenSpawns	20
 			
 			TFBot
 			{
@@ -750,14 +750,14 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	2D-2
-			WaitForAllDead	2B-1
+			WaitForAllSpawned	2B-1
 			TotalCurrency	200
 			TotalCount	4
 			MaxActive	4
 			SpawnCount	2
 			Where	spawnbot
-			WaitBeforeStarting	20
-			WaitBetweenSpawns	40
+			WaitBeforeStarting	10
+			WaitBetweenSpawns	30
 			Squad
 			{
 				TFBot
@@ -775,14 +775,14 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	2D-3
-			WaitForAllDead	2B-1
+			WaitForAllSpawned	2B-1
 			TotalCurrency	50
 			TotalCount	50
-			MaxActive	15
+			MaxActive	25
 			SpawnCount	5
 			Where	flankers
-			WaitBeforeStarting	0
-			WaitBetweenSpawns	8
+			WaitBeforeStarting	10
+			WaitBetweenSpawns	5
 			
 			TFBot
 			{
@@ -846,10 +846,10 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	3B-1
-			WaitForAllDead	3A-2
+			WaitForAllSpawned	3A-2
 			TotalCurrency	31
 			TotalCount	31
-			MaxActive	12
+			MaxActive	20
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	0
@@ -864,14 +864,14 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	3B-2
-			WaitForAllDead	3A-2
+			WaitForAllSpawned	3A-2
 			TotalCurrency	16
 			TotalCount	16
-			MaxActive	6
+			MaxActive	10
 			SpawnCount	2
 			Where	flankers
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	4
+			WaitBetweenSpawns	3
 			
 			TFBot
 			{
@@ -882,7 +882,7 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	3B-3
-			WaitForAllDead	3A-2
+			WaitForAllSpawned	3A-2
 			TotalCurrency	100
 			TotalCount	2
 			MaxActive	2
@@ -911,7 +911,7 @@ AddRobotTag(`stomper`, {
 			
 			Tank
 			{
-				Health	10000
+				Health	12500
 				Name	Tank
 				Speed	75
 				StartingPathTrackNode	tank_path_b_10
@@ -942,7 +942,7 @@ AddRobotTag(`stomper`, {
 			
 			Tank
 			{
-				Health	10000
+				Health	12500
 				Name	Tank
 				Speed	75
 				StartingPathTrackNode	tank_path_a_10
@@ -981,14 +981,14 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	3D-1
-			WaitForAllDead	3C-3
+			WaitForAllSpawned	3C-3
 			TotalCurrency	30
 			TotalCount	30
-			MaxActive	9
+			MaxActive	14
 			SpawnCount	3
 			Where	spawnbot
-			WaitBeforeStarting	0
-			WaitBetweenSpawns	4
+			WaitBeforeStarting	10
+			WaitBetweenSpawns	2
 			
 			TFBot
 			{
@@ -999,14 +999,14 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	3D-2
-			WaitForAllDead	3C-3
+			WaitForAllSpawned	3C-3
 			TotalCurrency	32
 			TotalCount	32
-			MaxActive	10
+			MaxActive	14
 			SpawnCount	2
 			Where	flankers
-			WaitBeforeStarting	5
-			WaitBetweenSpawns	3
+			WaitBeforeStarting	15
+			WaitBetweenSpawns	2
 			
 			TFBot
 			{
@@ -1020,11 +1020,11 @@ AddRobotTag(`stomper`, {
 			WaitForAllSpawned	3D-1
 			TotalCurrency	24
 			TotalCount	24
-			MaxActive	5
+			MaxActive	8
 			SpawnCount	1
 			Where	flankers
 			WaitBeforeStarting	4
-			WaitBetweenSpawns	2
+			WaitBetweenSpawns	1.5
 			
 			TFBot
 			{
@@ -1038,11 +1038,11 @@ AddRobotTag(`stomper`, {
 			WaitForAllSpawned	3D-1
 			TotalCurrency	48
 			TotalCount	48
-			MaxActive	10
+			MaxActive	15
 			SpawnCount	2
 			Where	flankers
 			WaitBeforeStarting	4
-			WaitBetweenSpawns	2
+			WaitBetweenSpawns	1.5
 			
 			TFBot
 			{
@@ -1056,11 +1056,11 @@ AddRobotTag(`stomper`, {
 			WaitForAllSpawned	3D-1
 			TotalCurrency	20
 			TotalCount	20
-			MaxActive	4
+			MaxActive	6
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	4
-			WaitBetweenSpawns	2
+			WaitBetweenSpawns	1.5
 			
 			TFBot
 			{
@@ -1071,7 +1071,7 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	3F-3
-			WaitForAllDead	3D-1
+			WaitForAllSpawned	3D-1
 			TotalCurrency	150
 			TotalCount	3
 			MaxActive	3
@@ -1096,7 +1096,7 @@ AddRobotTag(`stomper`, {
 			MaxActive	1
 			SpawnCount	1
 			Where	spawnbot
-			WaitBeforeStarting	5
+			WaitBeforeStarting	3
 			WaitBetweenSpawns	0
 			
 			TFBot
@@ -1138,10 +1138,10 @@ AddRobotTag(`stomper`, {
 			
 			Tank
 			{
-				Health	8500
+				Health	12500
 				Name	Tank
 				Speed	75
-				StartingPathTrackNode	tank_path_b_420
+				StartingPathTrackNode	tank_path_b_460
 				OnKilledOutput
 				{
 					Target	boss_dead_relay
@@ -1177,7 +1177,7 @@ AddRobotTag(`stomper`, {
 			Name	4A-1
 			TotalCurrency	16
 			TotalCount	16
-			MaxActive	12
+			MaxActive	15
 			SpawnCount	8
 			Where	spawnbot
 			WaitBeforeStarting	0
@@ -1195,11 +1195,11 @@ AddRobotTag(`stomper`, {
 			Name	4A-2
 			TotalCurrency	300
 			TotalCount	6
-			MaxActive	1
+			MaxActive	2
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	5
-			WaitBetweenSpawns	20
+			WaitBetweenSpawns	25
 			
 			TFBot
 			{
@@ -1214,11 +1214,11 @@ AddRobotTag(`stomper`, {
 			WaitForAllSpawned	4A-1
 			TotalCurrency	100
 			TotalCount	100
-			MaxActive	10
+			MaxActive	15
 			SpawnCount	1
 			Where	flankers
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	1
+			WaitBetweenSpawns	0.5
 			
 			TFBot
 			{
@@ -1230,14 +1230,14 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	4A-3
-			WaitForAllDead	4A-1
+			WaitForAllSpawned	4A-1
 			TotalCurrency	40
 			TotalCount	40
-			MaxActive	8
+			MaxActive	12
 			SpawnCount	2
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	3
+			WaitBetweenSpawns	2
 			
 			TFBot
 			{
@@ -1249,13 +1249,13 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	4C-1
-			WaitForAllDead	4A-3
+			WaitForAllSpawned	4A-3
 			TotalCurrency	12
 			TotalCount	12
 			MaxActive	12
 			SpawnCount	3
 			Where	spawnbot
-			WaitBeforeStarting	10
+			WaitBeforeStarting	0
 			WaitBetweenSpawns	5
 			
 			TFBot
@@ -1275,7 +1275,7 @@ AddRobotTag(`stomper`, {
 			SpawnCount	1
 			Where	flankers
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	20
+			WaitBetweenSpawns	15
 			
 			TFBot
 			{
@@ -1290,11 +1290,11 @@ AddRobotTag(`stomper`, {
 			WaitForAllSpawned	4C-1
 			TotalCurrency	32
 			TotalCount	32
-			MaxActive	16
+			MaxActive	24
 			SpawnCount	2
 			Where	spawnbot
-			WaitBeforeStarting	3
-			WaitBetweenSpawns	3
+			WaitBeforeStarting	2
+			WaitBetweenSpawns	2
 			
 			TFBot
 			{
@@ -1312,7 +1312,7 @@ AddRobotTag(`stomper`, {
 			MaxActive	2
 			SpawnCount	2
 			Where	flankers
-			WaitBeforeStarting	20
+			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
 			Squad
 			{
@@ -1411,11 +1411,11 @@ AddRobotTag(`stomper`, {
 			Name	5A-3
 			TotalCurrency	40
 			TotalCount	40
-			MaxActive	4
+			MaxActive	6
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	6
+			WaitBetweenSpawns	4
 			
 			TFBot
 			{
@@ -1428,11 +1428,11 @@ AddRobotTag(`stomper`, {
 			Name	5A-4
 			TotalCurrency	40
 			TotalCount	40
-			MaxActive	4
+			MaxActive	6
 			SpawnCount	1
 			Where	flankers
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	6
+			WaitBetweenSpawns	4
 			
 			TFBot
 			{
@@ -1445,11 +1445,11 @@ AddRobotTag(`stomper`, {
 			Name	5A-5
 			TotalCurrency	40
 			TotalCount	40
-			MaxActive	4
+			MaxActive	6
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	6
+			WaitBetweenSpawns	4
 			
 			TFBot
 			{
@@ -1462,11 +1462,11 @@ AddRobotTag(`stomper`, {
 			Name	5A-6
 			TotalCurrency	40
 			TotalCount	40
-			MaxActive	4
+			MaxActive	6
 			SpawnCount	1
 			Where	flankers
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	6
+			WaitBetweenSpawns	4
 			
 			TFBot
 			{
@@ -1479,11 +1479,11 @@ AddRobotTag(`stomper`, {
 			Name	5A-7
 			TotalCurrency	40
 			TotalCount	40
-			MaxActive	4
+			MaxActive	6
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	6
+			WaitBetweenSpawns	4
 			TFBot
 			{
 				Template	T_TFBot_Sniper_Huntsman_Bleed
@@ -1499,8 +1499,8 @@ AddRobotTag(`stomper`, {
 			MaxActive	3
 			SpawnCount	1
 			Where	spawnbot
-			WaitBeforeStarting	30
-			WaitBetweenSpawns	30
+			WaitBeforeStarting	20
+			WaitBetweenSpawns	20
 			
 			TFBot
 			{
@@ -1514,11 +1514,11 @@ AddRobotTag(`stomper`, {
 			WaitForAllSpawned	5B-1
 			TotalCurrency	300
 			TotalCount	6
-			MaxActive	4
+			MaxActive	6
 			SpawnCount	2
 			Where	spawnbot
-			WaitBeforeStarting	30
-			WaitBetweenSpawns	20
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	25
 			Squad
 			{
 				TFBot
@@ -1591,11 +1591,11 @@ AddRobotTag(`stomper`, {
 			WaitForAllDead	6A-1
 			TotalCurrency	42
 			TotalCount	42
-			MaxActive	10
+			MaxActive	14
 			SpawnCount	3
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	2
+			WaitBetweenSpawns	1.5
 			
 			TFBot
 			{
@@ -1609,11 +1609,11 @@ AddRobotTag(`stomper`, {
 			WaitForAllDead	6A-1
 			TotalCurrency	42
 			TotalCount	42
-			MaxActive	10
+			MaxActive	14
 			SpawnCount	6
 			Where	flankers
 			WaitBeforeStarting	1
-			WaitBetweenSpawns	3
+			WaitBetweenSpawns	2
 			
 			TFBot
 			{
@@ -1631,7 +1631,7 @@ AddRobotTag(`stomper`, {
 			SpawnCount	3
 			Where	flankers
 			WaitBeforeStarting	10
-			WaitBetweenSpawns	60
+			WaitBetweenSpawns	40
 			Squad
 			{
 				TFBot
@@ -1657,11 +1657,11 @@ AddRobotTag(`stomper`, {
 			WaitForAllSpawned	6B-1
 			TotalCurrency	48
 			TotalCount	48
-			MaxActive	12
+			MaxActive	18
 			SpawnCount	4
 			Where	flankers
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	4.5
+			WaitBetweenSpawns	2
 			Squad
 			{
 				TFBot
@@ -1692,11 +1692,11 @@ AddRobotTag(`stomper`, {
 			WaitForAllSpawned	6B-2
 			TotalCurrency	42
 			TotalCount	42
-			MaxActive	8
+			MaxActive	12
 			SpawnCount	2
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	3
+			WaitBetweenSpawns	1.5
 			
 			TFBot
 			{
@@ -1725,14 +1725,14 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	6D-2
-			WaitForAllDead	6C-1
+			WaitForAllSpawned	6D-1
 			TotalCurrency	20
 			TotalCount	20
-			MaxActive	16
+			MaxActive	20
 			SpawnCount	4
 			Where	spawnbot
 			WaitBeforeStarting	10
-			WaitBetweenSpawns	3
+			WaitBetweenSpawns	2
 			
 			TFBot
 			{
@@ -1743,7 +1743,7 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	6F-1
-			WaitForAllDead	6C-1
+			WaitForAllSpawned	6D-1
 			TotalCurrency	200
 			TotalCount	4
 			MaxActive	4
@@ -1761,7 +1761,7 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	6F-2
-			WaitForAllDead	6C-1
+			WaitForAllSpawned	6D-1
 			TotalCurrency	200
 			TotalCount	4
 			MaxActive	4
@@ -1806,9 +1806,9 @@ AddRobotTag(`stomper`, {
 			
 			Tank
 			{
-				Health	300000
+				Health	322322
 				Name	Tank
-				Speed	17
+				Speed	28
 				Skin	1
 				//ClassIcon	tank_boss
 				StartingPathTrackNode	tank_path_a_10
@@ -1830,11 +1830,11 @@ AddRobotTag(`stomper`, {
 			Name	7A-2
 			TotalCurrency	36
 			TotalCount	36
-			MaxActive	14
+			MaxActive	18
 			SpawnCount	2
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	2
+			WaitBetweenSpawns	1.5
 			
 			TFBot
 			{
@@ -1853,11 +1853,11 @@ AddRobotTag(`stomper`, {
 			Name	7A-3
 			TotalCurrency	14
 			TotalCount	14
-			MaxActive	6
+			MaxActive	10
 			SpawnCount	1
 			Where	flankers
 			WaitBeforeStarting	1
-			WaitBetweenSpawns	4
+			WaitBetweenSpawns	3
 			
 			TFBot
 			{
@@ -1870,7 +1870,7 @@ AddRobotTag(`stomper`, {
 			Name	7A-4
 			TotalCurrency	200
 			TotalCount	4
-			MaxActive	2
+			MaxActive	4
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	15
@@ -1889,11 +1889,11 @@ AddRobotTag(`stomper`, {
 			WaitForAllSpawned	7A-2
 			TotalCurrency	18
 			TotalCount	18
-			MaxActive	7
+			MaxActive	10
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	5
-			WaitBetweenSpawns	2
+			WaitBetweenSpawns	1.5
 			
 			TFBot
 			{
@@ -1908,11 +1908,11 @@ AddRobotTag(`stomper`, {
 			WaitForAllSpawned	7A-2
 			TotalCurrency	18
 			TotalCount	18
-			MaxActive	7
+			MaxActive	10
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	5
-			WaitBetweenSpawns	2
+			WaitBetweenSpawns	1.5
 			
 			TFBot
 			{
@@ -1926,11 +1926,11 @@ AddRobotTag(`stomper`, {
 			WaitForAllSpawned	7A-2
 			TotalCurrency	14
 			TotalCount	14
-			MaxActive	6
+			MaxActive	8
 			SpawnCount	1
 			Where	flankers
 			WaitBeforeStarting	5
-			WaitBetweenSpawns	4
+			WaitBetweenSpawns	3
 			
 			TFBot
 			{
@@ -1944,7 +1944,7 @@ AddRobotTag(`stomper`, {
 			WaitForAllSpawned	7A-2
 			TotalCurrency	200
 			TotalCount	4
-			MaxActive	2
+			MaxActive	4
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	15
@@ -2034,14 +2034,14 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	7D-1
-			WaitForAllDead	7C-3
+			WaitForAllSpawned	7C-3
 			TotalCurrency	400
 			TotalCount	8
 			MaxActive	8
 			SpawnCount	4
 			Where	spawnbot
-			WaitBeforeStarting	30
-			WaitBetweenSpawns	90
+			WaitBeforeStarting	20
+			WaitBetweenSpawns	60
 			Squad
 			{
 				TFBot
@@ -2073,14 +2073,14 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	7D-2
-			WaitForAllDead	7C-3
+			WaitForAllSpawned	7C-3
 			TotalCurrency	400
 			TotalCount	8
 			MaxActive	8
 			SpawnCount	4
 			Where	spawnbot
-			WaitBeforeStarting	60
-			WaitBetweenSpawns	90
+			WaitBeforeStarting	40
+			WaitBetweenSpawns	60
 			Squad
 			{
 				TFBot
@@ -2112,14 +2112,14 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	7D-3
-			WaitForAllDead	7C-3
+			WaitForAllSpawned	7C-3
 			TotalCurrency	400
 			TotalCount	8
 			MaxActive	8
 			SpawnCount	4
 			Where	spawnbot
-			WaitBeforeStarting	90
-			WaitBetweenSpawns	90
+			WaitBeforeStarting	60
+			WaitBetweenSpawns	60
 			Squad
 			{
 				TFBot
@@ -2151,14 +2151,14 @@ AddRobotTag(`stomper`, {
 		WaveSpawn
 		{
 			Name	7D-4
-			WaitForAllDead	7C-3
+			WaitForAllSpawned	7C-3
 			TotalCurrency	50
 			TotalCount	50
-			MaxActive	8
+			MaxActive	15
 			SpawnCount	2
 			Where	spawnbot
 			WaitBeforeStarting	30
-			WaitBetweenSpawns	6
+			WaitBetweenSpawns	4
 			
 			TFBot
 			{
