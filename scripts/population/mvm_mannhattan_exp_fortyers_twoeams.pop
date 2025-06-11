@@ -270,13 +270,13 @@ WaveSchedule
 			Name	1A-1
 			TotalCurrency	48
 			TotalCount	48
-			MaxActive	18
+			MaxActive	16
 			SpawnCount	3
 			Where	spawnbot_main0
 			Where	spawnbot_main1
 			Where	spawnbot_main2
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	2
+			WaitBetweenSpawns	2.5
 			Squad
 			{
 				TFBot
@@ -305,7 +305,7 @@ WaveSchedule
 			Where	spawnbot_upper1
 			Where	spawnbot_upper2
 			WaitBeforeStarting	2
-			WaitBetweenSpawns	1.5
+			WaitBetweenSpawns	2
 			Squad
 			{
 				TFBot
@@ -321,13 +321,13 @@ WaveSchedule
 			WaitForAllSpawned	1A-1
 			TotalCurrency	60
 			TotalCount	60
-			MaxActive	28
+			MaxActive	24
 			SpawnCount	2
 			Where	spawnbot_main0
 			Where	spawnbot_main1
 			Where	spawnbot_main2
 			WaitBeforeStarting	2
-			WaitBetweenSpawns	0.67
+			WaitBetweenSpawns	1
 			Squad
 			{
 				TFBot
@@ -375,7 +375,7 @@ WaveSchedule
 			Where	spawnbot_main1
 			Where	spawnbot_main2
 			WaitBeforeStarting	2
-			WaitBetweenSpawns	0.5
+			WaitBetweenSpawns	0.67
 			Squad
 			{
 				TFBot
@@ -395,13 +395,13 @@ WaveSchedule
 			WaitForAllSpawned	1B-1
 			TotalCurrency	150
 			TotalCount	3
-			MaxActive	3
+			MaxActive	2
 			SpawnCount	1
 			Where	spawnbot_upper0
 			Where	spawnbot_upper1
 			Where	spawnbot_upper2
 			WaitBeforeStarting	5
-			WaitBetweenSpawns	12
+			WaitBetweenSpawns	15
 			Squad
 			{
 				TFBot
@@ -445,7 +445,7 @@ WaveSchedule
 			Where	spawnbot_main1
 			Where	spawnbot_main2
 			WaitBeforeStarting	5
-			WaitBetweenSpawns	2
+			WaitBetweenSpawns	2.5
 			Support	1
 			
 			Squad
@@ -565,7 +565,7 @@ WaveSchedule
 			WaitForAllSpawned	6A-2
 			TotalCurrency	6
 			TotalCount	6
-			MaxActive	6
+			MaxActive	4
 			SpawnCount	1
 			Where	spawnbot_main0
 			Where	spawnbot_main1
@@ -610,13 +610,13 @@ WaveSchedule
 			WaitForAllSpawned	6B-1
 			TotalCurrency	300
 			TotalCount	6
-			MaxActive	6
+			MaxActive	4
 			SpawnCount	1
 			Where	spawnbot_main0
 			Where	spawnbot_main1
 			Where	spawnbot_main2
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	8
+			WaitBetweenSpawns	10
 			Squad
 			{
 				TFBot
@@ -1014,7 +1014,7 @@ WaveSchedule
 		WaveSpawn
 		{
 			//Name	2E-2
-			WaitBeforeStarting	2C-5
+			WaitForAllSpawned	2C-5
 			TotalCurrency	0
 			TotalCount	1
 			MaxActive	10
@@ -1037,7 +1037,7 @@ WaveSchedule
 		WaveSpawn
 		{
 			//Name	2E-3
-			WaitBeforeStarting	2C-5
+			WaitForAllSpawned	2C-5
 			TotalCurrency	0
 			TotalCount	1
 			MaxActive	18
