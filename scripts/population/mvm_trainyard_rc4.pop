@@ -222,12 +222,9 @@ population
 				Action Trigger
 			}
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Pyro_Normal
-				}
+				Template	T_TFGateBot_Pyro_Normal
 			}
 		}
 		
@@ -243,12 +240,9 @@ population
 			WaitBetweenSpawns	3
 			RandomSpawn	1
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Pyro_Flaregun
-				}
+				Template	T_TFBot_Pyro_Flaregun
 			}
 		}
 		
@@ -265,12 +259,9 @@ population
 			WaitBetweenSpawns	7
 			RandomSpawn	1
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Scout_SunStick
-				}
+				Template	T_TFGateBot_Scout_SunStick
 			}
 		}
 		
@@ -287,12 +278,9 @@ population
 			WaitBetweenSpawns	0
 			RandomSpawn	1
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Pyro
-				}
+				Template	T_TFBot_Giant_Pyro
 			}
 		}
 		
@@ -387,24 +375,22 @@ population
 			Where	spawnbot
 			WaitBeforeStarting	10
 			WaitBetweenSpawns	0
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	30000
+				Name	Tank
+				Speed	75
+				StartingPathTrackNode	tank_path_LU_1
+				OnKilledOutput
 				{
-					Health	30000
-					Name	Tank
-					Speed	75
-					StartingPathTrackNode	tank_path_LU_1
-					OnKilledOutput
-					{
-						Target	boss_dead_relay
-						Action	Trigger
-					}
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_dead_relay
+					Action	Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}
@@ -428,12 +414,9 @@ population
 				Action Trigger
 			}
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Soldier_Extended_Concheror_Normal_Crit
-				}
+				Template	T_TFGateBot_Soldier_Extended_Concheror_Normal_Crit
 			}
 		}
 		
@@ -450,12 +433,9 @@ population
 			WaitBetweenSpawns	8
 			RandomSpawn	1
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Sniper_Huntsman
-				}
+				Template	T_TFBot_Sniper_Huntsman
 			}
 		}
 	}
@@ -525,15 +505,12 @@ population
 			RandomSpawn	1
 			Support	Limited
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Engineer_Sentry_Battle
-					Attributes	IgnoreFlag
-					
-					Health	200
-				}
+				Template	T_TFBot_Engineer_Sentry_Battle
+				Attributes	IgnoreFlag
+				
+				Health	200
 			}
 		}
 		
@@ -554,12 +531,9 @@ population
 				Action Trigger
 			}
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Giant_Soldier_RocketPush
-				}
+				Template	T_TFGateBot_Giant_Soldier_RocketPush
 			}
 		}
 		
@@ -576,15 +550,12 @@ population
 			RandomSpawn	1
 			Support	Limited
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Engineer_Sentry_Battle
-					Attributes	IgnoreFlag
-					
-					Health	200
-				}
+				Template	T_TFBot_Engineer_Sentry_Battle
+				Attributes	IgnoreFlag
+				
+				Health	200
 			}
 		}
 		
@@ -600,13 +571,10 @@ population
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	8
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Demoman_Knight
-					Attributes	AlwaysCrit
-				}
+				Template	T_TFBot_Demoman_Knight
+				Attributes	AlwaysCrit
 			}
 		}
 		
@@ -653,13 +621,10 @@ population
 			Where	spawnbot_middle
 			WaitBeforeStarting	10
 			WaitBetweenSpawns	30
-						
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Heavyweapons
-				}
+				Template	T_TFBot_Giant_Heavyweapons
 			}
 		}
 	}
@@ -871,24 +836,22 @@ population
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	20000
+				Name	Tank
+				Speed	75
+				StartingPathTrackNode	tank_path_RU_1
+				OnKilledOutput
 				{
-					Health	20000
-					Name	Tank
-					Speed	75
-					StartingPathTrackNode	tank_path_RU_1
-					OnKilledOutput
-					{
-						Target	boss_dead_relay
-						Action	Trigger
-					}
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_dead_relay
+					Action	Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}
@@ -903,25 +866,23 @@ population
 			Where	spawnbot
 			WaitBeforeStarting	30
 			WaitBetweenSpawns	0
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	30000
+				Name	Tank
+				Speed	75
+				Skin	1
+				StartingPathTrackNode	tank_path_LL_1
+				OnKilledOutput
 				{
-					Health	30000
-					Name	Tank
-					Speed	75
-					Skin	1
-					StartingPathTrackNode	tank_path_LL_1
-					OnKilledOutput
-					{
-						Target	boss_dead_relay
-						Action	Trigger
-					}
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_dead_relay
+					Action	Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}

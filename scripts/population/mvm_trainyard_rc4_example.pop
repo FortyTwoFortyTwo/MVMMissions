@@ -439,19 +439,17 @@ population
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	200
+				Name	Tank
+				Speed	75
+				StartingPathTrackNode	tank_path_LU_1	//spawns in left side and takes upper path
+				OnBombDroppedOutput
 				{
-					Health	200
-					Name	Tank
-					Speed	75
-					StartingPathTrackNode	tank_path_LU_1	//spawns in left side and takes upper path
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}
@@ -465,19 +463,17 @@ population
 			Where	spawnbot
 			WaitBeforeStarting	25
 			WaitBetweenSpawns	0
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	200
+				Name	Tank
+				Speed	75
+				StartingPathTrackNode	tank_path_RU_1	//spawns in right side and takes upper path
+				OnBombDroppedOutput
 				{
-					Health	200
-					Name	Tank
-					Speed	75
-					StartingPathTrackNode	tank_path_RU_1	//spawns in right side and takes upper path
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}
@@ -491,19 +487,17 @@ population
 			Where	spawnbot
 			WaitBeforeStarting	35
 			WaitBetweenSpawns	0
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	200
+				Name	Tank
+				Speed	75
+				StartingPathTrackNode	tank_path_LL_1	//spawns in left side and takes lower path
+				OnBombDroppedOutput
 				{
-					Health	200
-					Name	Tank
-					Speed	75
-					StartingPathTrackNode	tank_path_LL_1	//spawns in left side and takes lower path
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}
@@ -517,19 +511,17 @@ population
 			Where	spawnbot
 			WaitBeforeStarting	60
 			WaitBetweenSpawns	0
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	200
+				Name	Tank
+				Speed	75
+				StartingPathTrackNode	tank_path_RL_1	//spawns in right side and takes lower path
+				OnBombDroppedOutput
 				{
-					Health	200
-					Name	Tank
-					Speed	75
-					StartingPathTrackNode	tank_path_RL_1	//spawns in right side and takes lower path
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}

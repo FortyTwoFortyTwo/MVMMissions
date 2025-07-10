@@ -162,7 +162,7 @@ population
 		
 		WaveSpawn
 		{
-			TotalCurrency 100
+			TotalCurrency 50
 			TotalCount 20
 			MaxActive 1
 			SpawnCount 1
@@ -180,7 +180,7 @@ population
 		WaveSpawn
 		{
 			Name	"w1_scout_pyro_start"
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	20
 			MaxActive	10
 			SpawnCount	5
@@ -189,13 +189,10 @@ population
 			WaitBetweenSpawns	7
 			RandomSpawn	1
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Class	Pyro
-					Skill	Easy
-				}
+				Class	Pyro
+				Skill	Easy
 			}
 		}
 		
@@ -216,12 +213,9 @@ population
 				Action Trigger
 			}
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Scout_SunStick
-				}
+				Template	T_TFGateBot_Scout_SunStick
 			}
 		}
 		
@@ -236,13 +230,10 @@ population
 			WaitBeforeStarting	12
 			WaitBetweenSpawns	0
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Demoman
-					Tag	bot_giant
-				}
+				Template	T_TFBot_Giant_Demoman
+				Tag	bot_giant
 			}
 		}
 		
@@ -250,21 +241,18 @@ population
 		{
 			Name	"w1_huntsmanspammer"
 			WaitForAllSpawned	"w1_scout_pyro_start"
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	6
-			MaxActive	3
+			MaxActive	4
 			SpawnCount	2
 			Where	spawnbot_middle
 			WaitBeforeStarting	10
 			WaitBetweenSpawns	15
 			RandomSpawn	1
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Sniper_Huntsman_Spammer
-				}
+				Template	T_TFGateBot_Sniper_Huntsman_Spammer
 			}
 		}
 		
@@ -286,13 +274,10 @@ population
 				Action Trigger
 			}
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Demoman
-					Tag	bot_giant
-				}
+				Template	T_TFBot_Giant_Demoman
+				Tag	bot_giant
 			}
 		}
 		
@@ -308,12 +293,9 @@ population
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	6
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Heavyweapons_Shotgun
-				}
+				Template	T_TFBot_Heavyweapons_Shotgun
 			}
 		}
 		
@@ -328,14 +310,10 @@ population
 			Where	spawnbot_right
 			WaitBeforeStarting	3
 			WaitBetweenSpawns	0
-			RandomSpawn	1
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Soldier_Easy
-				}
+				Template	T_TFGateBot_Soldier_Easy
 			}
 		}
 		
@@ -351,13 +329,10 @@ population
 			WaitBeforeStarting	15
 			WaitBetweenSpawns	10
 			RandomSpawn	1
-			
-			Squad
+
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Scout_SunStick
-				}
+				Template	T_TFBot_Scout_SunStick
 			}
 		}
 		
@@ -372,7 +347,6 @@ population
 			Where	spawnbot_middle
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	20
-			RandomSpawn	1
 			
 			Squad
 			{
@@ -487,20 +461,17 @@ population
 		{
 			Name	"w2_huntsman"
 			TotalCurrency	100
-			TotalCount	32
+			TotalCount	36
 			MaxActive	12
 			SpawnCount	4
 			Where	spawnbot_middle
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	5
+			WaitBetweenSpawns	4
 			RandomSpawn	1
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Sniper_huntsman
-				}
+				Template	T_TFBot_Sniper_huntsman
 			}
 		}
 		
@@ -512,7 +483,7 @@ population
 			MaxActive	3
 			SpawnCount	1
 			Where	spawnbot_middle
-			WaitBeforeStarting	5
+			WaitBeforeStarting	0
 			WaitBetweenSpawns	15
 			
 			StartWaveOutput
@@ -521,12 +492,9 @@ population
 				Action Trigger
 			}
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Giant_Soldier_Extended_Buff_Banner
-				}
+				Template	T_TFGateBot_Giant_Soldier_Extended_Buff_Banner
 			}
 		}
 		
@@ -539,17 +507,13 @@ population
 			MaxActive	3
 			SpawnCount	3
 			Where	spawnbot_right
-			WaitBeforeStarting	15
+			WaitBeforeStarting	5
 			WaitBetweenSpawns	0
-			RandomSpawn	1
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Demoman_Samurai
-					Tag	bot_giant
-				}
+				Template	T_TFBot_Demoman_Samurai
+				Tag	bot_giant
 			}
 		}
 		
@@ -557,21 +521,18 @@ population
 		{
 			Name	"w2_fan"
 			WaitForAllDead	"w2_samurai_start"
-			TotalCurrency	200
-			TotalCount	32
+			TotalCurrency	100
+			TotalCount	36
 			MaxActive	12
 			SpawnCount	4
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	6
+			WaitBetweenSpawns	5
 			RandomSpawn	1
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Scout_FAN
-				}
+				Template	T_TFBot_Scout_FAN
 			}
 		}
 		
@@ -593,12 +554,9 @@ population
 				Action Trigger
 			}
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Giant_Soldier_Extended_Concheror
-				}
+				Template	T_TFGateBot_Giant_Soldier_Extended_Concheror
 			}
 		}
 		
@@ -606,21 +564,18 @@ population
 		{
 			Name	"w2_champ"
 			WaitForAllSpawned	"w2_giantconch"
-			TotalCurrency	150
-			TotalCount	32
+			TotalCurrency	100
+			TotalCount	36
 			MaxActive	12
 			SpawnCount	4
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	5
+			WaitBetweenSpawns	4
 			RandomSpawn	1
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Heavyweapons_Heavyweight_Champ
-				}
+				Template	T_TFBot_Heavyweapons_Heavyweight_Champ
 			}
 		}
 		
@@ -642,12 +597,9 @@ population
 				Action Trigger
 			}
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Giant_Soldier_Extended_Battalion
-				}
+				Template	T_TFGateBot_Giant_Soldier_Extended_Battalion
 			}
 		}
 		
@@ -660,17 +612,13 @@ population
 			MaxActive	6
 			SpawnCount	2
 			Where	spawnbot_right
-			WaitBeforeStarting	30
+			WaitBeforeStarting	15
 			WaitBetweenSpawns	15
-			RandomSpawn	1
-			
-			Squad
+
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Demoman_Samurai
-					Tag	bot_giant
-				}
+				Template	T_TFBot_Demoman_Samurai
+				Tag	bot_giant
 			}
 		}
 		
@@ -683,17 +631,14 @@ population
 			MaxActive	12
 			SpawnCount	3
 			Where	spawnbot
-			WaitBeforeStarting	20
+			WaitBeforeStarting	0
 			WaitBetweenSpawns	9
 			RandomSpawn	1
-			
-			Squad
+
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Scout_Shortstop
-					Tag	bot_giant
-				}
+				Template	T_TFBot_Scout_Shortstop
+				Tag	bot_giant
 			}
 		}
 	}
@@ -779,13 +724,10 @@ population
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	5
 			RandomSpawn	1
-			
-			Squad
+
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Soldier_RocketShotgun
-				}
+				Template	T_TFBot_Soldier_RocketShotgun
 			}
 		}
 		
@@ -806,12 +748,9 @@ population
 				Action Trigger
 			}
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Giant_Scout_FAN
-				}
+				Template	T_TFGateBot_Giant_Scout_FAN
 			}
 		}
 		
@@ -826,13 +765,10 @@ population
 			Where	spawnbot_right
 			WaitBeforeStarting	12
 			WaitBetweenSpawns	12
-						
-			Squad
+			
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Giant_Scout_FAN
-				}
+				Template	T_TFGateBot_Giant_Scout_FAN
 			}
 		}
 		
@@ -846,15 +782,11 @@ population
 			Where	spawnbot_right
 			WaitBeforeStarting	35
 			WaitBetweenSpawns	10
-			RandomSpawn	1
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Class	Heavy
-					Skill	Easy
-				}
+				Class	Heavy
+				Skill	Easy
 			}
 		}
 		
@@ -869,24 +801,22 @@ population
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	25000
+				Name	Tank
+				Speed	75
+				StartingPathTrackNode	tank_path_RU_1
+				OnKilledOutput
 				{
-					Health	25000
-					Name	Tank
-					Speed	75
-					StartingPathTrackNode	tank_path_RU_1
-					OnKilledOutput
-					{
-						Target	boss_dead_relay
-						Action	Trigger
-					}
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_dead_relay
+					Action	Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}
@@ -895,39 +825,37 @@ population
 		{
 			Name	"w3_smg_baseball"
 			WaitForAllSpawned	"w3_rocketpush"
-			TotalCurrency	100
-			TotalCount	24
-			MaxActive	12
+			TotalCurrency	200
+			TotalCount	42
+			MaxActive	20
 			SpawnCount	6
-			Where	spawnbot_left
-			WaitBeforeStarting	15
-			WaitBetweenSpawns	7
+			Where	spawnbot
+			WaitBeforeStarting	10
+			WaitBetweenSpawns	5
 			RandomSpawn	1
 			
-			Squad
+			RandomChoice
 			{
 				TFBot
 				{
 					Template	T_TFBot_Sniper_SMG
 				}
-			}
-		}
-		
-		WaveSpawn
-		{
-			Name	"w3_smg_baseball"
-			WaitForAllSpawned	"w3_rocketpush"
-			TotalCurrency	100
-			TotalCount	18
-			MaxActive	9
-			SpawnCount	3
-			Where	spawnbot
-			WaitBeforeStarting	15
-			WaitBetweenSpawns	5
-			RandomSpawn	1
-			
-			Squad
-			{
+
+				TFBot
+				{
+					Template	T_TFBot_Sniper_SMG
+				}
+
+				TFBot
+				{
+					Template	T_TFBot_Sniper_SMG
+				}
+
+				TFBot
+				{
+					Template	T_TFGateBot_Scout_Sandman_FastCharge
+				}
+				
 				TFBot
 				{
 					Template	T_TFGateBot_Scout_Sandman_FastCharge
@@ -946,6 +874,7 @@ population
 			Where	spawnbot_right
 			WaitBeforeStarting	10
 			WaitBetweenSpawns	1
+			RandomSpawn	1
 			
 			StartWaveOutput
 			{
@@ -953,12 +882,9 @@ population
 				Action Trigger
 			}
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Heavy_Easy
-				}
+				Template	T_TFGateBot_Heavy_Easy
 			}
 		}
 		
@@ -974,12 +900,9 @@ population
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	1
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Heavy_Easy
-				}
+				Template	T_TFGateBot_Heavy_Easy
 			}
 		}
 		
@@ -995,15 +918,11 @@ population
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	3
 			Support	1
-			RandomSpawn	1
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Class	Demoman
-					Skill	Easy
-				}
+				Class	Demoman
+				Skill	Easy
 			}
 		}
 		
@@ -1018,13 +937,10 @@ population
 			WaitBeforeStarting	10
 			WaitBetweenSpawns	40
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Pyro_Flare_Spammer
-					Tag	bot_giant
-				}
+				Template	T_TFBot_Giant_Pyro_Flare_Spammer
+				Tag	bot_giant
 			}
 		}
 	}
@@ -1141,10 +1057,10 @@ population
 					Template	T_TFBot_Giant_Medic_Regen
 					Tag	bot_giant
 					
-					//CharacterAttributes
-					//{
-						//"move speed bonus"	2
-					//}
+					CharacterAttributes
+					{
+						"move speed bonus"	0.9
+					}
 				}
 			}
 		}
@@ -1165,13 +1081,10 @@ population
 				Target train_spawnrelay_D
 				Action Trigger
 			}
-			
-			Squad
+
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Soldier_Extended_Concheror_Normal
-				}
+				Template	T_TFGateBot_Soldier_Extended_Concheror_Normal
 			}
 		}
 		
@@ -1187,13 +1100,10 @@ population
 			WaitBetweenSpawns	20
 			Support	Limited
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Engineer_Sentry_Battle
-					Attributes	IgnoreFlag
-				}
+				Template	T_TFBot_Engineer_Sentry_Battle
+				Attributes	IgnoreFlag
 			}
 		}
 		
@@ -1209,13 +1119,10 @@ population
 			WaitBetweenSpawns	20
 			Support	Limited
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Engineer_Sentry_Battle
-					Attributes	IgnoreFlag
-				}
+				Template	T_TFBot_Engineer_Sentry_Battle
+				Attributes	IgnoreFlag
 			}
 		}
 		
@@ -1223,7 +1130,7 @@ population
 		{
 			Name	"w4_champ_backup"
 			WaitForAllDead	"w4_conch"
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	16
 			MaxActive	16
 			SpawnCount	3
@@ -1269,7 +1176,7 @@ population
 		{
 			Name	"w4_giantshotgun_medic"
 			WaitForAllDead	"w4_conch"
-			TotalCurrency	150
+			TotalCurrency	100
 			TotalCount	8
 			MaxActive	8
 			SpawnCount	4
@@ -1311,7 +1218,7 @@ population
 		{
 			Name	"w4_conch_backup"
 			WaitForAllSpawned	"w4_champ_backup"
-			TotalCurrency	20
+			TotalCurrency	25
 			TotalCount	16
 			MaxActive	16
 			SpawnCount	2
@@ -1351,12 +1258,9 @@ population
 				Action Trigger
 			}
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Giant_Heavyweapons_shotgun
-				}
+				Template	T_TFGateBot_Giant_Heavyweapons_shotgun
 			}
 		}
 		
@@ -1371,15 +1275,12 @@ population
 			Where	spawnbot
 			WaitBeforeStarting	10
 			WaitBetweenSpawns	6
-			Support	1
 			RandomSpawn	1
-			
-			Squad
+			Support	1
+
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Scout_Melee
-				}
+				Template	T_TFBot_Scout_Melee
 			}
 		}
 		
@@ -1407,18 +1308,39 @@ population
 				{
 					Template	T_TFBot_Giant_Medic_Regen
 					Tag	bot_giant
+
+					ItemAttributes
+					{
+						ItemName "The Quick-Fix"
+						"ubercharge rate bonus" 0.01 // pretty much disables ubercharge
+						"mod weapon blocks healing"	1.0
+					}
 				}
 				
 				TFBot
 				{
 					Template	T_TFBot_Giant_Medic_Regen
 					Tag	bot_giant
+
+					ItemAttributes
+					{
+						ItemName "The Quick-Fix"
+						"ubercharge rate bonus" 0.01 // pretty much disables ubercharge
+						"mod weapon blocks healing"	1.0
+					}
 				}
 				
 				TFBot
 				{
 					Template	T_TFBot_Giant_Medic_Regen
 					Tag	bot_giant
+
+					ItemAttributes
+					{
+						ItemName "The Quick-Fix"
+						"ubercharge rate bonus" 0.01 // pretty much disables ubercharge
+						"mod weapon blocks healing"	1.0
+					}
 				}
 			}
 		}
@@ -1548,12 +1470,9 @@ population
 				Action Trigger
 			}
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Giant_Soldier_Spammer_Crit
-				}
+				Template	T_TFGateBot_Giant_Soldier_Spammer_Crit
 			}
 		}
 			
@@ -1561,7 +1480,7 @@ population
 		{
 			Name	"w5_directhitshield"
 			TotalCurrency	100
-			TotalCount	16
+			TotalCount	24
 			MaxActive	16
 			SpawnCount	4
 			Where	spawnbot_right
@@ -1619,12 +1538,9 @@ population
 				Action Trigger
 			}
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Giant_Soldier_Spammer_Crit
-				}
+				Template	T_TFGateBot_Giant_Soldier_Spammer_Crit
 			}
 		}
 		
@@ -1640,13 +1556,10 @@ population
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	7
 			RandomSpawn	1
-			
-			Squad
+
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Scout_Jumping_Sandman
-				}
+				Template	T_TFBot_Scout_Jumping_Sandman
 			}
 		}
 		
@@ -1662,13 +1575,10 @@ population
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	8
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Demoman_Samurai
-					Tag	bot_giant
-				}
+				Template	T_TFBot_Demoman_Samurai
+				Tag	bot_giant
 			}
 		}
 		
@@ -1689,13 +1599,10 @@ population
 				Target train_spawnrelay_C
 				Action Trigger
 			}
-			
-			Squad
+
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Giant_Soldier_Spammer_Crit
-				}
+				Template	T_TFGateBot_Giant_Soldier_Spammer_Crit
 			}
 		}
 				
@@ -1745,12 +1652,9 @@ population
 				Action Trigger
 			}
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Giant_Soldier_Spammer_Crit
-				}
+				Template	T_TFGateBot_Giant_Soldier_Spammer_Crit
 			}
 		}
 		
@@ -1766,15 +1670,12 @@ population
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	4
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Class	Pyro
-					Skill	Hard
-					Attributes	AlwaysCrit
-					Attributes	AlwaysFireWeapon
-				}
+				Class	Pyro
+				Skill	Hard
+				Attributes	AlwaysCrit
+				Attributes	AlwaysFireWeapon
 			}
 		}
 		
@@ -1790,15 +1691,12 @@ population
 			WaitBeforeStarting	7
 			WaitBetweenSpawns	8
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Class	Pyro
-					Skill	Hard
-					Attributes	AlwaysCrit
-					Attributes	AlwaysFireWeapon
-				}
+				Class	Pyro
+				Skill	Hard
+				Attributes	AlwaysCrit
+				Attributes	AlwaysFireWeapon
 			}
 		}
 		
@@ -1852,15 +1750,12 @@ population
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	6
 			RandomSpawn	1
-			Support	1
+			Support 1
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Demoman_Knight
-					Attributes	AlwaysCrit
-				}
+				Template	T_TFBot_Demoman_Knight
+				Attributes	AlwaysCrit
 			}
 		}
 	}
@@ -1965,13 +1860,10 @@ population
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	4
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Giant_Scout_Fast
-					Tag	bot_giant
-				}
+				Template	T_TFBot_Giant_Scout_Fast
+				Tag	bot_giant
 			}
 		}
 		
@@ -1979,20 +1871,17 @@ population
 		{
 			Name	"w6_rocketpush"
 			TotalCurrency	100
-			TotalCount	18
-			MaxActive	12
-			SpawnCount	6
+			TotalCount	24
+			MaxActive	16
+			SpawnCount	4
 			Where	spawnbot_right
-			WaitBeforeStarting	6
-			WaitBetweenSpawns	4
+			WaitBeforeStarting	1
+			WaitBetweenSpawns	2
 			RandomSpawn	1
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Soldier_RocketPush
-				}
+				Template	T_TFBot_Soldier_RocketPush
 			}
 		}
 		
@@ -2006,7 +1895,7 @@ population
 			SpawnCount	2
 			Where	spawnbot_left
 			WaitBeforeStarting	6
-			WaitBetweenSpawns	12
+			WaitBetweenSpawns	20
 			
 			StartWaveOutput
 			{
@@ -2014,12 +1903,9 @@ population
 				Action Trigger
 			}
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Giant_Scout_FAN
-				}
+				Template	T_TFGateBot_Giant_Scout_FAN
 			}
 		}
 		
@@ -2034,24 +1920,22 @@ population
 			Where	spawnbot
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	0
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	15000
+				Name	Tank
+				Speed	75
+				StartingPathTrackNode	tank_path_RL_1
+				OnKilledOutput
 				{
-					Health	13000
-					Name	Tank
-					Speed	75
-					StartingPathTrackNode	tank_path_RL_1
-					OnKilledOutput
-					{
-						Target	boss_dead_relay
-						Action	Trigger
-					}
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_dead_relay
+					Action	Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}
@@ -2065,26 +1949,24 @@ population
 			MaxActive	1
 			SpawnCount	1
 			Where	spawnbot
-			WaitBeforeStarting	5
+			WaitBeforeStarting	10
 			WaitBetweenSpawns	0
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	15000
+				Name	Tank
+				Speed	75
+				StartingPathTrackNode	tank_path_LU_1
+				OnKilledOutput
 				{
-					Health	13000
-					Name	Tank
-					Speed	75
-					StartingPathTrackNode	tank_path_LU_1
-					OnKilledOutput
-					{
-						Target	boss_dead_relay
-						Action	Trigger
-					}
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_dead_relay
+					Action	Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}
@@ -2098,26 +1980,24 @@ population
 			MaxActive	1
 			SpawnCount	1
 			Where	spawnbot
-			WaitBeforeStarting	22
+			WaitBeforeStarting	50
 			WaitBetweenSpawns	0
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	15000
+				Name	Tank
+				Speed	75
+				StartingPathTrackNode	tank_path_RU_1
+				OnKilledOutput
 				{
-					Health	13000
-					Name	Tank
-					Speed	75
-					StartingPathTrackNode	tank_path_RU_1
-					OnKilledOutput
-					{
-						Target	boss_dead_relay
-						Action	Trigger
-					}
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_dead_relay
+					Action	Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}
@@ -2131,27 +2011,25 @@ population
 			MaxActive	1
 			SpawnCount	1
 			Where	spawnbot
-			WaitBeforeStarting	22
+			WaitBeforeStarting	55
 			WaitBetweenSpawns	0
-			Squad
+			
+			Tank
 			{
-				Tank
+				Health	15000
+				Name	Tank
+				Speed	75
+				Skin 1
+				StartingPathTrackNode	tank_path_LL_1
+				OnKilledOutput
 				{
-					Health	13000
-					Name	Tank
-					Speed	75
-					Skin 1
-					StartingPathTrackNode	tank_path_LL_1
-					OnKilledOutput
-					{
-						Target	boss_dead_relay
-						Action	Trigger
-					}
-					OnBombDroppedOutput
-					{
-						Target	boss_deploy_relay
-						Action	Trigger
-					}
+					Target	boss_dead_relay
+					Action	Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target	boss_deploy_relay
+					Action	Trigger
 				}
 			}
 		}
@@ -2168,25 +2046,22 @@ population
 			WaitBeforeStarting	8
 			WaitBetweenSpawns	3
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Demo_Burst_Normal_Crit
-				}
+				Template	T_TFGateBot_Demo_Burst_Normal_Crit
 			}
 		}
 		
 		WaveSpawn
 		{
 			Name	"w6_steelfist"
-			WaitForAllDead	"w6_tank"
+			WaitForAllSpawned	"w6_burstdemo"
 			TotalCurrency	100
 			TotalCount	20
 			MaxActive	15
 			SpawnCount	5
 			Where	spawnbot_right
-			WaitBeforeStarting	0
+			WaitBeforeStarting	15
 			WaitBetweenSpawns	5
 			
 			StartWaveOutput
@@ -2195,12 +2070,9 @@ population
 				Action Trigger
 			}
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFGateBot_Heavy_IronFist_Crit
-				}
+				Template	T_TFGateBot_Heavy_IronFist_Crit
 			}
 		}
 		
@@ -2216,13 +2088,10 @@ population
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	2
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Template	T_TFBot_Scout_Sandman
-					Attributes	AlwaysCrit
-				}
+				Template	T_TFBot_Scout_Sandman
+				Attributes	AlwaysCrit
 			}
 		}
 		
@@ -2239,13 +2108,10 @@ population
 			WaitBetweenSpawns	0.7
 			Support	1
 			
-			Squad
+			TFBot
 			{
-				TFBot
-				{
-					Class	Soldier
-					Skill	Hard
-				}
+				Class	Soldier
+				Skill	Hard
 			}
 		}
 		
