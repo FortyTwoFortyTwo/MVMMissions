@@ -341,7 +341,7 @@ population
 			Name	"w1_final"
 			WaitForAllDead	"w1_shotgun_solder"
 			TotalCurrency	100
-			TotalCount	9
+			TotalCount	6
 			MaxActive	6
 			SpawnCount	3
 			Where	spawnbot_middle
@@ -507,7 +507,7 @@ population
 			MaxActive	3
 			SpawnCount	3
 			Where	spawnbot_right
-			WaitBeforeStarting	5
+			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
 			
 			TFBot
@@ -575,7 +575,7 @@ population
 			
 			TFBot
 			{
-				Template	T_TFBot_Heavyweapons_Heavyweight_Champ
+				Template	T_TFBot_Demoman_Knight
 			}
 		}
 		
@@ -884,7 +884,7 @@ population
 			
 			TFBot
 			{
-				Template	T_TFGateBot_Heavy_Easy
+				Template	T_TFGateBot_Heavy_Normal
 			}
 		}
 		
@@ -902,7 +902,7 @@ population
 			
 			TFBot
 			{
-				Template	T_TFGateBot_Heavy_Easy
+				Template	T_TFGateBot_Heavy_Normal
 			}
 		}
 		
@@ -1250,7 +1250,7 @@ population
 			SpawnCount	2
 			Where	spawnbot_right
 			WaitBeforeStarting	1
-			WaitBetweenSpawns	10
+			WaitBetweenSpawns	15
 			
 			StartWaveOutput
 			{
@@ -1549,9 +1549,9 @@ population
 			Name	"w5_jumpingscout2_samurai"
 			WaitForAllSpawned	"w5_directhitshield"
 			TotalCurrency	50
-			TotalCount	16
-			MaxActive	8
-			SpawnCount	2
+			TotalCount	24
+			MaxActive	12
+			SpawnCount	3
 			Where	spawnbot_middle
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	7
@@ -1625,6 +1625,7 @@ population
 					Template	T_TFBot_Sniper_Huntsman_Spammer
 					Tag	bot_giant
 					Attributes	AlwaysCrit
+					ClassIcon sniper_bow_multi
 				}
 				
 				TFBot
@@ -1663,33 +1664,14 @@ population
 			Name	"w5_pyro"
 			WaitForAllSpawned	"w5_fanshield_huntsmanspammer"
 			TotalCurrency	100
-			TotalCount	16
-			MaxActive	10
-			SpawnCount	3
+			TotalCount	24
+			MaxActive	15
+			SpawnCount	6
 			Where	spawnbot
+			Where	spawnbot_right
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	4
-			
-			TFBot
-			{
-				Class	Pyro
-				Skill	Hard
-				Attributes	AlwaysCrit
-				Attributes	AlwaysFireWeapon
-			}
-		}
-		
-		WaveSpawn
-		{
-			Name	"w5_pyro"
-			WaitForAllSpawned	"w5_fanshield_huntsmanspammer"
-			TotalCurrency	50
-			TotalCount	8
-			MaxActive	5
-			SpawnCount	3
-			Where	spawnbot_right
-			WaitBeforeStarting	7
-			WaitBetweenSpawns	8
+			RandomSpawn	1
 			
 			TFBot
 			{
