@@ -6,6 +6,89 @@ WaveSchedule
 		//NOT GIANT & NOT GATEBOT
 		//////////////////////////
 		
+		T_TFBot_Scout_Pistol
+		{
+			Class	Scout
+			ClassIcon	scout_pistol
+			Skill	Normal
+			MaxVisionRange	800
+
+			WeaponRestrictions	SecondaryOnly
+		}
+
+		T_TFBot_Scout_Cleaver
+		{
+			Class	Scout
+			Name	"Cleaver Scout"
+			ClassIcon scout_cleaver
+			Skill	Hard
+
+			WeaponRestrictions	SecondaryOnly
+			Item	"tf_weapon_scattergun"
+			Item	"the flying guillotine"
+			Item	"tf_weapon_bat"
+			Item	"horrific headsplitter"
+			
+			CharacterAttributes
+			{
+				"effect bar recharge rate increased"	.01
+				"fire rate penalty"	2
+			}
+		}
+
+		T_TFBot_Soldier_Disciplinary
+		{
+			Class	Soldier
+			Name	"Disciplinary Soldier"
+			ClassIcon	soldier_disciplinary
+			Skill	Normal
+			
+			WeaponRestrictions	MeleeOnly
+			Item	"the disciplinary action"
+		}
+
+		T_TFBot_Pyro_Detonator
+		{
+			Class	Pyro
+			ClassIcon  pyro_flare
+			Name	"Flare Pyro"
+			Skill	Normal
+
+			WeaponRestrictions SecondaryOnly
+			Item	"The Detonator"
+			Item	"Old Guadalajara"
+		}
+
+		T_TFBot_Demoman_Loch
+		{
+			Class	Demoman
+			ClassIcon	demo_loch
+			Name	"Loch Demoman"
+			Skill Hard
+
+			Attributes	HoldFireUntilFullReload
+			Item	"The Loch-n-load"
+			Item	"Scotch Bonnet"
+		}
+
+		T_TFBot_Demoman_Sticky
+		{
+			Class	Demoman
+			Name	"Sticky Demoman"
+			ClassIcon	demo_sticky
+			Skill 	Normal
+			
+			WeaponRestrictions	SecondaryOnly
+			Attributes	HoldFireUntilFullReload
+			
+			ItemAttributes
+			{
+				ItemName	"TF_WEAPON_GRENADELAUNCHER"
+				"is_passive_weapon"	1
+				"override projectile type"	27
+			}
+		}
+
 		T_TFBot_Medic_Shield
 		{
 			Class	Medic
@@ -39,7 +122,6 @@ WaveSchedule
 			Class Medic
 			ClassIcon	medic_bullet
 			Name 	"Vaccinator Medic"
-			Health	150
 			Skill Expert
 			
 			Item	"the vaccinator"
@@ -47,11 +129,19 @@ WaveSchedule
 			Attributes VaccinatorBullets
 			WeaponRestrictions	SecondaryOnly
 			
+			ItemAttributes
+			{
+				ItemName "the vaccinator"
+				"medigun charge is resists"		4
+				"ubercharge rate bonus"			100
+				"medigun bullet resist passive"	0.1
+				"medigun bullet resist deployed"	0.75
+			}
+
 			CharacterAttributes
 			{
-				"ubercharge rate bonus" 25
-				"medigun bullet resist passive" 1
-				"medigun bullet resist deployed" 1
+				"heal rate bonus" 10
+				"bot medic uber health threshold"	9999
 			}
 		}
 
@@ -60,7 +150,6 @@ WaveSchedule
 			Class Medic
 			ClassIcon	medic_blast
 			Name 	"Vaccinator Medic"
-			Health	150
 			Skill Expert
 			
 			Item	"the vaccinator"
@@ -68,11 +157,19 @@ WaveSchedule
 			Attributes VaccinatorBlast
 			WeaponRestrictions	SecondaryOnly
 			
+			ItemAttributes
+			{
+				ItemName "the vaccinator"
+				"medigun charge is resists"		4
+				"ubercharge rate bonus"			100
+				"medigun blast resist passive"	0.1
+				"medigun blast resist deployed"	0.75
+			}
+			
 			CharacterAttributes
 			{
-				"ubercharge rate bonus" 25
-				"medigun blast resist passive" 1
-				"medigun blast resist deployed" 1
+				"heal rate bonus" 10
+				"bot medic uber health threshold"	9999
 			}
 		}
 
@@ -81,7 +178,6 @@ WaveSchedule
 			Class Medic
 			ClassIcon	medic_fire
 			Name 	"Vaccinator Medic"
-			Health	150
 			Skill Expert
 			
 			Item	"the vaccinator"
@@ -89,11 +185,19 @@ WaveSchedule
 			Attributes VaccinatorFire
 			WeaponRestrictions	SecondaryOnly
 			
+			ItemAttributes
+			{
+				ItemName "the vaccinator"
+				"medigun charge is resists"		4
+				"ubercharge rate bonus"			100
+				"medigun fire resist passive"	0.1
+				"medigun fire resist deployed"	0.75
+			}
+
 			CharacterAttributes
 			{
-				"ubercharge rate bonus" 25
-				"medigun fire resist passive" 1
-				"medigun fire resist deployed" 1
+				"heal rate bonus" 10
+				"bot medic uber health threshold"	9999
 			}
 		}
 		
@@ -102,15 +206,246 @@ WaveSchedule
 			Class	Sniper
 			ClassIcon	sniper_smg
 			Name	"SMG Sniper"
-			Health	125
 			Skill	Easy
 			
 			WeaponRestrictions	SecondaryOnly
 		}
 		
 		//////////////////////////
+		//GIANT & NOT GATEBOT
+		//////////////////////////
+		
+		T_TFBot_Giant_Scout_SunStick
+		{
+			Class Scout
+			Name "Giant Scout"
+			ClassIcon scout_sunstick_giant
+			Skill Expert
+			Health 1600
+
+			Attributes MiniBoss
+			Tag	bot_giant
+
+			WeaponRestrictions MeleeOnly
+			Item	"Sun-on-a-Stick"
+			Item	"The Dark Helm"
+
+			CharacterAttributes
+			{
+				"damage force reduction" 0.7
+				"airblast vulnerability multiplier" 0.7
+				"override footstep sound set" 5
+			}
+		}
+
+		T_TFBot_Giant_Pyro_DragonFury
+		{
+			Class Pyro
+			Name "Giant Dragon's Fury Pyro"
+			ClassIcon	pyro_dragon_fury
+			Skill Expert
+			Health 3000
+
+			Attributes MiniBoss
+			Tag	bot_giant
+
+			WeaponRestrictions PrimaryOnly
+			Item "The Dragon's Fury"
+
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction" 0.6
+				"airblast vulnerability multiplier" 0.6
+				"override footstep sound set" 6
+			}
+		}
+
+		T_TFBot_Chief_Pyro_Flare_ScorchShot
+		{
+			Class	Pyro
+			ClassIcon	pyro_flare
+			Name "Chief Flare Pyro"
+			Health 20000
+			Skill Expert
+			
+			Attributes MiniBoss
+			Attributes UseBossHealthBar
+			Tag	bot_giant
+			
+			Item	"The Scorch Shot"
+			Item	"Traffic Cone"
+			WeaponRestrictions	SecondaryOnly
+			
+			ItemAttributes
+			{
+				ItemName	"The Scorch Shot"
+				"fire rate bonus"	0.1
+				"damage causes airblast"	1
+			}
+			CharacterAttributes
+			{
+				"move speed bonus"	0.35
+				"damage force reduction"	0.6
+				"airblast vulnerability multiplier"	0.6
+				"override footstep sound set"	6
+			}
+		}
+		
+		T_TFBot_Giant_Demoman_Sticky
+		{
+			Class Demoman
+			Name "Giant Stickybomb Demoman"
+			ClassIcon demo_sticky_giant
+			Skill Expert
+			Health 3300
+			
+			Attributes MiniBoss
+			Attributes HoldFireUntilFullReload
+			WeaponRestrictions SecondaryOnly
+
+			ItemAttributes
+			{
+				ItemName "TF_WEAPON_GRENADELAUNCHER"
+				"is_passive_weapon" 1 
+				"override projectile type" 27
+			}
+
+			ItemAttributes
+			{
+				ItemName "TF_WEAPON_PIPEBOMBLAUNCHER"
+				"stickybomb charge rate" 0.001
+				"Projectile range increased" 0.5
+				"faster reload rate" 0.6
+				"max pipebombs increased" -7
+			}
+
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction" 0.5
+				"airblast vulnerability multiplier" 0.5
+				"override footstep sound set" 4
+				"no self blast dmg"	1
+			}
+		}
+
+		T_TFBot_Giant_Demoman_LooseCannon
+		{
+			Class Demoman
+			Name "Giant Loose Cannon Demoman"
+			ClassIcon	demo_loosecannon
+			Skill Hard
+			Health 3300
+			
+			Attributes MiniBoss
+			Tag bot_giant
+
+			WeaponRestrictions PrimaryOnly
+			Attributes HoldFireUntilFullReload
+			Item	"The Loose Cannon"
+
+			ItemAttributes
+			{
+				ItemName "The Loose Cannon"
+				"reload time decreased" 0.8
+				"grenade launcher mortar mode" 0
+			}
+
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"airblast vulnerability multiplier" 0.5
+				"override footstep sound set" 4
+			}
+		}
+
+		T_TFBot_Giant_Medic_Kritz
+		{
+			Class Medic
+			ClassIcon medic_kritz
+			Name "Giant Kritz Medic"
+			Skill Expert
+			Health 4000
+			
+			Attributes MiniBoss
+			Tag bot_giant
+			
+			WeaponRestrictions SecondaryOnly
+			Attributes IgnoreEnemies
+			Attributes SpawnWithFullCharge
+			Item "The Kritzkrieg"
+
+			ItemAttributes
+			{
+				ItemName "The Kritzkrieg"
+				"uber duration bonus" 200
+				"ubercharge rate bonus" 100
+			}
+
+			CharacterAttributes
+			{
+				"airblast vulnerability multiplier" 0.6
+				"bot medic uber health threshold" 5000
+				"damage force reduction" 0.6
+				"move speed bonus" 0.6
+			}
+		}
+
+		T_TFBot_Giant_Sniper_SMG
+		{
+			Class	Sniper
+			Name	"Giant SMG Sniper"
+			ClassIcon sniper_smg_giant
+			Skill	Hard
+			Health	3300
+
+			Attributes	MiniBoss
+			WeaponRestrictions	SecondaryOnly
+
+			MaxVisionRange 1200
+			CharacterAttributes
+			{
+				"override footstep sound set"	5
+				"move speed bonus"	0.4
+			}
+		}
+
+		//////////////////////////
 		//NOT GIANT & GATEBOT
 		//////////////////////////
+		
+		T_TFGateBot_Scout_Easy
+		{
+			Class Scout
+
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+
+					Item "MvM GateBot Light Scout"
+					Skill Easy
+					MaxVisionRange	800
+				}
+				RevertGateBotsBehavior
+				{
+					Item "MvM GateBot Light Scout"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Scout"
+						"item style override" 1
+					}
+
+					Skill Easy
+					MaxVisionRange	800
+				}
+			}
+		}
 		
 		T_TFGateBot_Scout_Melee_Right
 		{
@@ -285,7 +620,7 @@ WaveSchedule
 					Item "the killing gloves of boxing"
 					
 					Item "MvM GateBot Light Heavy"
-					Skill Easy
+					Skill Normal
 				}
 				RevertGateBotsBehavior
 				{
@@ -298,7 +633,7 @@ WaveSchedule
 						ItemName "MvM GateBot Light Heavy"
 						"item style override" 1
 					}
-					Skill Easy
+					Skill Normal
 				}
 			}
 		}
@@ -587,34 +922,142 @@ WaveSchedule
 			}
 		}
 		
-		T_TFBot_Chief_Pyro_Flare_ScorchShot
+		T_TFGatebot_Giant_Demoman
 		{
-			Class	Pyro
-			ClassIcon	pyro_flare
-			Name "Chief Flare Pyro"
-			Health 20000
-			Skill Expert
-			
-			Attributes MiniBoss
-			Attributes UseBossHealthBar
-			Tag	bot_giant
-			
-			Item	"The Scorch Shot"
-			Item	"Traffic Cone"
-			WeaponRestrictions	SecondaryOnly
-			
-			ItemAttributes
+			Class Demoman
+			Name "Giant Demoman"
+			ClassIcon demo_giant
+			Health 3300
+
+			EventChangeAttributes
 			{
-				ItemName	"The Scorch Shot"
-				"fire rate bonus"	0.1
-				"damage causes airblast"	1
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Attributes	MiniBoss
+					tag bot_giant
+					
+					Skill	Expert
+					Attributes	HoldFireUntilFullReload
+					WeaponRestrictions	PrimaryOnly
+					Item	"MvM GateBot Light Demoman"
+
+					ItemAttributes
+					{
+						ItemName "TF_WEAPON_GRENADELAUNCHER"
+						"fire rate bonus" 0.5
+						"damage force reduction" 0.5
+					}
+
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"airblast vulnerability multiplier" 0.5
+						"override footstep sound set" 4
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Attributes	MiniBoss
+					tag bot_giant
+					
+					Skill	Expert
+					Attributes	HoldFireUntilFullReload
+					WeaponRestrictions	PrimaryOnly
+					Item	"MvM GateBot Light Demoman"
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Demoman"
+						"item style override" 1
+					}
+
+					ItemAttributes
+					{
+						ItemName "TF_WEAPON_GRENADELAUNCHER"
+						"fire rate bonus" 0.5
+						"damage force reduction" 0.5
+					}
+					
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"airblast vulnerability multiplier" 0.5
+						"override footstep sound set" 4
+					}
+				}
 			}
-			CharacterAttributes
+		}
+
+		T_TFGateBot_Giant_Demoman_Knight
+		{
+			Class	Demoman
+			ClassIcon	demoknight_giant
+			Name	"Giant Demoknight"
+			Health	3800
+			
+			EventChangeAttributes
 			{
-				"move speed bonus"	0.35
-				"damage force reduction"	0.6
-				"airblast vulnerability multiplier"	0.6
-				"override footstep sound set"	6
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Attributes	"MiniBoss"
+					tag bot_giant
+					
+					Skill	Expert
+					WeaponRestrictions	MeleeOnly
+					Item "The Chargin' Targe"
+					Item "The Eyelander"
+					Item "Ali Baba's Wee Booties"
+					Item "MvM GateBot Light Demoman"
+
+					ItemAttributes
+					{
+						ItemName "The Eyelander"
+						"critboost on kill" 3
+					}
+
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction"	0.5
+						"airblast vulnerability multiplier"	0.5
+						"override footstep sound set"	4
+					}
+				}
+				RevertGateBotsBehavior
+				{					
+					Attributes	"MiniBoss"
+					tag bot_giant
+					
+					Skill	Expert
+					WeaponRestrictions	MeleeOnly
+					Item "The Chargin' Targe"
+					Item "The Eyelander"
+					Item "Ali Baba's Wee Booties"
+					Item "MvM GateBot Light Demoman"
+
+					ItemAttributes
+					{
+						ItemName "MvM GateBot Light Demoman"
+						"item style override" 1
+					}
+
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction"	0.5
+						"airblast vulnerability multiplier"	0.5
+						"override footstep sound set"	4
+					}
+				}
 			}
 		}
 	}

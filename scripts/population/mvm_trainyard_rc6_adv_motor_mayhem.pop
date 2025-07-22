@@ -136,7 +136,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_c
 			}
 		}
@@ -155,7 +154,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_b
 			}
 		}
@@ -322,7 +320,7 @@ population
 			Name	"w1_final"
 			WaitForAllSpawned	"w1_shotgun_solder"
 			TotalCurrency	100
-			TotalCount	42
+			TotalCount	27
 			MaxActive	12
 			SpawnCount	3
 			Where	spawnbot
@@ -410,7 +408,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_c
 			}
 		}
@@ -429,7 +426,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_a
 			}
 		}
@@ -448,7 +444,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_b
 			}
 		}
@@ -472,9 +467,9 @@ population
 		
 		WaveSpawn
 		{
-			Name	"w2_huntsman"
+			Name	"w2_demokight"
 			TotalCurrency	100
-			TotalCount	36
+			TotalCount	40
 			MaxActive	12
 			SpawnCount	4
 			Where	spawnbot_middle
@@ -514,7 +509,7 @@ population
 		WaveSpawn
 		{
 			Name	"w2_samurai_start"
-			WaitForAllSpawned	"w2_huntsman"
+			WaitForAllSpawned	"w2_demokight"
 			TotalCurrency	25
 			TotalCount	3
 			MaxActive	3
@@ -532,7 +527,7 @@ population
 		
 		WaveSpawn
 		{
-			Name	"w2_fan"
+			Name	"w2_huntsman"
 			WaitForAllDead	"w2_samurai_start"
 			TotalCurrency	100
 			TotalCount	36
@@ -546,7 +541,7 @@ population
 			TFBot
 			{
 				Template	T_TFBot_Sniper_huntsman
-				Tag	bot_right
+				Tag	bot_left
 			}
 		}
 		
@@ -576,7 +571,7 @@ population
 		
 		WaveSpawn
 		{
-			Name	"w2_champ"
+			Name	"w2_fan"
 			WaitForAllSpawned	"w2_giantconch"
 			TotalCurrency	100
 			TotalCount	36
@@ -685,7 +680,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_c
 			}
 		}
@@ -704,7 +698,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_a
 			}
 		}
@@ -818,7 +811,7 @@ population
 			
 			Tank
 			{
-				Health	28000
+				Health	25000
 				Name	Tank
 				Speed	75
 				StartingPathTrackNode	tank_path_RU_1
@@ -949,7 +942,7 @@ population
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	15
+			WaitBetweenSpawns	17
 			
 			TFBot
 			{
@@ -1005,7 +998,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_d
 			}
 		}
@@ -1024,7 +1016,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_c
 			}
 		}
@@ -1043,7 +1034,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_b
 			}
 		}
@@ -1082,6 +1072,7 @@ population
 				{
 					Template	T_TFBot_Giant_Scout_Baseball_Armored
 					Tag	bot_giant
+					Attributes	AlwaysCrit
 				}
 				
 				TFBot
@@ -1100,7 +1091,7 @@ population
 		WaveSpawn
 		{
 			Name	"w4_conch"
-			TotalCurrency	75
+			TotalCurrency	100
 			TotalCount	15
 			MaxActive	15
 			SpawnCount	1
@@ -1124,12 +1115,12 @@ population
 		{
 			Name	"w4_engi_left"
 			TotalCurrency	0
-			TotalCount	3
+			TotalCount	2
 			MaxActive	2
 			SpawnCount	1
 			Where	spawnbot_left
-			WaitBeforeStarting	10
-			WaitBetweenSpawns	20
+			WaitBeforeStarting	15
+			WaitBetweenSpawns	30
 			Support	Limited
 			
 			TFBot
@@ -1143,12 +1134,12 @@ population
 		{
 			Name	"w4_engi_right"
 			TotalCurrency	0
-			TotalCount	3
+			TotalCount	2
 			MaxActive	2
 			SpawnCount	1
 			Where	spawnbot_right
-			WaitBeforeStarting	10
-			WaitBetweenSpawns	20
+			WaitBeforeStarting	15
+			WaitBetweenSpawns	30
 			Support	Limited
 			
 			TFBot
@@ -1162,7 +1153,7 @@ population
 		{
 			Name	"w4_champ_backup"
 			WaitForAllSpawned	"w4_conch"
-			TotalCurrency	50
+			TotalCurrency	100
 			TotalCount	32
 			MaxActive	16
 			SpawnCount	3
@@ -1240,7 +1231,7 @@ population
 		{
 			Name	"w4_conch_backup"
 			WaitForAllSpawned	"w4_champ_backup"
-			TotalCurrency	25
+			TotalCurrency	100
 			TotalCount	32
 			MaxActive	16
 			SpawnCount	2
@@ -1296,7 +1287,7 @@ population
 			SpawnCount	3
 			Where	spawnbot
 			WaitBeforeStarting	10
-			WaitBetweenSpawns	4
+			WaitBetweenSpawns	2
 			RandomSpawn	1
 			Support	1
 
@@ -1310,7 +1301,7 @@ population
 		{
 			Name	"w4_final"
 			WaitForAllSpawned	"w4_giantshotgun"
-			TotalCurrency	50
+			TotalCurrency	100
 			TotalCount	4
 			MaxActive	4
 			SpawnCount	4
@@ -1396,7 +1387,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_d
 			}
 		}
@@ -1415,7 +1405,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_c
 			}
 		}
@@ -1434,7 +1423,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_b
 			}
 		}
@@ -1453,7 +1441,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_a
 			}
 		}
@@ -1478,7 +1465,7 @@ population
 		WaveSpawn
 		{
 			Name	"w5_giantsoldier1"
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	3
 			MaxActive	3
 			SpawnCount	1
@@ -1516,7 +1503,6 @@ population
 					Class	Soldier
 					Skill	Normal
 					Item	"The Direct Hit"
-					Attributes	AlwaysCrit
 				}
 				
 				TFBot
@@ -1524,7 +1510,6 @@ population
 					Class	Soldier
 					Skill	Normal
 					Item	"The Direct Hit"
-					Attributes	AlwaysCrit
 				}
 				
 				TFBot
@@ -1532,7 +1517,6 @@ population
 					Class	Soldier
 					Skill	Normal
 					Item	"The Direct Hit"
-					Attributes	AlwaysCrit
 				}
 				
 				TFBot
@@ -1546,7 +1530,7 @@ population
 		{
 			Name	"w5_giantsoldier2"
 			WaitForAllSpawned	"w5_directhitshield"
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	3
 			MaxActive	3
 			SpawnCount	1
@@ -1571,8 +1555,8 @@ population
 			Name	"w5_pyro"
 			WaitForAllDead	"w5_directhitshield"
 			TotalCurrency	50
-			TotalCount	24
-			MaxActive	6
+			TotalCount	16
+			MaxActive	4
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	5
@@ -1592,8 +1576,8 @@ population
 			Name	"w5_jumpingscout2_samurai"
 			WaitForAllSpawned	"w5_directhitshield"
 			TotalCurrency	50
-			TotalCount	18
-			MaxActive	9
+			TotalCount	24
+			MaxActive	12
 			SpawnCount	2
 			Where	spawnbot_right
 			WaitBeforeStarting	5
@@ -1603,7 +1587,7 @@ population
 			TFBot
 			{
 				Template	T_TFBot_Scout_Jumping_Sandman
-				Tag	bot_right
+				Tag	bot_left
 			}
 		}
 		
@@ -1630,7 +1614,7 @@ population
 		{
 			Name	"w5_giantsoldier3"
 			WaitForAllSpawned	"w5_jumpingscout2_samurai"
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	3
 			MaxActive	3
 			SpawnCount	1
@@ -1683,7 +1667,7 @@ population
 		{
 			Name	"w5_giantsoldier4"
 			WaitForAllSpawned	"w5_fanshield_huntsmanspammer"
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	3
 			MaxActive	3
 			SpawnCount	1
@@ -1707,7 +1691,7 @@ population
 		{
 			Name	"w5_pyro"
 			WaitForAllSpawned	"w5_fanshield_huntsmanspammer"
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	24
 			MaxActive	15
 			SpawnCount	6
@@ -1768,7 +1752,7 @@ population
 		{
 			Name	"w5_final"
 			WaitForAllSpawned	"w5_pyro"
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	20
 			MaxActive	10
 			SpawnCount	4
@@ -1814,7 +1798,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_a
 			}
 		}
@@ -1833,7 +1816,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_c
 			}
 		}
@@ -1852,7 +1834,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_b
 			}
 		}
@@ -1890,14 +1871,14 @@ population
 			{
 				Template	T_TFBot_Giant_Scout_Fast
 				Tag	bot_giant
-				Tag	bot_right
+				Tag	bot_left
 			}
 		}
 		
 		WaveSpawn
 		{
 			Name	"w6_rocketpush"
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	24
 			MaxActive	16
 			SpawnCount	4
@@ -1941,8 +1922,8 @@ population
 			Name	"w6_giantfan2"
 			WaitForAllDead	"w6_superscout"
 			TotalCurrency	50
-			TotalCount	4
-			MaxActive	4
+			TotalCount	2
+			MaxActive	2
 			SpawnCount	2
 			Where	spawnbot_right
 			WaitBeforeStarting	20
@@ -1968,7 +1949,7 @@ population
 			
 			Tank
 			{
-				Health	15000
+				Health	21000
 				Name	Tank
 				Speed	75
 				StartingPathTrackNode	tank_path_RL_1
@@ -1999,7 +1980,7 @@ population
 			
 			Tank
 			{
-				Health	15000
+				Health	19000
 				Name	Tank
 				Speed	75
 				StartingPathTrackNode	tank_path_LU_1
@@ -2030,7 +2011,7 @@ population
 			
 			Tank
 			{
-				Health	15000
+				Health	17000
 				Name	Tank
 				Speed	75
 				StartingPathTrackNode	tank_path_RU_1
@@ -2185,7 +2166,7 @@ population
 		{
 			Name	"w6_final"
 			WaitForAllDead	"w6_steelfist"
-			TotalCurrency	200
+			TotalCurrency	150
 			TotalCount	16
 			MaxActive	12
 			SpawnCount	2

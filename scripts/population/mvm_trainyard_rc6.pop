@@ -85,7 +85,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_c
 			}
 		}
@@ -199,7 +198,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_b
 			}
 		}
@@ -333,7 +331,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_d
 			}
 		}
@@ -468,7 +465,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_b
 			}
 		}
@@ -487,7 +483,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_d
 			}
 		}
@@ -657,7 +652,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_b
 			}
 		}
@@ -676,7 +670,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_c
 			}
 		}
@@ -801,7 +794,6 @@ population
 
 			TFBot
 			{
-				Class Scout
 				ClassIcon	sign_d
 			}
 		}
