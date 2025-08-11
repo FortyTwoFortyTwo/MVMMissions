@@ -16,37 +16,6 @@ WaveSchedule
 			WeaponRestrictions	SecondaryOnly
 		}
 
-		T_TFBot_Scout_Cleaver
-		{
-			Class	Scout
-			Name	"Cleaver Scout"
-			ClassIcon scout_cleaver
-			Skill	Hard
-
-			WeaponRestrictions	SecondaryOnly
-			Item	"tf_weapon_scattergun"
-			Item	"the flying guillotine"
-			Item	"tf_weapon_bat"
-			Item	"horrific headsplitter"
-			
-			CharacterAttributes
-			{
-				"effect bar recharge rate increased"	.01
-				"fire rate penalty"	2
-			}
-		}
-
-		T_TFBot_Soldier_Disciplinary
-		{
-			Class	Soldier
-			Name	"Disciplinary Soldier"
-			ClassIcon	soldier_disciplinary
-			Skill	Normal
-			
-			WeaponRestrictions	MeleeOnly
-			Item	"the disciplinary action"
-		}
-
 		T_TFBot_Pyro_Detonator
 		{
 			Class	Pyro

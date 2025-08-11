@@ -244,7 +244,7 @@ population
 			MaxActive	4
 			SpawnCount	2
 			Where	spawnbot_middle
-			WaitBeforeStarting	10
+			WaitBeforeStarting	2
 			WaitBetweenSpawns	12
 			RandomSpawn	1
 			
@@ -263,7 +263,7 @@ population
 			MaxActive	1
 			SpawnCount	1
 			Where	spawnbot_right
-			WaitBeforeStarting	24
+			WaitBeforeStarting	16
 			WaitBetweenSpawns	0
 			
 			FirstSpawnOutput
@@ -299,7 +299,7 @@ population
 		
 		WaveSpawn
 		{
-			Name	"w1_shotgun_solder"
+			Name	"w1_solder"
 			WaitForAllDead	"w1_huntsmanspammer"
 			TotalCurrency	50
 			TotalCount	12
@@ -318,9 +318,9 @@ population
 		WaveSpawn
 		{
 			Name	"w1_final"
-			WaitForAllSpawned	"w1_shotgun_solder"
+			WaitForAllSpawned	"w1_solder"
 			TotalCurrency	100
-			TotalCount	27
+			TotalCount	18
 			MaxActive	12
 			SpawnCount	3
 			Where	spawnbot
@@ -350,13 +350,13 @@ population
 		WaveSpawn
 		{
 			Name	"w1_final"
-			WaitForAllDead	"w1_shotgun_solder"
+			WaitForAllSpawned	"w1_solder"
 			TotalCurrency	100
 			TotalCount	6
 			MaxActive	6
 			SpawnCount	3
 			Where	spawnbot_middle
-			WaitBeforeStarting	0
+			WaitBeforeStarting	20
 			WaitBetweenSpawns	20
 			
 			Squad
@@ -469,12 +469,12 @@ population
 		{
 			Name	"w2_demokight"
 			TotalCurrency	100
-			TotalCount	40
-			MaxActive	12
+			TotalCount	32
+			MaxActive	16
 			SpawnCount	4
 			Where	spawnbot_middle
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	4
+			WaitBetweenSpawns	3
 			RandomSpawn	1
 			
 			TFBot
@@ -492,7 +492,7 @@ population
 			SpawnCount	1
 			Where	spawnbot_middle
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	15
+			WaitBetweenSpawns	12
 			
 			StartWaveOutput
 			{
@@ -530,7 +530,7 @@ population
 			Name	"w2_huntsman"
 			WaitForAllDead	"w2_samurai_start"
 			TotalCurrency	100
-			TotalCount	36
+			TotalCount	32
 			MaxActive	12
 			SpawnCount	4
 			Where	spawnbot_right
@@ -555,7 +555,7 @@ population
 			SpawnCount	1
 			Where	spawnbot_middle
 			WaitBeforeStarting	1
-			WaitBetweenSpawns	15
+			WaitBetweenSpawns	12
 			
 			StartWaveOutput
 			{
@@ -574,7 +574,7 @@ population
 			Name	"w2_fan"
 			WaitForAllSpawned	"w2_giantconch"
 			TotalCurrency	100
-			TotalCount	36
+			TotalCount	32
 			MaxActive	12
 			SpawnCount	4
 			Where	spawnbot
@@ -598,7 +598,7 @@ population
 			SpawnCount	1
 			Where	spawnbot_middle
 			WaitBeforeStarting	1
-			WaitBetweenSpawns	15
+			WaitBetweenSpawns	12
 			
 			StartWaveOutput
 			{
@@ -642,7 +642,7 @@ population
 			SpawnCount	2
 			Where	spawnbot_right
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	20
+			WaitBetweenSpawns	15
 
 			TFBot
 			{
@@ -832,7 +832,7 @@ population
 			Name	"w3_smg_baseball"
 			WaitForAllSpawned	"w3_rocketpush"
 			TotalCurrency	100
-			TotalCount	42
+			TotalCount	30
 			MaxActive	20
 			SpawnCount	6
 			Where	spawnbot
@@ -874,12 +874,12 @@ population
 			Name	"w3_heavy2"
 			WaitForAllSpawned	"w3_smg_baseball"
 			TotalCurrency	50
-			TotalCount	12
-			MaxActive	12
-			SpawnCount	1
+			TotalCount	20
+			MaxActive	14
+			SpawnCount	5
 			Where	spawnbot_right
 			WaitBeforeStarting	10
-			WaitBetweenSpawns	1
+			WaitBetweenSpawns	5
 			RandomSpawn	1
 			
 			StartWaveOutput
@@ -887,24 +887,6 @@ population
 				Target train_spawnrelay_A
 				Action Trigger
 			}
-			
-			TFBot
-			{
-				Template	T_TFGateBot_Heavy_Normal
-			}
-		}
-		
-		WaveSpawn
-		{
-			Name	"w3_final"
-			WaitForAllDead	"w3_heavy2"
-			TotalCurrency	50
-			TotalCount	12
-			MaxActive	12
-			SpawnCount	1
-			Where	spawnbot_right
-			WaitBeforeStarting	0
-			WaitBetweenSpawns	1
 			
 			TFBot
 			{
@@ -1092,8 +1074,8 @@ population
 		{
 			Name	"w4_conch"
 			TotalCurrency	100
-			TotalCount	15
-			MaxActive	15
+			TotalCount	12
+			MaxActive	12
 			SpawnCount	1
 			Where	spawnbot_right
 			WaitBeforeStarting	10
@@ -1190,8 +1172,8 @@ population
 			Name	"w4_giantshotgun_medic"
 			WaitForAllDead	"w4_conch"
 			TotalCurrency	100
-			TotalCount	12
-			MaxActive	9
+			TotalCount	8
+			MaxActive	8
 			SpawnCount	4
 			Where	spawnbot_left
 			WaitBeforeStarting	10
@@ -1256,7 +1238,7 @@ population
 		WaveSpawn
 		{
 			Name	"w4_giantshotgun"
-			WaitForAllSpawned	"w4_conch_backup"
+			WaitForAllDead	"w4_giantshotgun_medic"
 			TotalCurrency	100
 			TotalCount	6
 			MaxActive	6
@@ -1306,7 +1288,7 @@ population
 			MaxActive	4
 			SpawnCount	4
 			Where	spawnbot_middle
-			WaitBeforeStarting	15
+			WaitBeforeStarting	1
 			WaitBetweenSpawns	0
 			
 			Squad
@@ -1552,13 +1534,34 @@ population
 		
 		WaveSpawn
 		{
-			Name	"w5_pyro"
+			Name	"w5_pyro_samurai"
 			WaitForAllDead	"w5_directhitshield"
 			TotalCurrency	50
 			TotalCount	16
-			MaxActive	4
-			SpawnCount	1
+			MaxActive	8
+			SpawnCount	2
 			Where	spawnbot
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	7
+			RandomSpawn	1
+
+			TFBot
+			{
+				Class	Pyro
+				Skill	Hard
+				Attributes	AlwaysCrit
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name	"w5_pyro_samurai"
+			WaitForAllSpawned	"w5_directhitshield"
+			TotalCurrency	50
+			TotalCount	16
+			MaxActive	8
+			SpawnCount	1
+			Where	spawnbot_right
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	7
 			RandomSpawn	1
@@ -1573,27 +1576,7 @@ population
 		
 		WaveSpawn
 		{
-			Name	"w5_jumpingscout2_samurai"
-			WaitForAllSpawned	"w5_directhitshield"
-			TotalCurrency	50
-			TotalCount	24
-			MaxActive	12
-			SpawnCount	2
-			Where	spawnbot_right
-			WaitBeforeStarting	5
-			WaitBetweenSpawns	7
-			RandomSpawn	1
-
-			TFBot
-			{
-				Template	T_TFBot_Scout_Jumping_Sandman
-				Tag	bot_left
-			}
-		}
-		
-		WaveSpawn
-		{
-			Name	"w5_jumpingscout2_samurai"
+			Name	"w5_pyro_samurai"
 			WaitForAllDead	"w5_directhitshield"
 			TotalCurrency	50
 			TotalCount	8
@@ -1613,7 +1596,7 @@ population
 		WaveSpawn
 		{
 			Name	"w5_giantsoldier3"
-			WaitForAllSpawned	"w5_jumpingscout2_samurai"
+			WaitForAllSpawned	"w5_pyro_samurai"
 			TotalCurrency	50
 			TotalCount	3
 			MaxActive	3
@@ -1637,13 +1620,13 @@ population
 		WaveSpawn
 		{
 			Name	"w5_fanshield_huntsmanspammer"
-			WaitForAllSpawned	"w5_jumpingscout2_samurai"
+			WaitForAllSpawned	"w5_pyro_samurai"
 			TotalCurrency	100
 			TotalCount	16
 			MaxActive	12
 			SpawnCount	2
 			Where	spawnbot
-			WaitBeforeStarting	5
+			WaitBeforeStarting	1
 			WaitBetweenSpawns	4
 			
 			Squad
@@ -1719,8 +1702,8 @@ population
 			MaxActive	12
 			SpawnCount	4
 			Where	spawnbot_middle
-			WaitBeforeStarting	20
-			WaitBetweenSpawns	20
+			WaitBeforeStarting	15
+			WaitBetweenSpawns	15
 			
 			Squad
 			{
@@ -2065,8 +2048,8 @@ population
 			Name	"w6_burstdemo"
 			WaitForAllSpawned	"w6_rocketpush"
 			TotalCurrency	100
-			TotalCount	48
-			MaxActive	12
+			TotalCount	36
+			MaxActive	14
 			SpawnCount	3
 			Where	spawnbot
 			WaitBeforeStarting	8
@@ -2087,7 +2070,7 @@ population
 			MaxActive	15
 			SpawnCount	5
 			Where	spawnbot_right
-			WaitBeforeStarting	5
+			WaitBeforeStarting	1
 			WaitBetweenSpawns	5
 			
 			StartWaveOutput
@@ -2120,6 +2103,7 @@ population
 				{
 					Template	T_TFBot_Soldier_Extended_Concheror
 					Skill	Hard
+					ClassIcon soldier_conch_giant
 				}
 				
 				TFBot
@@ -2169,7 +2153,7 @@ population
 			TotalCurrency	150
 			TotalCount	16
 			MaxActive	12
-			SpawnCount	2
+			SpawnCount	4
 			Where	spawnbot_middle
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	15
@@ -2195,12 +2179,12 @@ population
 				
 				TFBot
 				{
-					Template	T_TFGateBot_Soldier_Extended_Concheror_Normal
+					Template	T_TFGateBot_Soldier_Extended_Concheror_Normal_Crit
 				}
 				
 				TFBot
 				{
-					Template	T_TFGateBot_Soldier_Extended_Concheror_Normal
+					Template	T_TFGateBot_Soldier_Extended_Concheror_Normal_Crit
 				}
 			}
 		}
