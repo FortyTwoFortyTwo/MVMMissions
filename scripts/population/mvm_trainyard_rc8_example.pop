@@ -31,7 +31,7 @@
 //	- gatebot_right
 //	- spawnbot_mission_sniper
 //
-//	Note that spawnbot and gatebot spawns at both sides of main area
+//	Note that "spawnbot" and "gatebot" spawns at both sides of main area
 //
 ////////////////////////////////////////////////////////////////
 //
@@ -40,6 +40,9 @@
 //	wave_start_relay - must be triggered from StartWaveOutput every waves
 //	wave_finished_relay - must be triggered from DoneOutput every waves
 //	boss_deploy_relay - must be triggered from OnBombDroppedOutput from tanks
+//
+//	bombpath_upper_relay - Force bots to take the "upper" route, to be used in InitWaveOutput
+//	bombpath_lower_relay - Force bots to take the "lower" route, to be used in InitWaveOutput
 //
 //	train_spawnrelay_A - Summons a train for gatebots to capture at A
 //	train_spawnrelay_B - Summons a train for gatebots to capture at B
@@ -68,20 +71,44 @@
 //
 ////////////////////////////////////////////////////////////////
 //
+//	list of robot icons packed into the map available to use:
+//	sign_a
+//	sign_b
+//	sign_c
+//	sign_d
+//	scout_pistol
+//	scout_sunstick
+//	scout_sunstick_giant
+//	pyro_dragon_fury
+//	pyro_dragon_fury_spammer
+//	demo_loch
+//	demo_loosecannon
+//	demo_sticky
+//	demo_sticky_giant
+//	medic_kritz
+//	medic_shield
+//	medic_bullet
+//	medic_blast
+//	medic_fire
+//	sniper_smg
+//	sniper_smg_giant
+//
+////////////////////////////////////////////////////////////////
+//
 //	list of robot tags to use
 //	bot_gatebot - whenever if bot is a gatebot or not
 //	bot_giant - whenever if bot is a giant/mini giant or not
-//	bot_flank - robot with this tag takes extra flank paths, excluding flank at station
+//	bot_flank - robot with this tag takes extra flank paths, excluding flank at capture area
 //
-//	bot_right - robot with this tag takes right/main path next to station
-//	bot_left - robot with this tag takes left/flank path above station
+//	bot_right - robot with this tag takes right/main path next to capture area
+//	bot_left - robot with this tag takes left/flank path above capture area
 //
 //	if bots dont have either bot_right or bot_left: 
-//	- non-gatebot takes right/main path next to station
-//	- gatebot spawned from main area takes right/main path next to station
-//	- gatebot spawned from right/flank area takes left/flank path above station
+//	- non-gatebot takes right/main path next to capture area
+//	- gatebot spawned from main area takes right/main path next to capture area
+//	- gatebot spawned from right/flank area takes left/flank path above capture area
 //
-//	robot holding bomb will ignore bot_left and takes right/main path next to station
+//	robot holding bomb will ignore bot_left and takes right/main path next to capture area
 //
 ////////////////////////////////////////////////////////////////
 //
@@ -90,7 +117,9 @@
 //	W2 - advanced infromation on spawning A train twice, should only be used on very long/hard waves
 //	W3 - shows all 4 tank paths
 //	W4 - shows how to use engi bots
-//	W5 - shows different tag paths and boss relays
+//  W5 - shows how to force a certain path be used
+//	W6 - shows different tag paths
+//  W7 - shows how to trigger boss relay
 //
 ////////////////////////////////////////////////////////////////
 
@@ -461,7 +490,7 @@ population
 			MaxActive	1
 			SpawnCount	1
 			Where	spawnbot
-			WaitBeforeStarting	25
+			WaitBeforeStarting	24
 			WaitBetweenSpawns	0
 			
 			Tank
@@ -485,7 +514,7 @@ population
 			MaxActive	1
 			SpawnCount	1
 			Where	spawnbot
-			WaitBeforeStarting	35
+			WaitBeforeStarting	37
 			WaitBetweenSpawns	0
 			
 			Tank
@@ -509,7 +538,7 @@ population
 			MaxActive	1
 			SpawnCount	1
 			Where	spawnbot
-			WaitBeforeStarting	60
+			WaitBeforeStarting	61
 			WaitBetweenSpawns	0
 			
 			Tank
@@ -665,7 +694,44 @@ population
 		}
 	}
 	
-	Wave									//this wave shows different tags bot can use to take paths, and triggering boss relay
+	Wave									//this wave shows how to force a certain path be used
+	{
+		WaitWhenDone	65
+		Checkpoint	Yes
+		InitWaveOutput
+		{
+			Target bombpath_upper_relay	// This will force the "upper" path be used
+			Action Trigger
+		}
+		StartWaveOutput
+		{
+			Target	wave_start_relay
+			Action	Trigger
+		}
+		DoneOutput
+		{
+			Target	wave_finished_relay
+			Action	Trigger
+		}
+		
+		WaveSpawn
+		{
+			TotalCurrency	0
+			TotalCount	10
+			MaxActive	1
+			SpawnCount	1
+			Where	spawnbot_middle
+			WaitBeforeStarting	0
+			WaitBetweenSpawns	0
+			
+			TFBot
+			{
+				Template	T_TFBot_Scout_Melee
+			}
+		}
+	}
+
+	Wave									//this wave shows different tags bot can use to take paths
 	{
 		WaitWhenDone	65
 		Checkpoint	Yes
@@ -682,7 +748,7 @@ population
 				
 		WaveSpawn
 		{
-			WaitForAllDead	"w5_last"
+			WaitForAllDead	"w6"
 			TotalCurrency 0
 			Where spawnbot
 			TotalCount 1
@@ -698,34 +764,15 @@ population
 				ClassIcon	sign_c
 			}
 		}
-				
-		WaveSpawn
-		{
-			Name	"w5_normal_right"
-			TotalCurrency	0
-			TotalCount	1
-			MaxActive	1
-			SpawnCount	1
-			Where	spawnbot_right	//spawnpoint bot will spawn
-			WaitBeforeStarting	0
-			WaitBetweenSpawns	0
-			
-			TFBot
-			{
-				Template	T_TFBot_Heavyweapons_Heavyweight_Champ
-				//non-gatebot without either tags will take right/main path
-			}
-		}
 		
 		WaveSpawn
 		{
-			Name	"w5_normal_left"
-			WaitForAllDead	"w5_normal_right"
+			Name	"w6"
 			TotalCurrency	0
-			TotalCount	1
+			TotalCount	10
 			MaxActive	1
 			SpawnCount	1
-			Where	spawnbot_left	//spawnpoint bot will spawn
+			Where	spawnbot_left
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
 			
@@ -738,13 +785,12 @@ population
 		
 		WaveSpawn
 		{
-			Name	"w5_gatebot_right"
-			WaitForAllDead	"w5_normal_left"
+			Name	"w6"
 			TotalCurrency	0
-			TotalCount	1
+			TotalCount	10
 			MaxActive	1
 			SpawnCount	1
-			Where	spawnbot_right	//spawnpoint bot will spawn
+			Where	spawnbot_right
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
 			
@@ -763,13 +809,12 @@ population
 		
 		WaveSpawn
 		{
-			Name	"w5_gatebot_left"
-			WaitForAllDead	"w5_gatebot_right"
+			Name	"w6"
 			TotalCurrency	0
-			TotalCount	1
+			TotalCount	10
 			MaxActive	1
 			SpawnCount	1
-			Where	spawnbot_left	//spawnpoint bot will spawn
+			Where	spawnbot_left
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
 			
@@ -779,30 +824,31 @@ population
 				//bot will ignore main path and instead takes flank above station
 			}
 		}
-				
+		
 		WaveSpawn
 		{
-			Name	"w5_normal_flank"
-			WaitForAllDead	"w5_gatebot_left"
+			Name	"w6"
 			TotalCurrency	0
-			TotalCount	1
+			TotalCount	10
 			MaxActive	1
 			SpawnCount	1
-			Where	spawnbot_middle	//spawnpoint bot will spawn
+			Where	spawnbot_middle
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	0
 			
 			TFBot
 			{
-				Template	T_TFBot_Heavyweapons_Heavyweight_Champ
-				Tag bot_flank	//bot will take any flank paths outside of station
+				Template	T_TFBot_Demoman_Knight
+				Tag bot_flank	//bot will take any flank paths outside of capture area
 			}
 		}
-		
+	}
+
+	Wave									//this wave shows how to trigger a boss relay
+	{
 		WaveSpawn
 		{
-			Name	"w5_boss"
-			WaitForAllDead	"w5_normal_flank"
+			Name	"w7_boss"
 			TotalCurrency	0
 			TotalCount	1
 			MaxActive	1
@@ -826,8 +872,7 @@ population
 		
 		WaveSpawn
 		{
-			Name	"w5_last"
-			WaitForAllDead	"w5_boss"
+			Name	"w7_last"
 			TotalCurrency	0
 			TotalCount	1
 			MaxActive	1

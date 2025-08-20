@@ -230,6 +230,33 @@ WaveSchedule
 			}
 		}
 
+		T_TFBot_Giant_Pyro_FlareGun_Spammer // Spams flare gun fire
+		{
+			Class Pyro
+			Name "Giant Flare Pyro"
+			ClassIcon pyro_flare_giant
+			Skill Expert
+			Health 3000
+			Item "The Flare Gun"
+			Item "Old Guadalajara"
+			WeaponRestrictions SecondaryOnly
+			Attributes MiniBoss
+			Tag	bot_giant
+
+			ItemAttributes
+			{
+				ItemName "The Flare Gun"
+				"fire rate bonus" 0.3
+			}
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction" 0.6
+				"airblast vulnerability multiplier" 0.6
+				"override footstep sound set" 6
+			}
+		}
+
 		T_TFBot_Chief_Pyro_Flare_ScorchShot
 		{
 			Class	Pyro
@@ -537,6 +564,37 @@ WaveSchedule
 						ItemName "MvM GateBot Light Scout"
 						"item style override" 1
 					}
+				}
+			}
+		}
+
+		T_TFGateBot_Pyro_Hard_AlwaysCrit
+		{
+			Class Pyro
+
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot 				// having these will cause bots to run towards gates
+					Tag nav_prefer_gate1_flank		// having these will cause bots to run towards gates
+					BehaviorModifiers push			// having these will cause bots to run towards gates
+					Attributes IgnoreFlag 			// having these will cause bots to run towards gates
+
+					Item "MvM GateBot Light Pyro"
+					Skill Expert
+					Attributes	AlwaysCrit
+				}
+				RevertGateBotsBehavior
+				{
+					Item "MvM GateBot Light Pyro"
+					ItemAttributes               // turn off light hat
+					{
+						ItemName "MvM GateBot Light Pyro"
+						"item style override" 1
+					}
+					Skill Expert
+					Attributes	AlwaysCrit
 				}
 			}
 		}
@@ -891,6 +949,76 @@ WaveSchedule
 			}
 		}
 		
+		T_TFGateBot_Giant_Pyro_DragonFury_Spammer
+		{
+			Class Pyro
+			Name "Giant Spammer Dragon's Fury Pyro"
+			ClassIcon	pyro_dragon_fury_spammer
+			Health 3000
+
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers push
+					Attributes IgnoreFlag
+					
+					Item "MvM GateBot Light Pyro"
+					Skill Expert
+					Attributes MiniBoss
+					Tag	bot_giant
+
+					WeaponRestrictions PrimaryOnly
+					Item "The Dragon's Fury"
+
+					ItemAttributes
+					{
+						ItemName "The Dragon's Fury"
+						"fire rate bonus"	0.33
+					}
+
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction" 0.6
+						"airblast vulnerability multiplier" 0.6
+						"override footstep sound set" 6
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Item "MvM GateBot Light Pyro"
+					ItemAttributes               // turn off light hat
+					{
+						ItemName "MvM GateBot Light Pyro"
+						"item style override" 1
+					}
+					Skill Expert
+					Attributes MiniBoss
+					Tag	bot_giant
+
+					WeaponRestrictions PrimaryOnly
+					Item "The Dragon's Fury"
+
+					ItemAttributes
+					{
+						ItemName "The Dragon's Fury"
+						"fire rate bonus"	0.33
+					}
+
+					CharacterAttributes
+					{
+						"move speed bonus"	0.5
+						"damage force reduction" 0.6
+						"airblast vulnerability multiplier" 0.6
+						"override footstep sound set" 6
+					}
+				}
+			}
+		}
+
 		T_TFGatebot_Giant_Demoman
 		{
 			Class Demoman
