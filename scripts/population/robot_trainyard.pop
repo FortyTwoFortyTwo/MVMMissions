@@ -1,7 +1,7 @@
 WaveSchedule
 {
 	Templates
-	{		
+	{
 		//////////////////////////
 		//NOT GIANT & NOT GATEBOT
 		//////////////////////////
@@ -14,6 +14,51 @@ WaveSchedule
 			MaxVisionRange	800
 
 			WeaponRestrictions	SecondaryOnly
+		}
+
+		T_TFBot_Scout_SunStick_Armored
+		{
+			Class Scout
+			ClassIcon scout_sunstick_armored
+			WeaponRestrictions MeleeOnly
+			Item "The Bolt Boy"
+			Name "Sunny Side-up Scout"
+			Item "Sun-on-a-Stick"
+			ItemAttributes
+			{
+				ItemName   "Sun-on-a-Stick"
+				"fire rate bonus"        0.8
+				"gesture speed increase" 1.3
+			}
+
+			Skill Expert
+			Health	650
+			Scale	1.4
+
+			CharacterAttributes
+			{
+				"head scale" 0.7
+				"move speed bonus" 1.25
+				"health regen" 1
+			}
+		}
+
+		T_TFBot_Soldier_Mangler_Fire
+		{
+			Class	Soldier
+			ClassIcon	soldier_incendiary
+			Name	"Alien Tech Soldier"
+			Skill	Hard
+			Item	"the cow mangler 5000"
+			Item	"Lord Cockswain's Novelty Mutton Chops and Pipe"
+			Item	"Lord Cockswain's Pith Helmet"
+			ItemAttributes
+			{
+				ItemName        "the cow mangler 5000"
+				"Set DamageType Ignite"        1
+				"damage penalty"	0.7
+				"attach particle effect" 2
+			}
 		}
 
 		T_TFBot_Pyro_Detonator
@@ -40,6 +85,58 @@ WaveSchedule
 			Item	"Scotch Bonnet"
 		}
 
+		T_TFBot_Demo_Delay_Burstfire
+		{
+			ClassIcon	demo_burst
+			Health	175
+			Skill	Expert
+			Name	"Minefield Demoman"
+			Class	Demoman
+			Item	"The Iron Bomber"
+			Attributes	HoldFireUntilFullReload
+			ItemAttributes
+			{
+				ItemName	"The Iron Bomber"
+				"fuse bonus"	1.5	//dunno if it work
+				"clip size penalty" 0.5
+				"fire rate bonus" 0.1
+				"projectile spread angle penalty"	10
+			}
+		}
+
+		T_TFBot_Demo_Smoke
+		{
+			Name "Smoke Bomb Demoman"
+			Class Demoman
+			Skill Normal
+			Item	"The Loose Cannon"
+			Item	"The Mair Mask"
+			Item	"The Gunboats"
+			Item	"The Ullapool Caber"
+			MaxVisionRange 800
+			ItemAttributes
+			{
+				ItemName "The Loose Cannon"
+				"use large smoke explosion" 1
+				"damage penalty"	0.4
+				"apply z velocity on damage" -150		// has really high knockback for some reason, this is to tone it down
+				"apply look velocity on damage" -200	// has really high knockback for some reason, this is to tone it down
+				"projectile speed increased" 1.6		// I suspect this's the cause
+				"fire rate penalty" 6
+				"fuse bonus" 1.7
+				"faster reload rate" -0.1
+				"grenade launcher mortar mode" -1
+				"no self blast dmg" 2
+				"Blast radius decreased" -0.0001
+			}
+			CharacterAttributes
+			{
+				"hand scale" 1.5
+				"voice pitch scale" 0
+				"gesture speed increase" 0.7
+			}
+		}
+
 		T_TFBot_Demoman_Sticky
 		{
 			Class	Demoman
@@ -58,6 +155,38 @@ WaveSchedule
 			}
 		}
 
+		T_TFBot_Medic_Kritz
+		{
+			Class Medic
+			Health	150
+			Name	"Kritz Medic"
+			ClassIcon	medic_kritz
+			Skill	Normal
+			Item	"Titanium Tyrolean"
+			WeaponRestrictions SecondaryOnly
+			Attributes SpawnWithFullCharge
+			
+			Item	"The Kritzkrieg"
+			ItemAttributes
+			{
+				ItemName	"The Kritzkrieg"
+				"ubercharge rate bonus" 3
+				"bot medic uber health threshold" 400
+				"uber duration bonus" -200
+			}
+
+			ItemAttributes
+			{
+				ItemName "TF_WEAPON_SYRINGEGUN_MEDIC"
+				"damage penalty" 0.1
+			}
+
+			CharacterAttributes
+			{
+				"heal rate bonus" 3
+			}
+		}
+
 		T_TFBot_Medic_Shield
 		{
 			Class	Medic
@@ -67,21 +196,20 @@ WaveSchedule
 			Skill	Expert
 			
 			WeaponRestrictions	SecondaryOnly
-			Attributes	"ProjectileShield"
-			Attributes	"SpawnWithFullCharge"
+			Attributes	ProjectileShield
+			Attributes	SpawnWithFullCharge
 			Item	"The Quick-Fix"
 			
 			ItemAttributes
 			{
 				ItemName	"The Quick-Fix"
 				"ubercharge rate bonus"	0
-				"generate rage on heal"	1
+				"increase buff duration" 1.5
 				"uber duration bonus" -8
 			}
 			
 			CharacterAttributes
 			{
-				"generate rage on heal"	1
 				"bot medic uber health threshold" 149
 			}
 		}
@@ -180,10 +308,104 @@ WaveSchedule
 			WeaponRestrictions	SecondaryOnly
 		}
 		
+		T_TFBot_Sniper_Croco
+		{
+			Class        Sniper
+			ClassIcon        sniper_jarate
+			Name        "Crocochop Dunder"
+			Health        525
+			Item		"Ol' Snaggletooth"
+			Scale        1.3
+			Skill        Expert
+			WeaponRestrictions        MeleeOnly
+
+			Item        "The Bushwacka"
+			ItemAttributes
+			{
+				ItemName        "The Bushwacka"
+				"fire rate bonus"        0.7
+				"gesture speed increase" 1.6
+				"dmg taken from fire increased" 1.5
+			}
+
+			Item 		"Jarate"
+			ItemAttributes
+			{
+				ItemName "Jarate"
+				"is_passive_weapon" 1
+			}
+
+			Item		"Li'l Snaggletooth"
+			ItemAttributes
+			{
+				ItemName        "Li'l Snaggletooth"
+				"counts as assister is some kind of pet this update is going to be awesome"        1
+			}
+
+			CharacterAttributes
+			{
+				"move speed bonus"        1.15
+				"health regen" 1
+			}
+		}
+
+		T_TFBot_Spy_Backburner
+		{
+			Class	Spy
+			Skill Normal
+			ClassIcon spy_pyro
+			Name "Insomniac Games"
+			MaxVisionRange 800
+			Attributes SpawnWithFullCharge
+			Item "The Backburner"
+			CharacterAttributes
+			{
+				"hand scale" 1.5
+				"attach particle effect" 8
+				"killstreak tier" 1
+			}
+		}
+
 		//////////////////////////
 		//GIANT & NOT GATEBOT
 		//////////////////////////
-		
+
+		T_TFBot_Giant_Scout_Winger_Heal
+		{
+			Class	Scout
+			ClassIcon	scout_winger_heal
+			Name	"Buoyant Super Scout"
+			Item	"The Winger"
+			Attributes MiniBoss
+			MaxVisionRange 900
+			Skill	Normal
+			Health	1200
+			Attributes AutoJump
+			AutoJumpMin 3.34
+			AutoJumpMax 4
+			WeaponRestrictions	SecondaryOnly
+			Item	"The Cross-Comm Express"
+			Item "The Flight of the Monarch"
+			Tag	bot_giant
+			ItemAttributes
+			{
+				ItemName	"The Winger"
+				"heal on hit for rapidfire"	100
+				"reload time increased" 2.5
+				"gesture speed increase" 0.15 // maybe?
+				"fire rate bonus" 0.5
+				"increased jump height from weapon" 1.6
+			}
+			CharacterAttributes
+			{
+				"increased air control"	1.5
+				"move speed bonus"	1.1
+				"damage force reduction" 0.2
+				"airblast vulnerability multiplier" 0.7
+				"override footstep sound set" 5
+			}
+		}
+
 		T_TFBot_Giant_Scout_SunStick
 		{
 			Class Scout
@@ -207,10 +429,51 @@ WaveSchedule
 			}
 		}
 
+		T_TFBot_Chief_Soldier_RocketStorm  // Start as terrifying Rocket Shotgunner, then become a Rocket Barrager
+                                                // ToD is Ticket to Die, shouldn't it be TtD?
+        {
+            // There isn't a Skill key, strange, but lets just say its intended
+            Class Soldier
+            //  Name "Sergeant Rocket Shotgun"
+            Name "Sergeant of the Storm"
+            ClassIcon soldier_barrage_giant
+            Health 20000
+            Attributes MiniBoss
+            Attributes UseBossHealthBar
+            Attributes HoldFireUntilFullReload
+            Item "powerhouse_rocketlauncher_aquamarine"
+            Item "The Rebel Rouser"
+            Item "Exquisite Rack"
+            ItemAttributes
+            {
+                ItemName "powerhouse_rocketlauncher_aquamarine"
+                "faster reload rate" 0.07
+                "fire rate bonus" 0.05
+                "damage penalty" 0.5
+                "clip size upgrade atomic" 31
+                "projectile speed decreased" 0.4
+                "projectile spread angle penalty" 10
+                "fire rate bonus with reduced health" 0.025
+                "gesture speed increase" 1.5
+                "blast radius decreased" 0.85
+                "rocket jump damage reduction" 0.05
+            }
+            CharacterAttributes
+            {
+                "cancel falling damage" 1
+                "move speed penalty" 0.5
+                "damage force reduction" 0.4
+                "airblast vulnerability multiplier" 0.4
+                "rage giving scale"    0.4
+                "airblast vertical vulnerability multiplier" 0.1
+                "override footstep sound set" 3
+            }
+		}
+
 		T_TFBot_Giant_Pyro_DragonFury
 		{
 			Class Pyro
-			Name "Giant Dragon's Fury Pyro"
+			Name "Giant Fireball Pyro"
 			ClassIcon	pyro_dragon_fury
 			Skill Expert
 			Health 3000
@@ -248,6 +511,35 @@ WaveSchedule
 				ItemName "The Flare Gun"
 				"fire rate bonus" 0.3
 			}
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction" 0.6
+				"airblast vulnerability multiplier" 0.6
+				"override footstep sound set" 6
+			}
+		}
+
+		T_TFBot_Giant_Pyro_Flare_Rain // Spams flare gun fire
+		{
+			Class Pyro
+			Name "Giant Flare Pyro"
+			ClassIcon pyro_flare_rain
+			Skill Expert
+			Health 3000
+			Item "The detonator"
+			Item "Old Guadalajara"
+			WeaponRestrictions SecondaryOnly
+			Attributes MiniBoss
+
+			ItemAttributes
+			{
+				ItemName "The detonator"
+				"fire rate bonus" 0.1
+				"mod no reload DISPLAY ONLY" 1
+				"no self blast dmg" 2 // does this do anything on Detonators?
+			}
+
 			CharacterAttributes
 			{
 				"move speed bonus"	0.5
@@ -359,7 +651,7 @@ WaveSchedule
 		T_TFBot_Giant_Medic_Kritz
 		{
 			Class Medic
-			ClassIcon medic_kritz
+			ClassIcon medic_kritz_giant
 			Name "Giant Kritz Medic"
 			Skill Expert
 			Health 4000
@@ -371,6 +663,7 @@ WaveSchedule
 			Attributes IgnoreEnemies
 			Attributes SpawnWithFullCharge
 			Item "The Kritzkrieg"
+			Item	"Titanium Tyrolean"
 
 			ItemAttributes
 			{
@@ -567,7 +860,127 @@ WaveSchedule
 				}
 			}
 		}
+		
+		T_TFGateBot_Scout_Bonk
+		{
+			Class Scout
+			Skill Hard
+			Name "Bonk Scout"
+			ClassIcon scout_bonk
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot
+					Tag nav_prefer_gate1_flank
+					BehaviorModifiers Push
+					Attributes IgnoreFlag
+					Attributes DisableDodge
+					Item "MvM GateBot Light Scout"
+					WeaponRestrictions	MeleeOnly
+					Item "Bonk! Atomic Punch"
+					ItemAttributes
+					{
+						ItemName "Bonk! Atomic Punch"
+						"deploy time increased" 1.34
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Item "Bonk Helm"
+					ItemAttributes
+					{
+						ItemName "Bonk! Atomic Punch"
+						"deploy time increased" 1.34
+					}
+					WeaponRestrictions	MeleeOnly
+					Item "Bonk! Atomic Punch"
+				}
+			}
+		}
 
+		T_TFGateBot_Soldier_Mangler_Fire_Hard
+		{
+			Class Soldier
+			Name "Alien Tech Soldier"
+			ClassIcon soldier_incendiary
+
+			EventChangeAttributes
+			{
+				Default
+				{
+					BehaviorModifiers Push			// having these will cause bots to run towards gates
+					Attributes IgnoreFlag			// having these will cause bots to run towards gates
+					Tag nav_prefer_gate1_flank 		// having these will cause bots to run towards gates
+					Tag bot_gatebot 				// having these will cause bots to run towards gates
+
+					Item "The Cow Mangler 5000"
+					Item "MvM Gatebot Light Soldier"
+					Item "Lord Cockswain's Novelty Mutton Chops and Pipe"
+					Skill Hard
+					ItemAttributes
+					{
+						ItemName "The Cow Mangler 5000"
+						"Set DamageType Ignite" 1
+						"damage penalty" 0.7
+						"attach particle effect" 2
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Item "MvM GateBot Light Soldier"
+					ItemAttributes               // turn off light hat
+					{
+						ItemName "MvM GateBot Light Soldier"
+						"item style override" 1
+					}
+
+					Item "The Cow Mangler 5000"
+					ItemAttributes
+					{
+						ItemName "The Cow Mangler 5000"
+						"Set DamageType Ignite" 1
+						"damage penalty" 0.7
+						"attach particle effect" 2
+					}
+					Item "Lord Cockswain's Pith Helmet"
+					Item "Lord Cockswain's Novelty Mutton Chops and Pipe"
+					Skill Hard
+				}
+			}
+		}
+
+		T_TFGateBot_Pyro_Easy_AlwaysCrit
+		{
+			Class Pyro
+
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot 				// having these will cause bots to run towards gates
+					Tag nav_prefer_gate1_flank		// having these will cause bots to run towards gates
+					BehaviorModifiers push			// having these will cause bots to run towards gates
+					Attributes IgnoreFlag 			// having these will cause bots to run towards gates
+
+					Item "MvM GateBot Light Pyro"
+					Skill Easy
+					Attributes	AlwaysCrit
+				}
+				RevertGateBotsBehavior
+				{
+					Item "MvM GateBot Light Pyro"
+					ItemAttributes               // turn off light hat
+					{
+						ItemName "MvM GateBot Light Pyro"
+						"item style override" 1
+					}
+					Skill Easy
+					Attributes	AlwaysCrit
+				}
+			}
+		}
+		
 		T_TFGateBot_Pyro_Hard_AlwaysCrit
 		{
 			Class Pyro
@@ -582,7 +995,7 @@ WaveSchedule
 					Attributes IgnoreFlag 			// having these will cause bots to run towards gates
 
 					Item "MvM GateBot Light Pyro"
-					Skill Expert
+					Skill Hard
 					Attributes	AlwaysCrit
 				}
 				RevertGateBotsBehavior
@@ -593,12 +1006,47 @@ WaveSchedule
 						ItemName "MvM GateBot Light Pyro"
 						"item style override" 1
 					}
-					Skill Expert
+					Skill Hard
 					Attributes	AlwaysCrit
 				}
 			}
 		}
 		
+		T_TFGateBot_Pyro_Dragon_Fury_Normal
+		{
+			Class Pyro
+			Name "Fireball Pyro"
+			ClassIcon pyro_dragon_fury
+
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot 				// having these will cause bots to run towards gates
+					Tag nav_prefer_gate1_flank		// having these will cause bots to run towards gates
+					BehaviorModifiers Push			// having these will cause bots to run towards gates
+					Attributes IgnoreFlag 			// having these will cause bots to run towards gates
+
+					Item "MvM GateBot Light Pyro"
+					Skill Normal
+					MaxVisionRange 660
+					Item "The Dragon's Fury"
+				}
+				RevertGateBotsBehavior
+				{
+					Item "MvM GateBot Light Pyro"
+					ItemAttributes               // turn off light hat
+					{
+						ItemName "MvM GateBot Light Pyro"
+						"item style override" 1
+					}
+					Skill Normal
+					MaxVisionRange 660
+					Item "The Dragon's Fury"
+				}
+			}
+		}
+
 		T_TFGateBot_Heavy_Easy
 		{
 			Class Heavy
@@ -702,6 +1150,57 @@ WaveSchedule
 			}
 		}
 		
+		T_TFGateBot_Sniper_Huntsman_Hard
+		{
+			Class Sniper
+			Name "Bowman"
+			Health	125
+			ClassIcon sniper_bow
+
+			EventChangeAttributes
+			{
+				Default
+				{
+					Tag bot_gatebot 				// having these will cause bots to run towards gates
+					Tag nav_prefer_gate1_flank		// having these will cause bots to run towards gates
+					BehaviorModifiers push			// having these will cause bots to run towards gates
+					Attributes IgnoreFlag 			// having these will cause bots to run towards gates
+
+					// MaxVisionRange 2000
+					Item "MvM GateBot Light Sniper"
+					Skill Hard
+					Attributes DisableDodge
+					WeaponRestrictions PrimaryOnly
+					Item "The Huntsman"
+
+					ItemAttributes
+					{
+						ItemName "The Huntsman"
+						"damage penalty" 0.5
+					}
+				}
+				RevertGateBotsBehavior
+				{
+					Item "MvM GateBot Light Sniper"
+					ItemAttributes               // turn off light hat
+					{
+						ItemName "MvM GateBot Light Sniper"
+						"item style override" 1
+					}
+					// MaxVisionRange 2000
+					Skill Hard
+					WeaponRestrictions PrimaryOnly
+					Item "The Huntsman"
+
+					ItemAttributes
+					{
+						ItemName "The Huntsman"
+						"damage penalty" 0.5
+					}
+				}
+			}
+		}
+
 		T_TFGateBot_Sniper_Huntsman_Spammer
 		{
 			Class Sniper
@@ -952,7 +1451,7 @@ WaveSchedule
 		T_TFGateBot_Giant_Pyro_DragonFury_Spammer
 		{
 			Class Pyro
-			Name "Giant Spammer Dragon's Fury Pyro"
+			Name "Giant Fireball Spammer Pyro"
 			ClassIcon	pyro_dragon_fury_spammer
 			Health 3000
 
@@ -976,7 +1475,7 @@ WaveSchedule
 					ItemAttributes
 					{
 						ItemName "The Dragon's Fury"
-						"fire rate bonus"	0.33
+						"mult_item_meter_charge_rate"	0.33
 					}
 
 					CharacterAttributes
